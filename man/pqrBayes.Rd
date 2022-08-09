@@ -19,15 +19,15 @@ pqrBayes(
 )
 }
 \arguments{
-\item{g}{the matrix of genetic factors without intercept.}
+\item{g}{the matrix of predictors (subject to selection) without intercept.}
 
-\item{y}{the response variable. The current version only supports continuous response.}
+\item{y}{the response variable. The current version only supports the continuous response.}
 
-\item{u}{a vector of environmental factor for non-linear G×E interactions.}
+\item{u}{a vector of effect modifying variable of the quantile varying coefficient model.}
 
-\item{e}{a matrix of clinical factors which are not subject to penalty.}
+\item{e}{a matrix of clinical covariates not subject to selection.}
 
-\item{quant}{the quantile for the response variable.  The default is 0.5.}
+\item{quant}{the quantile level specified by users. The default value is 0.5.}
 
 \item{iterations}{the number of MCMC iterations.}
 
@@ -79,7 +79,12 @@ fit2
 }
 }
 \references{
-Li, Q., Xi, R. and Lin, N. (2010). Bayesian Regularized Quantile Regression.
-{\emph{Bayesian Analysis}, 5(3), 533-556} \url{https://doi.org/10.1214/10-ba521}
+Zhou, F., Ren, J., Ma, S. and Wu, C. (2022). The Bayesian regularized quantile varying coefficient model. (submitted)
+
+Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2022). Robust Bayesian variable selection for gene-environment interactions. 
+{\emph{Biometrics}, (in press)} \url{https://doi.org/10.1111/biom.13670}
+
+Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
+{\emph{Statistics in Medicine}, 39: 617– 638} \url{https://doi.org/10.1002/sim.8434}
 }
 \keyword{models}

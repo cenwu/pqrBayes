@@ -1,11 +1,11 @@
 #' fit a regularized Bayesian quantile varying coefficient model
 #' 
 #' @keywords models
-#' @param g the matrix of genetic factors without intercept.
-#' @param y the response variable. The current version only supports continuous response.
-#' @param u a vector of environmental factor for non-linear G×E interactions.
-#' @param e a matrix of clinical factors which are not subject to penalty.
-#' @param quant the quantile for the response variable.  The default is 0.5.
+#' @param g the matrix of predictors (subject to selection) without intercept.
+#' @param y the response variable. The current version only supports the continuous response.
+#' @param u a vector of effect modifying variable of the quantile varying coefficient model.
+#' @param e a matrix of clinical covariates not subject to selection.
+#' @param quant the quantile level specified by users. The default value is 0.5.
 #' @param iterations the number of MCMC iterations.
 #' @param kn the number of interior knots for B-spline.
 #' @param degree the degree of B-spline basis.
@@ -48,8 +48,15 @@
 #' }
 #' @export
 #' @references
-#' Li, Q., Xi, R. and Lin, N. (2010). Bayesian Regularized Quantile Regression.
-#' {\emph{Bayesian Analysis}, 5(3), 533-556} \url{https://doi.org/10.1214/10-ba521}
+#' 
+#' Zhou, F., Ren, J., Ma, S. and Wu, C. (2022). The Bayesian regularized quantile varying coefficient model. (submitted)
+#' 
+#' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2022). Robust Bayesian variable selection for gene-environment interactions. 
+#' {\emph{Biometrics}, (in press)} \url{https://doi.org/10.1111/biom.13670}
+#'
+#' Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
+#' {\emph{Statistics in Medicine}, 39: 617– 638} \url{https://doi.org/10.1002/sim.8434}
+
 
 pqrBayes <- function(g, y, u, e=NULL,quant=0.5, iterations=10000, kn=2, degree=2, sparse=TRUE, hyper=NULL,debugging=FALSE){
   p = dim(g)[2]

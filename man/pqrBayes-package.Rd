@@ -29,8 +29,8 @@ Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2022). Robust Bayesian 
 Wu, C., and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
 {\emph{Briefings in Bioinformatics}, 16(5), 873–883} \url{https://doi.org/10.1093/bib/bbu046}
 
-Zhou, F., Ren, J., Lu, X., Ma, S. and Wu, C. (2020). Gene–Environment Interaction: a Variable Selection Perspective. Epistasis. Methods in Molecular Biology.
-{\emph{Humana Press} (Accepted)} \url{https://arxiv.org/abs/2003.02930}
+Zhou, F., Ren, J., Lu, X., Ma, S. and Wu, C. (2021). Gene–Environment Interaction: a Variable Selection Perspective. 
+{\emph{Epistasis. Methods in Molecular Biology.} 2212:191–223} \url{https://link.springer.com/protocol/10.1007/978-1-0716-0947-7_13}
 
 Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 {\emph{Statistics in Medicine}, 39: 617– 638} \url{https://doi.org/10.1002/sim.8434}

@@ -12,11 +12,11 @@ Description: The quantile varying coefficient model is robust to data heterogene
     functions. Although high dimensional quantile varying coefficient model has been 
     examined extensively in the frequentist framework, the corresponding Bayesian variable 
     selection methods have rarely been developed. In this package, we have implemented 
-    the Gibbs samplers of the penalized Bayesian quantile varying coefficient model and 
-    alternative models in C++. The Markov Chain Monte Carlo (MCMC) algorithms of the proposed
+    the Gibbs samplers of the penalized Bayesian quantile varying coefficient model with 
+    the spike-and-slab priors. The Markov Chain Monte Carlo (MCMC) algorithms of the proposed
     and alternative models can be efficiently performed by using the package.    
 License: GPL-2
 Encoding: UTF-8
 Imports: Rcpp,glmnet
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
