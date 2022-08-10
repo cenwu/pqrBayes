@@ -19,7 +19,7 @@
 #' Barbieri, M.M. and Berger, J.O. (2004). Optimal predictive model selection. {\emph{Ann. Statist}, 32(3):870–897}
 #'
 #' @rdname select.VC
-#' @return an object of class `VCselect' is returned, which includes the indices of the selected genetic factors.
+#' @return an object of class `VCselect' is returned, which includes the indices of the selected predictors (e.g. genetic factors).
 #'
 #' @seealso \code{\link{pqrBayes}}
 #'

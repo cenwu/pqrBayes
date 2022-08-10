@@ -19,7 +19,7 @@
 \arguments{
 \item{object}{pqrBayes object.}
 
-\item{g.new}{a matrix of new genetic factors at which predictions are to be made.}
+\item{g.new}{a matrix of new predictors (e.g. genetic factors) at which predictions are to be made.}
 
 \item{u.new}{a vector of new environmental factor at which predictions are to be made.}
 

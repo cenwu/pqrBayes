@@ -3,7 +3,7 @@
 #' make predictions from a pqrBayes object
 #'
 #' @param object pqrBayes object.
-#' @param g.new a matrix of new genetic factors at which predictions are to be made.
+#' @param g.new a matrix of new predictors (e.g. genetic factors) at which predictions are to be made.
 #' @param u.new a vector of new environmental factor at which predictions are to be made.
 #' @param e.new a vector or matrix of new clinic covariates at which predictions are to be made.
 #' @param y.new a vector of the response of new observations. If provided, the prediction error will be computed based on Y.new.

@@ -18,7 +18,7 @@ VCselect(obj, sparse, iterations = 10000, kn = 2, degree = 2)
 \item{degree}{the degree of B-spline basis.}
 }
 \value{
-an object of class `VCselect' is returned, which includes the indices of the selected genetic factors.
+an object of class `VCselect' is returned, which includes the indices of the selected predictors (e.g. genetic factors).
 }
 \description{
 Variable selection for a pqrBayes object

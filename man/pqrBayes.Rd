@@ -46,8 +46,8 @@ fit a regularized Bayesian quantile varying coefficient model
 }
 \details{
 The model described in "\code{\link{data}}" is:
-\deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}\gamma_j(U_i)X_{ij} +\epsilon_{i},}
-where \eqn{\beta_k}'s are the regression coefficients for the clinical covariates and \eqn{\gamma_j}'s are the varying coefficients for the intercept and genetic factors.
+\deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}\gamma_j(V_i)X_{ij} +\epsilon_{i},}
+where \eqn{\beta_k}'s are the regression coefficients for the clinical covariates and \eqn{\gamma_j}'s are the varying coefficients for the intercept and predictors (e.g. genetic factors).
 
 
 When {sparse=TRUE} (default), spike--and--slab priors are adopted. Otherwise, Laplacian shrinkage will be used.

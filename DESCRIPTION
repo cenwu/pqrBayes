@@ -2,7 +2,7 @@ Package: pqrBayes
 Type: Package
 Title: Bayesian Penalized Quantile Regression
 Version: 1.0.0
-Date: 2022-08-01
+Date: 2022-08-10
 Author: Fei Zhou, Jie Ren, Cen Wu
 Maintainer: Ceu Wu <wucen@ksu.edu>
 Description: The quantile varying coefficient model is robust to data heterogeneity, 
@@ -17,6 +17,8 @@ Description: The quantile varying coefficient model is robust to data heterogene
     and alternative models can be efficiently performed by using the package.    
 License: GPL-2
 Encoding: UTF-8
+URL: https://github.com/cenwu/pqrBayes
+BugReports: https://github.com/cenwu/pqrBayes/issues
 Imports: Rcpp,glmnet
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.2.1
