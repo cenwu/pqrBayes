@@ -52,10 +52,10 @@
 #' Zhou, F., Ren, J., Ma, S. and Wu, C. (2022). The Bayesian regularized quantile varying coefficient model. (submitted)
 #' 
 #' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2022). Robust Bayesian variable selection for gene-environment interactions. 
-#' {\emph{Biometrics}, (in press)} \url{https://doi.org/10.1111/biom.13670}
+#' {\emph{Biometrics}, (in press)} \doi{10.1111/biom.13670}
 #'
 #' Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
-#' {\emph{Statistics in Medicine}, 39: 617– 638} \url{https://doi.org/10.1002/sim.8434}
+#' {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}
 
 
 pqrBayes <- function(g, y, u, e=NULL,quant=0.5, iterations=10000, kn=2, degree=2, sparse=TRUE, hyper=NULL,debugging=FALSE){
