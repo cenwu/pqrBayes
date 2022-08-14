@@ -27,7 +27,13 @@
 #'   \item{a0, b0: }{ shape parameters of the Beta priors (\eqn{\pi^{a_{0}-1}(1-\pi)^{b_{0}-1}}) on \eqn{\pi_{0}}.}
 #'   \item{c1, c2: }{ the shape parameter and the rate parameter of the Gamma prior on \eqn{\nu}.}
 #' }
+#' 
 #' Please check the references for more details about the prior distributions.
+#' 
+#' @return an object of class "pqrBayes" is returned, which is a list with components:
+#' \item{posterior}{posterior samples from the MCMC}
+#' \item{coefficients}{a list of posterior estimates of coefficients}
+#' 
 #' @examples
 #' data(data)
 #' g=data$g

@@ -41,6 +41,11 @@ pqrBayes(
 
 \item{debugging}{logical flag. If TRUE, progress will be output to the console and extra information will be returned.}
 }
+\value{
+an object of class "pqrBayes" is returned, which is a list with components:
+\item{posterior}{posterior samples from the MCMC}
+\item{coefficients}{a list of posterior estimates of coefficients}
+}
 \description{
 fit a regularized Bayesian quantile varying coefficient model
 }
@@ -57,6 +62,7 @@ The list can have the following named components
   \item{a0, b0: }{ shape parameters of the Beta priors (\eqn{\pi^{a_{0}-1}(1-\pi)^{b_{0}-1}}) on \eqn{\pi_{0}}.}
   \item{c1, c2: }{ the shape parameter and the rate parameter of the Gamma prior on \eqn{\nu}.}
 }
+
 Please check the references for more details about the prior distributions.
 }
 \examples{

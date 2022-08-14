@@ -6,6 +6,7 @@
 #' @param x pqrBayes result
 #' @param digits significant digits in printout.
 #' @param ... other print arguments
+#' @return No return value, called for side effects.
 #' @seealso \code{\link{pqrBayes}}
 #' @export
 print.pqrBayes=function(x, digits = max(3, getOption("digits") - 3),...){
@@ -21,6 +22,7 @@ print.pqrBayes=function(x, digits = max(3, getOption("digits") - 3),...){
 #' @param digits significant digits in printout.
 #' @param ... other print arguments
 #' @usage \method{print}{pqrBayes.pred}(x, digits = max(3, getOption("digits") - 3), \dots)
+#' @return No return value, called for side effects.
 #' @seealso \code{\link{predict.pqrBayes}}
 #' @export
 print.pqrBayes.pred=function(x, digits = max(3, getOption("digits") - 3),...){
@@ -39,6 +41,7 @@ print.pqrBayes.pred=function(x, digits = max(3, getOption("digits") - 3),...){
 #' @param digits significant digits in printout.
 #' @param ... other print arguments
 #' @usage \method{print}{VCselect}(x, digits = max(3, getOption("digits") - 3), \dots)
+#' @return No return value, called for side effects.
 #' @seealso \code{\link{VCselect}}
 #' @export
 print.VCselect=function(x, digits = max(3, getOption("digits") - 3),...){

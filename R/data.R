@@ -28,7 +28,7 @@
 #' 
 #' The true model that we used to generate Y:
 #' \deqn{Y_i=\gamma_0(v_i)+\gamma_1(v_i)X_{i1}+\gamma_2(v_i)X_{i2}+\gamma_3(v_i)X_{i3}+\epsilon_i,}
-#' where \eqn{\epsilon_i\sim N(0,1)}, \eqn{\gamma_{0}=1.5\sin(0.2\pi*v_i}, \eqn{\gamma_{1}=2\exp(0.2v_i-1)-1.5 }, \eqn{\gamma_{2}=2-2v_i) } and \eqn{\gamma_3=-4+(v_i-2)^3/6}.
+#' where \eqn{\epsilon_i\sim N(0,1)}, \eqn{\gamma_{0}=1.5\sin(0.2\pi*v_i}), \eqn{\gamma_{1}=2\exp(0.2v_i-1)-1.5 }, \eqn{\gamma_{2}=2-2v_i } and \eqn{\gamma_3=-4+(v_i-2)^3/6}.
 #'
 #' @examples
 #' data(data)

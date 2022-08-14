@@ -13,6 +13,9 @@
 
 \item{...}{other print arguments}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Print a summary of a select.VC object
 }

@@ -1,10 +1,12 @@
 Package: pqrBayes
 Type: Package
 Title: Bayesian Penalized Quantile Regression
-Version: 1.0.0
-Date: 2022-08-10
-Author: Fei Zhou, Jie Ren, Cen Wu
-Maintainer: Ceu Wu <wucen@ksu.edu>
+Version: 1.0.2
+Date: 2022-08-14
+Authors@R: c( person("Fei", "Zhou", role = "aut"),
+              person("Jie", "Ren", role = "aut"),              
+              person("Cen", "Wu", role = c("aut", "cre"),
+                      email = "wucen@ksu.edu"))
 Description: The quantile varying coefficient model is robust to data heterogeneity, 
     outliers and heavy-tailed distributions in the response variable due to the check
     loss function in quantile regression. In addition, it can flexibly model the dynamic
