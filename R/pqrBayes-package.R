@@ -22,10 +22,11 @@ NULL
 #' The function pqrBayes() returns a pqrBayes object that contains the posterior estimates of each coefficients.
 #'
 #' @references
-#' Zhou, F., Ren, J., Ma, S. and Wu, C. (2022). The Bayesian regularized quantile varying coefficient model. (submitted)
-#' 
-#' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2022). Robust Bayesian variable selection for gene-environment interactions. 
-#' {\emph{Biometrics}, (in press)} \doi{10.1111/biom.13670}
+#' Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian regularized quantile varying coefficient model.
+#'  {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
+#'  
+#' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian variable selection for gene-environment interactions. 
+#' {\emph{Biometrics}, 79(2), 684-694} \doi{10.1111/biom.13670}
 #'
 #' Wu, C., and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
 #' {\emph{Briefings in Bioinformatics}, 16(5), 873–883} \doi{10.1093/bib/bbu046}

@@ -13,7 +13,8 @@ The quantile varying coefficient model is robust to data heterogeneity,
     examined extensively in the frequentist framework, the corresponding Bayesian variable 
     selection methods have rarely been developed. In this package, we have implemented 
     the Gibbs samplers of the penalized Bayesian quantile varying coefficient model with 
-    the spike-and-slab priors. The Markov Chain Monte Carlo (MCMC) algorithms of the proposed
+    the spike-and-slab priors [Zhou et al.(2023)]<doi.org/10.1016/j.csda.2023.107808>. 
+    The Markov Chain Monte Carlo (MCMC) algorithms of the proposed
     and alternative models can be efficiently performed by using the package.
 
 
@@ -31,4 +32,4 @@ The quantile varying coefficient model is robust to data heterogeneity,
 
 This package provides implementation for methods proposed in
 
-  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2022+). The Bayesian Regularized Quantile Varying Coefficient Model. (submitted)
+  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
