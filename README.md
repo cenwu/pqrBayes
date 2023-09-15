@@ -20,16 +20,25 @@ The quantile varying coefficient model is robust to data heterogeneity,
 
 ## How to install
 
- - To install from github, run these two lines of code in R
+    - To install from Github, run these two lines of code in R
 
 <!-- end list -->
 
     install.packages("devtools")
     devtools::install_github("cenwu/pqrBayes")
 
+  - Released versions of emBayes are available on CRAN
+    [(link)](https://cran.r-project.org/package=pqrBayes), and can be
+    installed within R via
+
+<!-- end list -->
+
+    install.packages("pqrBayes")
+
+
 
 ## Methods
 
 This package provides implementation for methods proposed in
 
-  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
+  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  Computational Statistics & Data Analysis, 107808 \doi{10.1016/j.csda.2023.107808}
