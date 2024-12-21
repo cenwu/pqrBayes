@@ -46,12 +46,12 @@ predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.
   
   c1.C=rep(0,d)
   for (i in 1:d) {
-    c1.C[i]=stats::quantile(object$GS.alpha[5001:10000,i],0.5)
+    c1.C[i]=stats::quantile(object$coefficients$GS.alpha[5001:10000,i],0.5)
   }
   
-  c2.C=rep(0,dim(object$GS.beta)[2])
-  for (i in 1:dim(object$GS.beta)[2]) {
-    c2.C[i]=stats::quantile(object$GS.beta[5001:10000,i],0.5)
+  c2.C=rep(0,dim(object$coefficients$GS.beta)[2])
+  for (i in 1:dim(object$coefficients$GS.beta)[2]) {
+    c2.C[i]=stats::quantile(object$coefficients$GS.beta[5001:10000,i],0.5)
   }
   
   coeffmatrix.C=as.matrix(cbind(c1.C,matrix(c2.C,nrow = d)))
@@ -64,7 +64,7 @@ predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.
     
     beta.hat=rep(0,q)
     for (i in 1:q) {
-      beta.hat[i]=stats::quantile(object$GS.alpha[5001:10000,i+d],0.5)
+      beta.hat[i]=stats::quantile(object$coefficients$GS.alpha[5001:10000,i+d],0.5)
     }
     
   if(y.new){  
@@ -104,6 +104,7 @@ predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.
   
   pqrBayes.pred = list(error=pred.error, y.pred=y.hat)
   class(pqrBayes.pred) = "pqrBayes.pred"
+  return(pqrBayes.pred)
   #pred
 }
 

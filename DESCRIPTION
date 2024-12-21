@@ -1,21 +1,21 @@
 Package: pqrBayes
 Type: Package
 Title: Bayesian Penalized Quantile Regression
-Version: 1.0.2
-Date: 2023-09-13
+Version: 1.0.3
+Date: 2024-12-21
 Authors@R: c( person("Cen", "Wu", role = c("aut", "cre"),email = "wucen@ksu.edu"),
-              person("Fei", "Zhou", role = "aut"),
-              person("Jie", "Ren", role = "aut"))
+              person("Kun", "Fan", role = "aut"),
+              person("Jie", "Ren", role = "aut"),
+              person("Fei", "Zhou", role = "aut"))
 Description: The quantile varying coefficient model is robust to data heterogeneity, 
-    outliers and heavy-tailed distributions in the response variable due to the check
-    loss function in quantile regression. In addition, it can flexibly model the dynamic
-    pattern of regression coefficients through nonparametric varying coefficient 
-    functions. Although high dimensional quantile varying coefficient model has been 
-    examined extensively in the frequentist framework, the corresponding Bayesian variable 
-    selection methods have rarely been developed. In this package, we have implemented 
+    outliers and heavy-tailed distributions in the response variable. In addition, 
+    it can flexibly model dynamic patterns of regression coefficients through 
+    nonparametric varying coefficient functions. In this package, we have implemented 
     the Gibbs samplers of the penalized Bayesian quantile varying coefficient model with 
-    the spike-and-slab priors [Zhou et al.(2023)]<doi:10.1016/j.csda.2023.107808>.
-    The Markov Chain Monte Carlo (MCMC) algorithms of the proposed
+    spike-and-slab priors [Zhou et al.(2023)]<doi:10.1016/j.csda.2023.107808> for efficient 
+    Bayesian shrinkage estimation, variable selection and statistical inference. In particular,
+    valid Bayesian inferences on sparse quantile varying coefficient functions can be validated 
+    on finite samples. The Markov Chain Monte Carlo (MCMC) algorithms of the proposed
     and alternative models can be efficiently performed by using the package.    
 Depends: R (>= 3.5.0)
 License: GPL-2
@@ -25,6 +25,6 @@ BugReports: https://github.com/cenwu/pqrBayes/issues
 LazyData: true
 Imports: Rcpp,glmnet
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 NeedsCompilation: yes
 Repository: CRAN

@@ -13,6 +13,7 @@ pqrBayes(
   iterations = 10000,
   kn = 2,
   degree = 2,
+  robust = TRUE,
   sparse = TRUE,
   hyper = NULL,
   debugging = FALSE
@@ -35,6 +36,8 @@ pqrBayes(
 
 \item{degree}{the degree of B-spline basis.}
 
+\item{robust}{logical flag. If TRUE, robust methods will be used.}
+
 \item{sparse}{logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly.}
 
 \item{hyper}{a named list of hyperparameters.}
@@ -55,10 +58,13 @@ The model described in "\code{\link{data}}" is:
 where \eqn{\beta_k}'s are the regression coefficients for the clinical covariates and \eqn{\gamma_j}'s are the varying coefficients for the intercept and predictors (e.g. genetic factors).
 
 
-When {sparse=TRUE} (default), spike--and--slab priors are adopted. Otherwise, Laplacian shrinkage will be used.
+When \{sparse=TRUE\} (default), spike--and--slab priors are adopted. Otherwise, Laplacian shrinkage will be used.
+
+When \{robust=TRUE\} (default), quantile varying coefficient models are adopted. Otherwise, the least-square based varying coefficient model will be used.
+
 Users can modify the hyper-parameters by providing a named list of hyper-parameters via the argument `hyper'.
 The list can have the following named components
-\itemize{
+\describe{
   \item{a0, b0: }{ shape parameters of the Beta priors (\eqn{\pi^{a_{0}-1}(1-\pi)^{b_{0}-1}}) on \eqn{\pi_{0}}.}
   \item{c1, c2: }{ the shape parameter and the rate parameter of the Gamma prior on \eqn{\nu}.}
 }
@@ -82,6 +88,12 @@ fit1
 sparse=FALSE
 fit2=pqrBayes(g,y,u,e,quant=0.5,sparse = sparse)
 fit2
+
+## non-robust
+robust = FALSE
+fit3=pqrBayes(g,y,u,e,quant=0.5,robust = robust)
+fit3
+
 }
 }
 \references{

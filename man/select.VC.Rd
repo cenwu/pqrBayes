@@ -28,9 +28,30 @@ For class `Sparse', the median probability model (MPM) (Barbieri and Berger, 200
 with the response variable. For class `NonSparse', variable selection is based on 95\% credible interval.
 Please check the references for more details about the variable selection.
 }
+\examples{
+data(data)
+g=data$g
+y=data$y
+u=data$u
+e=data$e
+## default method
+fit1=pqrBayes(g,y,u,e,quant=0.5)
+sparse=TRUE
+select=VCselect(obj = fit1,sparse = sparse)
+select
+
+\donttest{
+## non-sparse
+sparse=FALSE
+fit2=pqrBayes(g,y,u,e,quant=0.5,sparse = sparse)
+select=VCselect(obj=fit2,sparse=FALSE)
+select
+}
+
+}
 \references{
-Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2022). Robust Bayesian variable selection for gene-environment interactions. 
-{\emph{Biometrics}, (in press)} \doi{10.1111/biom.13670}
+Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian variable selection for gene-environment interactions. 
+{\emph{Biometrics}, 79(2), 684-694} \doi{10.1111/biom.13670}
 
 Barbieri, M.M. and Berger, J.O. (2004). Optimal predictive model selection. {\emph{Ann. Statist}, 32(3):870–897}
 }
