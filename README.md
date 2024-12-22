@@ -28,12 +28,19 @@ The quantile varying coefficient model is robust to data heterogeneity,
 
 ## How to install
 
- - To install from GitHub, run these two lines of code in R
-
-<!-- end list -->
+<!-- -->
 
     install.packages("devtools")
     devtools::install_github("cenwu/pqrBayes")
+
+- Released versions of pqrBayes are available on CRAN
+  <!-- [(link)](https://cran.r-project.org/package=pqrBayes) --> , and
+  can be installed within R via
+
+<!-- -->
+
+    install.packages("pqrBayes")
+
 
 ## News
 
