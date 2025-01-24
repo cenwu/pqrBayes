@@ -59,9 +59,6 @@ where \eqn{\beta_k}'s are the regression coefficients for the clinical covariate
 
 
 When \{sparse=TRUE\} (default), spike--and--slab priors are adopted. Otherwise, Laplacian shrinkage will be used.
-
-When \{robust=TRUE\} (default), quantile varying coefficient models are adopted. Otherwise, the least-square based varying coefficient model will be used.
-
 Users can modify the hyper-parameters by providing a named list of hyper-parameters via the argument `hyper'.
 The list can have the following named components
 \describe{

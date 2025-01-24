@@ -13,6 +13,7 @@
   quant = 0.5,
   kn = 2,
   degree = 2,
+  iterations = 10000,
   ...
 )
 }
@@ -32,6 +33,8 @@
 \item{kn}{the number of interior knots for B-spline.}
 
 \item{degree}{the degree of B-spline basis.}
+
+\item{iterations}{the number of MCMC iterations.}
 
 \item{...}{other predict arguments}
 }
