@@ -2,7 +2,7 @@
 % Please edit documentation in R/coverage.R
 \name{coverage}
 \alias{coverage}
-\title{95\% coverage for a pqrBayes object}
+\title{Empirical 95\% coverage probability for a pqrBayes object}
 \usage{
 coverage(posterior,coefficient,u.grid,kn,degree,iterations)
 }
@@ -23,7 +23,7 @@ coverage(posterior,coefficient,u.grid,kn,degree,iterations)
 c
 }
 \description{
-calculate 95\% coverage for varying coefficients
+calculate empirical 95\% coverage probabilities for varying coefficients
 }
 \seealso{
 \code{\link{pqrBayes}}

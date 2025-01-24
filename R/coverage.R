@@ -1,6 +1,6 @@
-#' 95\% coverage for a pqrBayes object
+#' Empirical 95\% coverage probability for a pqrBayes object
 #'
-#' calculate 95\% coverage for varying coefficients
+#' calculate empirical 95\% coverage probabilities for varying coefficients
 #'
 #' @param posterior posterior samples from the MCMC.
 #' @param coefficient the matrix of true varying coefficients evaluated on the grid points.
