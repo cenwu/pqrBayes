@@ -118,7 +118,8 @@ library(pqrBayes)
     cat("iteration = ", h, "\n")
     
     }
-    cp_RBGLSS =  colMeans(CI_RBGLSS) # 95% coverage probabilities for the varying coeffcients under default setting
+    # the intercept gamma_0 has not been regularized
+    cp_RBGLSS =  colMeans(CI_RBGLSS) # 95% coverage probabilities for the varying coeffcients under the default setting
     cp_BGLSS  =  colMeans(CI_BGLSS)
     cp_RBGL   =  colMeans(CI_RBGL)
     cp_BGL    =  colMeans(CI_BGL)
