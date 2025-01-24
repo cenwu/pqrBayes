@@ -49,7 +49,7 @@ VCselect <- function(obj,sparse,iterations=10000,kn=2, degree=2){
     method="Sparse"
     idgene=obj$posterior$idgene
     id=which(idgene>iterations/4)
-    VCselect=list(method=method,id=id)
+    VCselect=list(method=method,id=id,idgene = idgene)
   }else{
     method="Nonsparse"
     
@@ -59,7 +59,7 @@ VCselect <- function(obj,sparse,iterations=10000,kn=2, degree=2){
 
     c2.C=rep(0,dim(obj$coefficients$GS.beta)[2])
     for (i in 1:dim(obj$coefficients$GS.beta)[2]) {
-      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[round(iterations):iterations,i],0.025)
+      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[(iterations/2+1):iterations,i],0.025)
     }
 
     coeffmatrix.C1=matrix(c2.C,nrow = d)
@@ -68,7 +68,7 @@ VCselect <- function(obj,sparse,iterations=10000,kn=2, degree=2){
 
     c2.C=rep(0,dim(obj$coefficients$GS.beta)[2])
     for (i in 1:dim(obj$coefficients$GS.beta)[2]) {
-      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[round(iterations):iterations,i],0.975)
+      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[(iterations/2+1):iterations,i],0.975)
     }
 
     coeffmatrix.C2=matrix(c2.C,nrow = d)
@@ -80,7 +80,7 @@ VCselect <- function(obj,sparse,iterations=10000,kn=2, degree=2){
       }
     }
     id=which(idgene==1)
-    VCselect=list(method=method,id=id)
+    VCselect=list(method=method,id=id,idgene = idgene)
   }
   
   class(VCselect)="VCselect"

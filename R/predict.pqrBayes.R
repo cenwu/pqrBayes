@@ -10,6 +10,7 @@
 #' @param quant the quantile for the response variable.  The default is 0.5.
 #' @param kn the number of interior knots for B-spline.
 #' @param degree the degree of B-spline basis.
+#' @param iterations the number of MCMC iterations.
 #' @param ... other predict arguments
 #' 
 #' @details g.new (u.new) must have the same number of columns as g (u) used for fitting the model. By default, the clinic covariates are NULL unless 
@@ -25,7 +26,7 @@
 #' @seealso \code{\link{pqrBayes}}
 #'
 #' @export
-predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.5, kn=2, degree=2,...){
+predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.5, kn=2, degree=2,iterations=10000,...){
   p = dim(g.new)[2]
   
   x = cbind(1,g.new)
@@ -46,12 +47,12 @@ predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.
   
   c1.C=rep(0,d)
   for (i in 1:d) {
-    c1.C[i]=stats::quantile(object$coefficients$GS.alpha[5001:10000,i],0.5)
+    c1.C[i]=stats::quantile(object$coefficients$GS.alpha[(iterations/2+1):iterations,i],0.5)
   }
   
   c2.C=rep(0,dim(object$coefficients$GS.beta)[2])
   for (i in 1:dim(object$coefficients$GS.beta)[2]) {
-    c2.C[i]=stats::quantile(object$coefficients$GS.beta[5001:10000,i],0.5)
+    c2.C[i]=stats::quantile(object$coefficients$GS.beta[(iterations/2+1):iterations,i],0.5)
   }
   
   coeffmatrix.C=as.matrix(cbind(c1.C,matrix(c2.C,nrow = d)))
@@ -64,7 +65,7 @@ predict.pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new=NULL, quant=0.
     
     beta.hat=rep(0,q)
     for (i in 1:q) {
-      beta.hat[i]=stats::quantile(object$coefficients$GS.alpha[5001:10000,i+d],0.5)
+      beta.hat[i]=stats::quantile(object$coefficients$GS.alpha[(iterations/2+1):iterations,i+d],0.5)
     }
     
   if(y.new){  
