@@ -45,12 +45,6 @@ The quantile varying coefficient model is robust to data heterogeneity,
     install.packages("pqrBayes")
 
 ## Example
-
-rm(list=ls(all=TRUE))
-library(splines)
-library(MASS)
-library(pqrBayes)
-
 #### Data Generation    
     Data <- function(n,p,quant){
       sig1 = matrix(0,p,p)
