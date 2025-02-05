@@ -82,7 +82,7 @@ The quantile varying coefficient model is robust to data heterogeneity,
     g = x[,-1]
     kn=2
     degree=2
-    u.grid = (1:n)*0.005
+    u.grid = (1:200)*0.005
     gamma_0_grid = 2+2*sin(2*u.grid*pi)
     gamma_1_grid = 2*exp(2*u.grid-1)
     gamma_2_grid = -6*u.grid*(1-u.grid)
