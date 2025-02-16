@@ -4,14 +4,14 @@
 \alias{print.pqrBayes}
 \title{print a pqrBayes result}
 \usage{
-\method{print}{pqrBayes}(x, digits = max(3, getOption("digits") - 3), ...)
+\method{print}{pqrBayes}(x, digits = max(3, getOption("digits") - 3), \dots)
 }
 \arguments{
-\item{x}{pqrBayes result}
+\item{x}{pqrBayes result.}
 
 \item{digits}{significant digits in printout.}
 
-\item{...}{other print arguments}
+\item{...}{other print arguments.}
 }
 \value{
 No return value, called for side effects.

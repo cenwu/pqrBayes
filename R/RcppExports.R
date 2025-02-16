@@ -9,6 +9,22 @@ BGL <- function(xx, y, W, s, q, maxSteps, hatBeta, hatAlpha, hatInvTauSq, invSig
     .Call(`_pqrBayes_BGL`, xx, y, W, s, q, maxSteps, hatBeta, hatAlpha, hatInvTauSq, invSigAlpha0, hatLambdaSqStar, hatSigmaSq, aStar, bStar, alpha, gamma, progress)
 }
 
+BL <- function(xx, y, W, maxSteps, hatBeta, hatAlpha, hatInvTauSq, invSigAlpha0, hatLambdaSqStar, hatSigmaSq, aStar, bStar, alpha, gamma, progress) {
+    .Call(`_pqrBayes_BL`, xx, y, W, maxSteps, hatBeta, hatAlpha, hatInvTauSq, invSigAlpha0, hatLambdaSqStar, hatSigmaSq, aStar, bStar, alpha, gamma, progress)
+}
+
+BLSS <- function(xx, y, W, maxSteps, hatAlpha, hatBeta, hatInvTauSq, invSigAlpha0, hatPi, hatLambdaSq, hatSigmaSq, aStar, bStar, alpha, gamma, sh1, sh0, progress) {
+    .Call(`_pqrBayes_BLSS`, xx, y, W, maxSteps, hatAlpha, hatBeta, hatInvTauSq, invSigAlpha0, hatPi, hatLambdaSq, hatSigmaSq, aStar, bStar, alpha, gamma, sh1, sh0, progress)
+}
+
+BRL <- function(xx, y, W, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq, xi1, xi2, r1, a, b, progress) {
+    .Call(`_pqrBayes_BRL`, xx, y, W, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq, xi1, xi2, r1, a, b, progress)
+}
+
+BRLSS <- function(xx, y, W, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq, xi1, xi2, r1, a, b, sh1, sh0, progress) {
+    .Call(`_pqrBayes_BRLSS`, xx, y, W, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq, xi1, xi2, r1, a, b, sh1, sh0, progress)
+}
+
 BRGL_SS <- function(xx, y, W, s, L, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq, xi1, xi2, r, a, b, sh1, sh0, progress) {
     .Call(`_pqrBayes_BRGL_SS`, xx, y, W, s, L, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq, xi1, xi2, r, a, b, sh1, sh0, progress)
 }

@@ -4,28 +4,24 @@
 \alias{estimation.pqrBayes}
 \title{Estimation and estimation accuracy for a pqrBayes object}
 \usage{
-estimation.pqrBayes(posterior,coefficient,u.grid,kn,degree,iterations)
+estimation.pqrBayes(object,coefficient,u.grid=NULL,model="linear")
 }
 \arguments{
-\item{posterior}{posterior samples from the MCMC.}
+\item{object}{an object of class `pqrBayes'.}
 
-\item{coefficient}{the matrix of true varying coefficients evaluated on the grid points.}
+\item{coefficient}{the vector of quantile regression coefficients under a linear model or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
-\item{u.grid}{the vector of grid points.}
+\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a linear (quantile) regression model, u.grid = NULL.}
 
-\item{kn}{the number of interior knots for B-spline.}
-
-\item{degree}{the degree of B-spline basis.}
-
-\item{iterations}{the number of MCMC iterations.}
+\item{model}{the model to be fitted. Users can choose "linear" for a linear model or "VC" for a varying coefficient model.}
 }
 \value{
 an object of class `pqrBayes.est' is returned, which is a list with components:
-\item{error}{integrated mean square errors and total integrated mean square error.}
-\item{coeff.est}{estimated values of the varying coefficients.}
+\item{error}{mean square error or integrated mean square errors and total integrated mean square error.}
+\item{coeff.est}{estimated values of the regression coefficients or the varying coefficients.}
 }
 \description{
-calculate estimation and estimation accuracy for varying coefficients
+Calculate estimated regression coefficients with estimation accuracy from linear and quantile VC models, respectively.
 }
 \seealso{
 \code{\link{pqrBayes}}

@@ -2,39 +2,24 @@
 % Please edit documentation in R/predict.pqrBayes.R
 \name{predict.pqrBayes}
 \alias{predict.pqrBayes}
-\title{make predictions from a pqrBayes object}
+\title{Make predictions from a pqrBayes object}
 \usage{
-\method{predict}{pqrBayes}(
-  object,
-  g.new,
-  u.new,
-  e.new = NULL,
-  y.new = NULL,
-  quant = 0.5,
-  kn = 2,
-  degree = 2,
-  iterations = 10000,
-  ...
-)
+predict.pqrBayes(object, g.new, u.new, e.new, y.new, quant, model, ...)
 }
 \arguments{
-\item{object}{pqrBayes object.}
+\item{object}{a pqrBayes object.}
 
 \item{g.new}{a matrix of new predictors (e.g. genetic factors) at which predictions are to be made.}
 
-\item{u.new}{a vector of new environmental factor at which predictions are to be made.}
+\item{u.new}{a vector of new environmental factor at which predictions are to be made. When being applied to the linear model, u.new = NULL.}
 
-\item{e.new}{a vector or matrix of new clinic covariates at which predictions are to be made.}
+\item{e.new}{a vector or matrix of new clinical covariates at which predictions are to be made.}
 
 \item{y.new}{a vector of the response of new observations. If provided, the prediction error will be computed based on Y.new.}
 
-\item{quant}{the quantile for the response variable.  The default is 0.5.}
+\item{quant}{the quantile level.  The default is 0.5.}
 
-\item{kn}{the number of interior knots for B-spline.}
-
-\item{degree}{the degree of B-spline basis.}
-
-\item{iterations}{the number of MCMC iterations.}
+\item{model}{the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a linear model.}
 
 \item{...}{other predict arguments}
 }
@@ -44,10 +29,10 @@ an object of class `pqrBayes.pred' is returned, which is a list with components:
 \item{y.pred}{predicted values of the new observations.}
 }
 \description{
-make predictions from a pqrBayes object
+Make predictions from a pqrBayes object
 }
 \details{
-g.new (u.new) must have the same number of columns as g (u) used for fitting the model. By default, the clinic covariates are NULL unless 
+g.new (u.new) must have the same number of columns as g (u) used for fitting the model. By default, the clinical covariates are NULL unless 
 provided. The predictions are made based on the posterior estimates of coefficients in the pqrBayes object.
 
 If y.new is provided, the prediction error will be computed based on the check loss.

@@ -1,4 +1,4 @@
-Robust <- function(g, y, u, e,quant, iterations, kn, degree,sparse, hyper,debugging){
+NonRobust_vc <- function(g, y, u, e,iterations, kn, degree,sparse,debugging){
   p = dim(g)[2]
   
   x = cbind(1,g)
@@ -56,27 +56,20 @@ Robust <- function(g, y, u, e,quant, iterations, kn, degree,sparse, hyper,debugg
     invSigAlpha0 = diag(10^-3, (d+q))
   }
   
-  xi1 = (1-2*quant)/(quant*(1-quant))
-  xi2 = sqrt(2/(quant*(1-quant)))
-  hatTau = 1
-  hatV = rep(1,n) 
-  hatEtaSq = 1
-  hatSg = rep(1, p)
-  hatPi = 0.5
-  
-  sh0_1 = ifelse(is.null(hyper$a0), 1, hyper$a0)
-  sh0_0 = ifelse(is.null(hyper$b0), 1, hyper$b0)
-  
-  a = ifelse(is.null(hyper$c1), 1, hyper$c1)
-  b = ifelse(is.null(hyper$c2), 1, hyper$c2)
-  
-  r = ifelse(is.null(hyper$d2), 1, hyper$d2)
-  hatbeta=matrix(hat.r,ncol=p) + 10^-5
+  invTAUsq.star = rep(0.1, p)
+  hat.pi.s = 0.9
+  lambda.star = 1
+  hat.sigma.sq = 1
+  a.star=1
+  b.star = 1.5
+  alpha = 0.2
+  gamma = 0.1
+  mu.star=nu.star=1 
   progress = ifelse(debugging, 10^(floor(log10(iterations))-1), 0)
-  if(sparse){fit=BRGL_SS(xx1, y, CLC, p, d, iterations, hatAlpha, hatbeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq,
-                         xi1, xi2, r, a, b, sh0_1, sh0_0, progress)}
-  else{fit=BRGL(xx1, y, CLC, p, d, iterations, hatAlpha, hatbeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq,
-                xi1, xi2, r, a, b, progress)}
-  out = fit
+  if(sparse){fit=BGLPointMass(xx1, y, CLC, p, d, iterations, hatAlpha, hat.r, invTAUsq.star, invSigAlpha0, hat.pi.s,
+                              lambda.star, hat.sigma.sq, a.star, b.star, alpha, gamma, mu.star, nu.star, progress)}
+  else{fit=BGL(xx1, y, CLC, p, d, iterations, hat.r, hatAlpha, invTAUsq.star, invSigAlpha0, lambda.star, 
+               hat.sigma.sq, a.star, b.star, alpha, gamma, progress)}
+  out=list(fit=fit,iterations=iterations,kn=kn,degree=degree)
   return(out)
 }

@@ -2,28 +2,24 @@
 % Please edit documentation in R/coverage.R
 \name{coverage}
 \alias{coverage}
-\title{Empirical 95\% coverage probability for a pqrBayes object}
+\title{95\% empirical coverage probability for a pqrBayes object}
 \usage{
-coverage(posterior,coefficient,u.grid,kn,degree,iterations)
+coverage(object,coefficient,u.grid=NULL,model="linear")
 }
 \arguments{
-\item{posterior}{posterior samples from the MCMC.}
+\item{object}{the pqrBayes object.}
 
-\item{coefficient}{the matrix of true varying coefficients evaluated on the grid points.}
+\item{coefficient}{the vector of true regression coefficients under a linear model or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
-\item{u.grid}{the vector of grid points.}
+\item{u.grid}{the vector of grid points under a varying coefficient model. When assessing empirical coverage probabilities under a linear model, u.grid = NULL.}
 
-\item{kn}{the number of interior knots for B-spline.}
-
-\item{degree}{the degree of B-spline basis.}
-
-\item{iterations}{the number of MCMC iterations.}
+\item{model}{the model to be fitted. Users can also choose "linear" for a linear model or "VC" for a varying coefficient model.}
 }
 \value{
 c
 }
 \description{
-calculate empirical 95\% coverage probabilities for varying coefficients
+Calculate 95\% empirical coverage probabilities for regression coefficients under linear and VC models, respectively.
 }
 \seealso{
 \code{\link{pqrBayes}}

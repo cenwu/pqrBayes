@@ -5,25 +5,25 @@ NULL
 "_PACKAGE"
 #' @keywords overview
 #' @name pqrBayes-package
-#' @title Regularized Bayesian Quantile Varying Coefficient Model
+#' @title Bayesian penalized quantile regression for linear and varying coefficient models
 #' @aliases pqrBayes-package
-#' @description In this package, we implement a sparse Bayesian quantile varying coefficient model for non-linear gene-environment interactions. The quantile varying 
-#' coefficient functions that can capture the non-linear gene-environment interactions are approximated using B-splines. 
-#' Quantile regression is adopted as it's robust to long-tailed distributions in the response/phenotype and provides the capability of describing the relationship 
-#' between the response variable and predictors at different quantile leves. The default method, Bayesian regularized quantile varying coefficient model with spike-and-slab priors,  
-#' adopts the point-mass spike--and--slab priors to achieve exact sparsity by shrinking the coefficients of unimportant effects to exactly zero and
-#' facilitate valid Bayesian inferences on quantile varying coefficients. 
-#' In addition to the default method, users can also choose the method without robustness and spike--and--slab priors.
+#' @description In this package, we implement Bayesian penalized quantile regression for the linear regression model and quantile varying coefficient (VC) model. 
+#' Point-mass spike-and-slab priors have been incorporated in the Bayesian hierarchical models to facilitate Bayesian shrinkage 
+#' estimation with exact sparsity in both models. The two default methods are Bayesian regularized quantile regression with spike-and-slab priors
+#' under the linear model and VC model, correspondingly. In addition to default methods, users can also choose methods without robustness and/or spike--and--slab priors.
 #' 
-#' @details The user friendly, integrated interface \strong{pqrBayes()} allows users to flexibly choose the fitting methods by specifying the following parameter:
+#' @details The user friendly, integrated interface \strong{pqrBayes()} allows users to flexibly choose fitting models by specifying the following parameters:
 #' \tabular{rl}{
-#' robust: \tab whether to fit the robust sparse quantile varying coefficient \cr\tab models or the non-robust counterpart. \cr\cr
-#' sparse: \tab whether to use the spike-and-slab priors to impose sparsity. 
+#' robust: \tab whether to fit a robust sparse quantile regression model or a quantile varying coefficient \cr\tab model or their non-robust counterparts. \cr\cr
+#' sparse: \tab whether to use the spike-and-slab priors to impose exact sparsity. \cr\cr
+#' model: \tab whether to fit a linear model or a varying coefficient model.
 #' }
 #'
-#' The function pqrBayes() returns a pqrBayes object that contains the posterior estimates of each coefficients.
+#' The function pqrBayes() returns a pqrBayes object that stores the posterior estimates of regression coefficients.
 #'
 #' @references
+#' Fan, K., Subedi, S., Yang, G., Lu, X., Ren, J. and Wu, C. (2024). Is Seeing Believing? A Practitioner's Perspective on High-dimensional Statistical Inference in Cancer Genomics Studies. {\emph{Entropy}, 26(9).794} \doi{10.3390/e26090794}  
+#'
 #' Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian regularized quantile varying coefficient model.
 #'  {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
 #'  

@@ -3,9 +3,10 @@
 #'
 #' Print a pqrBayes result
 #'
-#' @param x pqrBayes result
+#' @param x pqrBayes result.
 #' @param digits significant digits in printout.
-#' @param ... other print arguments
+#' @param ... other print arguments.
+#' @usage \method{print}{pqrBayes}(x, digits = max(3, getOption("digits") - 3), \dots)
 #' @return No return value, called for side effects.
 #' @seealso \code{\link{pqrBayes}}
 #' @export
@@ -33,18 +34,18 @@ print.pqrBayes.pred=function(x, digits = max(3, getOption("digits") - 3),...){
 }
 
 
-#' print a select.VC object
+#' print a select.pqrBayes object
 #'
-#' Print a summary of a select.VC object
+#' Print a summary of a select.pqrBayes object
 #'
-#' @param x VCselect object.
+#' @param x pqrBayes.select object.
 #' @param digits significant digits in printout.
 #' @param ... other print arguments
-#' @usage \method{print}{VCselect}(x, digits = max(3, getOption("digits") - 3), \dots)
+#' @usage \method{print}{pqrBayes.select}(x, digits = max(3, getOption("digits") - 3), \dots)
 #' @return No return value, called for side effects.
-#' @seealso \code{\link{VCselect}}
+#' @seealso \code{\link{pqrBayes.select}}
 #' @export
-print.VCselect=function(x, digits = max(3, getOption("digits") - 3),...){
+print.pqrBayes.select=function(x, digits = max(3, getOption("digits") - 3),...){
   cat("\nMethod:\n")
   print(x$method)
   cat("\n")
