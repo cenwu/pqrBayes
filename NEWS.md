@@ -1,7 +1,7 @@
 
 ## News
 
-### pqrBayes 1.1.0 \[2025-02-15\]
+### pqrBayes 1.1.0 \[2025-02-16\]
 
 - Added functions to compute empirical coverage probabilities of sparse regression coefficients under linear models. 
 - Added examples to reproduce the inference results from Fan et al. (2024).
