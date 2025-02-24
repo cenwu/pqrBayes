@@ -8,11 +8,11 @@
 <!-- badges: start -->
 
 [![CRAN](https://www.r-pkg.org/badges/version/pqrBayes)](https://cran.r-project.org/package=pqrBayes)
-[![Codecov test
-coverage](https://codecov.io/gh/cenwu/pqrBayes/branch/master/graph/badge.svg)](https://app.codecov.io/gh/cenwu/pqrBayes?branch=master)
 [![CRAN RStudio mirror
-downloads](https://cranlogs.r-pkg.org/badges/pqrBayes)](https://www.r-pkg.org:443/pkg/pqrBayes)
-[![R-CMD-check](https://github.com/cenwu/pqrBayes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cenwu/pqrBayes/actions/workflows/R-CMD-check.yaml)
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/pqrBayes)](https://www.r-pkg.org:443/pkg/pqrBayes)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/last-month/pqrBayes)](https://www.r-pkg.org:443/pkg/pqrBayes)
+
 <!-- badges: end -->
 
 
@@ -20,9 +20,9 @@ Bayesian regularized quantile regression utilizing sparse priors to
     impose exact sparsity leads to efficient Bayesian shrinkage estimation, variable 
     selection and statistical inference. In this package, we have implemented robust
     Bayesian variable selection with spike-and-slab priors under high-dimensional
-    linear regression models (Fan et al. (2024) <doi:10.3390/e26090794> and 
-    Ren et al. (2023) <doi:10.1111/biom.13670>), and regularized quantile varying
-    coefficient models (Zhou et al.(2023) <doi:10.1016/j.csda.2023.107808>). In particular, 
+    linear regression models ([Fan et al. (2024)](https://doi.org/10.3390/e26090794) and 
+    [Ren et al. (2023)](https://doi.org/10.1111/biom.13670), and regularized quantile varying
+    coefficient models ([Zhou et al.(2023)](https://doi.org/10.1016/j.csda.2023.107808)). In particular, 
     valid robust Bayesian inferences under both models in the presence of heavy-tailed errors
     can be validated on finite samples. The Markov Chain Monte Carlo (MCMC) algorithms 
     of the proposed and alternative models are implemented in C++.   
@@ -79,19 +79,22 @@ Bayesian regularized quantile regression utilizing sparse priors to
     y = dat$y
     g = dat$x
     coefficient = dat$beta
-    # an intercept will be automatically included by the package
-    fit = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, kn=NULL, degree=NULL, robust = TRUE, sparse=TRUE, model = "linear", hyper=NULL,debugging=FALSE)
+
+    # an intercept is automatically included by the package
+
+    fit = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "linear", hyper=NULL,debugging=FALSE)
+
     coverage = coverage(fit,coefficient,u.grid=NULL, model = "linear")
 
-    fit1 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, kn=NULL, degree=NULL, robust = TRUE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
+    fit1 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = TRUE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
 
     coverage1 = coverage(fit1,coefficient,u.grid=NULL, model = "linear")
   
-    fit2 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, kn=NULL, degree=NULL, robust = FALSE, sparse=TRUE, model= "linear", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=TRUE, model= "linear", hyper=NULL,debugging=FALSE)
    
     coverage2 = coverage(fit2,coefficient,u.grid=NULL, model = "linear")
   
-    fit3 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, kn=NULL, degree=NULL, robust = FALSE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
     
     coverage3 = coverage(fit3,coefficient,u.grid=NULL, model = "linear")
   
@@ -99,11 +102,11 @@ Bayesian regularized quantile regression utilizing sparse priors to
     CI_RBL[h,]   = coverage1
     CI_BLSS[h,]  = coverage2
     CI_BL[h,]    = coverage3
-    cat("iteration = ", h, "\n")
+    cat("Replicate = ", h, "\n")
     
     }
     # the intercept has not been regularized
-    cp_RBLSS =  colMeans(CI_RBLSS)[1:3] # 95% empirical coverage probabilities for coefficients under robust linear regression
+    cp_RBLSS =  colMeans(CI_RBLSS)[1:3] # 95% empirical coverage probabilities for coefficients under the robust linear model
     cp_BLSS  =  colMeans(CI_BLSS)[1:3]
     cp_RBL   =  colMeans(CI_RBL)[1:3]
     cp_BL    =  colMeans(CI_BL)[1:3]
@@ -156,21 +159,21 @@ Bayesian regularized quantile regression utilizing sparse priors to
     gamma_3_grid = -4*u.grid^3
     coefficient = cbind(gamma_0_grid,gamma_1_grid,gamma_2_grid,gamma_3_grid)
 
-    # a varying intercept will be automatically included by the package
+    # a varying intercept is automatically included by the package
 
-    fit = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, kn=2, degree=2, robust = TRUE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2,degree=2), robust = TRUE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
     
     coverage = coverage(fit,coefficient,u.grid, model = "VC")
 
-    fit1 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, kn=2, degree=2, robust = TRUE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit1 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = TRUE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
     
     coverage1 = coverage(fit1,coefficient,u.grid, model = "VC")
   
-    fit2 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, kn=2, degree=2, robust = FALSE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
     
     coverage2 = coverage(fit2,coefficient,u.grid, model = "VC")
   
-    fit3 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, kn=2, degree=2, robust = FALSE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
    
     coverage3 = coverage(fit3,coefficient,u.grid,model = "VC")
   
@@ -178,11 +181,11 @@ Bayesian regularized quantile regression utilizing sparse priors to
     CI_RBGL   = rbind(CI_RBGL,coverage1)
     CI_BGLSS  = rbind(CI_BGLSS,coverage2)
     CI_BGL    = rbind(CI_BGL,coverage3)
-    cat("iteration = ", h, "\n")
+    cat("Replicate = ", h, "\n")
     
     }
     # the varying intercept has not been regularized
-    cp_RBGLSS =  colMeans(CI_RBGLSS) # 95% coverage probabilities for the varying coefficients under the default setting
+    cp_RBGLSS =  colMeans(CI_RBGLSS) # 95% empirical coverage probabilities for the varying coefficients under the default setting
     cp_BGLSS  =  colMeans(CI_BGLSS)
     cp_RBGL   =  colMeans(CI_RBGL)
     cp_BGL    =  colMeans(CI_BGL)
@@ -192,6 +195,6 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
 This package provides implementation for methods from
   
-  - Fan, K., Subedi, S., Yang, G., Lu, X., Ren, J. and Wu, C. (2024). Is Seeing Believing? A Practitioner's Perspective on High-dimensional Statistical Inference in Cancer Genomics Studies. {\emph{Entropy}, 26(9).794} \doi{10.3390/e26090794}
-  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
-  - Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y., and Wu, C. (2023). Robust Bayesian variable selection for gene–environment interactions. {\emph{Biometrics}, 79(2), 684-694} \doi{10.1111/biom.13670}
+  - Fan, K., Subedi, S., Yang, G., Lu, X., Ren, J. and Wu, C. (2024). Is Seeing Believing? A Practitioner's Perspective on High-dimensional Statistical Inference in Cancer Genomics Studies. [Entropy, 26(9),794](https://doi.org/10.3390/e26090794)
+  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  [Computational Statistics & Data Analysis, 107808](https://doi.org/10.1016/j.csda.2023.107808)
+  - Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y., and Wu, C. (2023). Robust Bayesian variable selection for gene–environment interactions. [Biometrics, 79(2), 684-694](https://doi.org/10.1111/biom.13670)

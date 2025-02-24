@@ -23,6 +23,18 @@ an object of class `pqrBayes.est' is returned, which is a list with components:
 \description{
 Calculate estimated regression coefficients with estimation accuracy from linear and quantile VC models, respectively.
 }
+\examples{
+## The quantile regression model
+data(data)
+data = data$data_linear
+g=data$g
+y=data$y
+e=data$e
+coeff = data$coeff
+fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+estimation=estimation.pqrBayes(fit1,coeff,model="linear")
+
+}
 \seealso{
 \code{\link{pqrBayes}}
 }

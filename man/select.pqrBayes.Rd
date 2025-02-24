@@ -32,7 +32,7 @@ g=data$g
 y=data$y
 e=data$e
 
-fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,kn=NULL,degree=NULL,model="linear")
+fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
 sparse=TRUE
 select=pqrBayes.select(obj = fit1,sparse = sparse,model="linear")
 
@@ -43,7 +43,8 @@ g=data$g
 y=data$y
 u=data$u
 e=data$e
-fit1=pqrBayes(g,y,u,e,kn=2,degree=2,quant=0.5,model="VC")
+spline = list(kn=2,degree=2)
+fit1=pqrBayes(g,y,u,e,quant=0.5,spline = spline, model="VC")
 sparse=TRUE
 select=pqrBayes.select(obj = fit1,sparse = sparse,model="VC")
 select
@@ -51,7 +52,8 @@ select
 \donttest{
 ## non-sparse
 sparse=FALSE
-fit2=pqrBayes(g,y,u,e,quant=0.5,kn=2,degree=2,sparse = sparse,model="VC")
+spline = list(kn=2,degree=2)
+fit2=pqrBayes(g,y,u,e,quant=0.5,spline = spline,sparse = sparse,model="VC")
 select=pqrBayes.select(obj=fit2,sparse=FALSE,model="VC")
 select
 }

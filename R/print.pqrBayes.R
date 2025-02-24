@@ -24,7 +24,7 @@ print.pqrBayes=function(x, digits = max(3, getOption("digits") - 3),...){
 #' @param ... other print arguments
 #' @usage \method{print}{pqrBayes.pred}(x, digits = max(3, getOption("digits") - 3), \dots)
 #' @return No return value, called for side effects.
-#' @seealso \code{\link{predict.pqrBayes}}
+#' @seealso \code{\link{predict_pqrBayes}}
 #' @export
 print.pqrBayes.pred=function(x, digits = max(3, getOption("digits") - 3),...){
   cat("\ncheck loss:\n")

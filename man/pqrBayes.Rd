@@ -11,8 +11,8 @@ pqrBayes(
   e,
   quant = 0.5,
   iterations = 10000,
-  kn = NULL,
-  degree = NULL,
+  burn.in = NULL,
+  spline,
   robust = TRUE,
   sparse = TRUE,
   model = "linear",
@@ -21,21 +21,21 @@ pqrBayes(
 )
 }
 \arguments{
-\item{g}{the matrix of predictors (subject to selection) without intercept.}
+\item{g}{the matrix of predictors (subject to selection). Users do not need to specify an intercept which will be automatically included.}
 
 \item{y}{the response variable. The current version only supports the continuous response.}
 
 \item{u}{a vector of effect modifying variable of the quantile varying coefficient model. When fitting a linear model, u = NULL.}
 
-\item{e}{a matrix of clinical covariates (including the intercept if specified) not subject to selection.}
+\item{e}{a matrix of clinical covariates not subject to selection.}
 
 \item{quant}{the quantile level specified by users. The default value is 0.5.}
 
 \item{iterations}{the number of MCMC iterations. The default value is 10,000.}
 
-\item{kn}{the number of interior knots for B-spline. When fitting a linear model, kn = NULL.}
+\item{burn.in}{the number of burn-in iterations. If NULL, the first half of MCMC iterations will be used as burn-ins.}
 
-\item{degree}{the degree of B-spline basis. When fitting a linear model, degree = NULL.}
+\item{spline}{a list of the number of interior knots (kn) for B-spline and the degree of B-spline basis (degree). When fitting a linear model, spline = NULL.}
 
 \item{robust}{logical flag. If TRUE, robust methods will be used. Otherwise, non-robust methods will be used. The default value is TRUE.}
 
@@ -43,7 +43,7 @@ pqrBayes(
 
 \item{model}{the model to be fitted. Users can specify "linear" for a linear model and "VC" for a varying coefficient model.}
 
-\item{hyper}{a named list of hyperparameters. The default value is NULL.}
+\item{hyper}{a named list of hyper-parameters. The default value is NULL.}
 
 \item{debugging}{logical flag. If TRUE, progress will be output to the console and extra information will be returned. The default value is FALSE.}
 }
@@ -58,11 +58,11 @@ fit Bayesian penalized quantile regression for linear and varying coefficient mo
 \details{
 The quantile regression model described in "\code{\link{data}}" is:
 \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}X_{ij}\gamma_j +\epsilon_{i},}
-where \eqn{\beta_k}'s are the regression coefficients for the clinical covariates (including the intercept if specified) and \eqn{\gamma_j}'s are the regression coefficients of \eqn{\boldsymbol X}.
+where \eqn{\beta_k}'s are the regression coefficients for clinical covariates and \eqn{\gamma_j}'s are the regression coefficients of \eqn{\boldsymbol X}.
 
 The quantile varying coefficient model described in "\code{\link{data}}" is:
 \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}\gamma_j(V_i)X_{ij} +\epsilon_{i},}
-where \eqn{\beta_k}'s are the regression coefficients for the clinical covariates and \eqn{\gamma_j}'s are the varying coefficients for the intercept and predictors (e.g. genetic factors).
+where \eqn{\beta_k}'s are the regression coefficients for the clinical covariates, and \eqn{\gamma_j}'s are the varying intercept and varying coefficients for predictors (e.g. genetic factors), respectively.
 
 
 Users can modify the hyper-parameters by providing a named list of hyper-parameters via the argument `hyper'.
@@ -82,16 +82,16 @@ g=data$g
 y=data$y
 e=data$e
 
-fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,kn=NULL,degree=NULL,model="linear")
+fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
 \donttest{
 
 ## non-sparse
 sparse=FALSE
-fit2=pqrBayes(g,y,u=NULL,e,quant=0.5,kn=NULL,degree=NULL,sparse = sparse,model="linear")
+fit2=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,sparse = sparse,model="linear")
 
 ## non-robust
 robust = FALSE
-fit3=pqrBayes(g,y,u=NULL,e,quant=0.5,kn=NULL,degree=NULL,robust = robust,model="linear")
+fit3=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,robust = robust,model="linear")
 
 }
 
@@ -103,17 +103,18 @@ y=data$y
 u=data$u
 e=data$e
 
-fit1=pqrBayes(g,y,u,e,kn=2,degree=2,quant=0.5,model="VC")
+spline = list(kn=2,degree=2)
+fit1=pqrBayes(g,y,u,e,quant=0.5,spline = spline, model="VC")
 
 \donttest{
 
 ## non-sparse
 sparse=FALSE
-fit2=pqrBayes(g,y,u,e,kn=2,degree=2,quant=0.5,sparse = sparse,model="VC")
+fit2=pqrBayes(g,y,u,e,quant=0.5,spline = spline,sparse = sparse,model="VC")
 
 ## non-robust
 robust = FALSE
-fit3=pqrBayes(g,y,u,e,kn=2,degree=2,quant=0.5,robust = robust,model="VC")
+fit3=pqrBayes(g,y,u,e,quant=0.5,spline = spline,robust = robust,model="VC")
 
 }
 }

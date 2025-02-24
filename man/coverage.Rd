@@ -21,6 +21,17 @@ c
 \description{
 Calculate 95\% empirical coverage probabilities for regression coefficients under linear and VC models, respectively.
 }
+\examples{
+## The quantile regression model
+data(data)
+data = data$data_linear
+g=data$g
+y=data$y
+e=data$e
+coeff = data$coeff
+fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+coverage=coverage(fit1,coeff,model="linear")
+}
 \seealso{
 \code{\link{pqrBayes}}
 }

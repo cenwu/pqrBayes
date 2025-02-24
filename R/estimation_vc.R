@@ -1,6 +1,5 @@
 estimation_vc = function(obj,coefficient,u.grid){
   posterior = obj$coefficients
-  iterations = obj$obj$iterations
   kn = obj$obj$kn
   degree = obj$obj$degree
   d=kn+degree+1
@@ -11,12 +10,12 @@ estimation_vc = function(obj,coefficient,u.grid){
   
   c1_25.C=rep(0,d)
   for (i in 1:d) {
-    c1_25.C[i]=stats::quantile(posterior$GS.alpha[(iterations/2+1):iterations,i],0.025)
+    c1_25.C[i]=stats::quantile(posterior$GS.alpha[,i],0.025)
   }
   
   c2_25.C=rep(0,dim(posterior$GS.beta)[2])
   for (i in 1:dim(posterior$GS.beta)[2]) {
-    c2_25.C[i]=stats::quantile(posterior$GS.beta[(iterations/2+1):iterations,i],0.025)
+    c2_25.C[i]=stats::quantile(posterior$GS.beta[,i],0.025)
   }
   
   coeffmatrix.C1_25=as.matrix(cbind(c1_25.C,matrix(c2_25.C,nrow = d)))
@@ -26,12 +25,12 @@ estimation_vc = function(obj,coefficient,u.grid){
   
   c1_975.C=rep(0,d)
   for (i in 1:d) {
-    c1_975.C[i]=stats::quantile(posterior$GS.alpha[(iterations/2+1):iterations,i],0.975)
+    c1_975.C[i]=stats::quantile(posterior$GS.alpha[,i],0.975)
   }
   
   c2_975.C=rep(0,dim(posterior$GS.beta)[2])
   for (i in 1:dim(posterior$GS.beta)[2]) {
-    c2_975.C[i]=stats::quantile(posterior$GS.beta[(iterations/2+1):iterations,i],0.975)
+    c2_975.C[i]=stats::quantile(posterior$GS.beta[,i],0.975)
   }
   
   coeffmatrix.C2_975=as.matrix(cbind(c1_975.C,matrix(c2_975.C,nrow = d)))
@@ -40,12 +39,12 @@ estimation_vc = function(obj,coefficient,u.grid){
   
   c1.C=rep(0,d)
   for (i in 1:d) {
-    c1.C[i]=stats::quantile(posterior$GS.alpha[(iterations/2+1):iterations,i],0.5)
+    c1.C[i]=stats::quantile(posterior$GS.alpha[,i],0.5)
   }
   
   c2.C=rep(0,dim(posterior$GS.beta)[2])
   for (i in 1:dim(posterior$GS.beta)[2]) {
-    c2.C[i]=stats::quantile(posterior$GS.beta[(iterations/2+1):iterations,i],0.5)
+    c2.C[i]=stats::quantile(posterior$GS.beta[,i],0.5)
   }
   
   coeffmatrix.C=as.matrix(cbind(c1.C,matrix(c2.C,nrow = d)))

@@ -1,6 +1,5 @@
 predict_vc=function(obj, g.new, u.new, e.new, y.new, quant,...){
   p = dim(g.new)[2]
-  iterations = obj$obj$iterations
   kn = obj$obj$kn
   degree = obj$obj$degree
   x = cbind(1,g.new)
@@ -21,12 +20,12 @@ predict_vc=function(obj, g.new, u.new, e.new, y.new, quant,...){
   
   c1.C=rep(0,d)
   for (i in 1:d) {
-    c1.C[i]=stats::quantile(obj$coefficients$GS.alpha[(iterations/2+1):iterations,i],0.5)
+    c1.C[i]=stats::quantile(obj$coefficients$GS.alpha[,i],0.5)
   }
   
   c2.C=rep(0,dim(obj$coefficients$GS.beta)[2])
   for (i in 1:dim(obj$coefficients$GS.beta)[2]) {
-    c2.C[i]=stats::quantile(obj$coefficients$GS.beta[(iterations/2+1):iterations,i],0.5)
+    c2.C[i]=stats::quantile(obj$coefficients$GS.beta[,i],0.5)
   }
   
   coeffmatrix.C=as.matrix(cbind(c1.C,matrix(c2.C,nrow = d)))
@@ -39,10 +38,9 @@ predict_vc=function(obj, g.new, u.new, e.new, y.new, quant,...){
     
     beta.hat=rep(0,q)
     for (i in 1:q) {
-      beta.hat[i]=stats::quantile(obj$coefficients$GS.alpha[(iterations/2+1):iterations,i+d],0.5)
+      beta.hat[i]=stats::quantile(obj$coefficients$GS.alpha[,i+d],0.5)
     }
     
-    if(y.new){  
       # prediction error
       y.hat=res=rep(0,n)
       for (i in 1:n) {
@@ -52,13 +50,10 @@ predict_vc=function(obj, g.new, u.new, e.new, y.new, quant,...){
       }
       
       pred.error=mean(res)
-    }else{
-      pred.error=NULL
-    }
     
     
   }else{
-    if(y.new){  
+      
       # prediction error
       y.hat=res=rep(0,n)
       for (i in 1:n) {
@@ -68,13 +63,8 @@ predict_vc=function(obj, g.new, u.new, e.new, y.new, quant,...){
       }
       
       pred.error=mean(res)
-    }else{
-      pred.error=NULL
-    }
+    
   }
-  
-  
-  
   
   
   pqrBayes_vc= list(error=pred.error, y.pred=y.hat)

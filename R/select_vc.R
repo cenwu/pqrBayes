@@ -15,7 +15,7 @@ VCselect <- function(obj,sparse){
     
     c2.C=rep(0,dim(obj$coefficients$GS.beta)[2])
     for (i in 1:dim(obj$coefficients$GS.beta)[2]) {
-      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[(iterations/2+1):iterations,i],0.025)
+      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[,i],0.025)
     }
     
     coeffmatrix.C1=matrix(c2.C,nrow = d)
@@ -24,7 +24,7 @@ VCselect <- function(obj,sparse){
     
     c2.C=rep(0,dim(obj$coefficients$GS.beta)[2])
     for (i in 1:dim(obj$coefficients$GS.beta)[2]) {
-      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[(iterations/2+1):iterations,i],0.975)
+      c2.C[i]=stats::quantile(obj$coefficients$GS.beta[,i],0.975)
     }
     
     coeffmatrix.C2=matrix(c2.C,nrow = d)

@@ -20,5 +20,5 @@ No return value, called for side effects.
 Print a summary of a pqrBayes.pred object
 }
 \seealso{
-\code{\link{predict.pqrBayes}}
+\code{\link{predict_pqrBayes}}
 }

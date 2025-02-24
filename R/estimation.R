@@ -11,7 +11,18 @@
 #' \item{error}{mean square error or integrated mean square errors and total integrated mean square error.}
 #' \item{coeff.est}{estimated values of the regression coefficients or the varying coefficients.}
 #' @seealso \code{\link{pqrBayes}}
+#' @examples
+#' ## The quantile regression model
+#' data(data)
+#' data = data$data_linear
+#' g=data$g
+#' y=data$y
+#' e=data$e
+#' coeff = data$coeff
+#' fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+#' estimation=estimation.pqrBayes(fit1,coeff,model="linear")
 
+#'
 #' @export
 estimation.pqrBayes = function(object,coefficient,u.grid=NULL,model="linear"){
   if(model=="VC"){

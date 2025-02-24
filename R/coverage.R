@@ -11,7 +11,16 @@
 #' @usage coverage(object,coefficient,u.grid=NULL,model="linear")
 #' @return c
 #' @seealso \code{\link{pqrBayes}}
-
+#' @examples
+#' ## The quantile regression model
+#' data(data)
+#' data = data$data_linear
+#' g=data$g
+#' y=data$y
+#' e=data$e
+#' coeff = data$coeff
+#' fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+#' coverage=coverage(fit1,coeff,model="linear")
 #' @export
 coverage = function(object,coefficient,u.grid=NULL,model="linear"){
   if(model=="VC"){

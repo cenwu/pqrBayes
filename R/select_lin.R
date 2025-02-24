@@ -1,5 +1,4 @@
 linselect <- function(obj,sparse){
-  iterations = obj$obj$iterations
   if(sparse){
     method="Sparse"
     mpm <- function(x)
@@ -12,7 +11,6 @@ linselect <- function(obj,sparse){
     id=c()
     for(j in 1:ncol(sg1)){
       t1=as.matrix(sg1[,j])
-      t1 = t1[seq(iterations/2+1, iterations,1),]
       q_t1 = mpm(t1)
       id = c(id,q_t1)
     }
@@ -29,7 +27,6 @@ linselect <- function(obj,sparse){
     q_t1=c()
     for(j in 1:ncol(sg1)){
       t1=as.matrix(sg1[,j])
-      t1 = t1[seq(iterations/2+1, iterations,1),]
       q_t1 = as.matrix(stats::quantile(t1,c(0.025,0.975)))
     }
     id = apply(q_t1, 2, fun)
