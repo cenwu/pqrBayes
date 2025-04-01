@@ -2,12 +2,12 @@
 #'
 #'
 #'@description
-#'Calculate 95\% empirical coverage probabilities for regression coefficients under linear and VC models, respectively.
+#'Calculate 95\% empirical coverage probabilities for regression coefficients under linear, group LASSO and VC models, respectively.
 #'
 #' @param object the pqrBayes object.
 #' @param coefficient the vector of true regression coefficients under a linear model or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.
-#' @param u.grid the vector of grid points under a varying coefficient model. When assessing empirical coverage probabilities under a linear model, u.grid = NULL.
-#' @param model the model to be fitted. Users can also choose "linear" for a linear model or "VC" for a varying coefficient model.
+#' @param u.grid the vector of grid points under a varying coefficient model. When assessing empirical coverage probabilities under a linear model or group LASSO, u.grid = NULL.
+#' @param model the model to be fitted. Users can also choose "linear" for a linear model, "VC" for a varying coefficient model and "group" for group LASSO.
 #' @usage coverage(object,coefficient,u.grid=NULL,model="linear")
 #' @return c
 #' @seealso \code{\link{pqrBayes}}
@@ -19,7 +19,7 @@
 #' y=data$y
 #' e=data$e
 #' coeff = data$coeff
-#' fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+#' fit1=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,spline=NULL,model="linear")
 #' coverage=coverage(fit1,coeff,model="linear")
 #' @export
 coverage = function(object,coefficient,u.grid=NULL,model="linear"){
@@ -29,8 +29,11 @@ coverage = function(object,coefficient,u.grid=NULL,model="linear"){
   else if(model=="linear"){
     c = coverage_lin(object,coefficient,u.grid=NULL)
   }
+  else if(model=="group"){
+    c = coverage_lin(object,coefficient,u.grid=NULL)
+  }
   else{
-    stop("model should be either VC or linear")
+    stop("model should be either VC, linear or group")
   }
   return(c)
 }

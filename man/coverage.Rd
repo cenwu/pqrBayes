@@ -11,15 +11,15 @@ coverage(object,coefficient,u.grid=NULL,model="linear")
 
 \item{coefficient}{the vector of true regression coefficients under a linear model or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
-\item{u.grid}{the vector of grid points under a varying coefficient model. When assessing empirical coverage probabilities under a linear model, u.grid = NULL.}
+\item{u.grid}{the vector of grid points under a varying coefficient model. When assessing empirical coverage probabilities under a linear model or group LASSO, u.grid = NULL.}
 
-\item{model}{the model to be fitted. Users can also choose "linear" for a linear model or "VC" for a varying coefficient model.}
+\item{model}{the model to be fitted. Users can also choose "linear" for a linear model, "VC" for a varying coefficient model and "group" for group LASSO.}
 }
 \value{
 c
 }
 \description{
-Calculate 95\% empirical coverage probabilities for regression coefficients under linear and VC models, respectively.
+Calculate 95\% empirical coverage probabilities for regression coefficients under linear, group LASSO and VC models, respectively.
 }
 \examples{
 ## The quantile regression model
@@ -29,7 +29,7 @@ g=data$g
 y=data$y
 e=data$e
 coeff = data$coeff
-fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+fit1=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,spline=NULL,model="linear")
 coverage=coverage(fit1,coeff,model="linear")
 }
 \seealso{

@@ -24,8 +24,10 @@ Bayesian regularized quantile regression utilizing sparse priors to
     [Ren et al. (2023)](https://doi.org/10.1111/biom.13670), and regularized quantile varying
     coefficient models ([Zhou et al.(2023)](https://doi.org/10.1016/j.csda.2023.107808)). In particular, 
     valid robust Bayesian inferences under both models in the presence of heavy-tailed errors
-    can be validated on finite samples. The Markov Chain Monte Carlo (MCMC) algorithms 
-    of the proposed and alternative models are implemented in C++.   
+    can be validated on finite samples. Additional models including robust Bayesian 
+    group LASSO are also included. The Markov Chain Monte Carlo (MCMC) algorithms 
+    of the proposed and alternative models are implemented in C++. 
+   
 
 ## How to install
 
@@ -82,19 +84,19 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
     # an intercept is automatically included by the package
 
-    fit = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "linear", hyper=NULL,debugging=FALSE)
+    fit = pqrBayes(g, y, u=NULL, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "linear", hyper=NULL,debugging=FALSE)
 
     coverage = coverage(fit,coefficient,u.grid=NULL, model = "linear")
 
-    fit1 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = TRUE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
+    fit1 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = TRUE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
 
     coverage1 = coverage(fit1,coefficient,u.grid=NULL, model = "linear")
   
-    fit2 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=TRUE, model= "linear", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=TRUE, model= "linear", hyper=NULL,debugging=FALSE)
    
     coverage2 = coverage(fit2,coefficient,u.grid=NULL, model = "linear")
   
-    fit3 = pqrBayes(g, y, u=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
     
     coverage3 = coverage(fit3,coefficient,u.grid=NULL, model = "linear")
   
@@ -161,19 +163,19 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
     # a varying intercept is automatically included by the package
 
-    fit = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2,degree=2), robust = TRUE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2,degree=2), robust = TRUE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
     
     coverage = coverage(fit,coefficient,u.grid, model = "VC")
 
-    fit1 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = TRUE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit1 = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = TRUE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
     
     coverage1 = coverage(fit1,coefficient,u.grid, model = "VC")
   
-    fit2 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y, u, d = NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
     
     coverage2 = coverage(fit2,coefficient,u.grid, model = "VC")
   
-    fit3 = pqrBayes(g, y, u, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
    
     coverage3 = coverage(fit3,coefficient,u.grid,model = "VC")
   
@@ -190,6 +192,59 @@ Bayesian regularized quantile regression utilizing sparse priors to
     cp_RBGL   =  colMeans(CI_RBGL)
     cp_BGL    =  colMeans(CI_BGL)
 
+## Example 3 (Bayesian Shrinkage Estimation for Robust Bayesian Group LASSO)
+
+#### Data Generation for Linear Model 
+
+    Data <- function(n,p,quant){
+      sig1 = matrix(0,p,p)
+      diag(sig1)=1
+      for (i in 1: p)
+      {
+      for (j in 1: p)
+      {
+      sig1[i,j]=0.5^abs(i-j)
+      }
+     }
+    xx = MASS::mvrnorm(n,rep(0,p),sig1)
+    x = cbind(1,xx)
+    error=rt(n,2) -quantile(rt(n,2),probs = quant) # can also be changed to normal error for non-robust setting
+    beta = c(0,1,1.5,2,0,0,0,0.5,0.55,0.6,rep(0,p-9))
+    betaa = beta[-1]
+    y = x%*%beta+error
+    dat = list(y=y, x=xx, beta=betaa)
+    return(dat)
+    }
+#### robust Bayesian shrinkage estimation under group LASSO
+
+    n=100; p=300;
+    quant = 0.5; # focus on median for Bayesian estimation
+    dat = Data(n,p,quant)
+    y = dat$y
+    g = dat$x
+    coefficient = dat$beta
+
+    # an intercept is automatically included by the package
+    # the intercept has not been regularized
+    fit = pqrBayes(g, y, u=NULL,d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "group", hyper=NULL,debugging=FALSE)
+    estimation_1 = estimation.pqrBayes(fit,coefficient,model="group")
+    coeff_est_1 = estimation_1$coeff.est    
+    mse_1 = estimation_1$error$MSE
+    
+    fit1 = pqrBayes(g, y, u=NULL,d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = TRUE, sparse=FALSE, model = "group", hyper=NULL,debugging=FALSE)
+    estimation_2 = estimation.pqrBayes(fit1,coefficient,model="group")
+    coeff_est_2 = estimation_2$coeff.est    
+    mse_2 = estimation_2$error$MSE 
+    
+    fit2 = pqrBayes(g, y, u=NULL,d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=TRUE, model= "group", hyper=NULL,debugging=FALSE)
+    estimation_3 = estimation.pqrBayes(fit2,coefficient,model="group")
+    coeff_est_3 = estimation_3$coeff.est    
+    mse_3 = estimation_3$error$MSE    
+    
+    fit3 = pqrBayes(g, y, u=NULL,d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=FALSE, model = "group", hyper=NULL,debugging=FALSE)
+    estimation_4 = estimation.pqrBayes(fit3,coefficient,model="group")
+    coeff_est_4 = estimation_4$coeff.est    
+    mse_4 = estimation_4$error$MSE    
 
 ## Methods
 

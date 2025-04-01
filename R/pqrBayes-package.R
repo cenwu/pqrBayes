@@ -5,18 +5,18 @@ NULL
 "_PACKAGE"
 #' @keywords overview
 #' @name pqrBayes-package
-#' @title Bayesian penalized quantile regression for linear and varying coefficient models
+#' @title Bayesian penalized quantile regression for linear, group LASSO and varying coefficient models
 #' @aliases pqrBayes-package
-#' @description In this package, we implement Bayesian penalized quantile regression for the linear regression model and quantile varying coefficient (VC) model. 
+#' @description In this package, we implement Bayesian penalized quantile regression for the linear regression model, group LASSO and quantile varying coefficient (VC) model. 
 #' Point-mass spike-and-slab priors have been incorporated in the Bayesian hierarchical models to facilitate Bayesian shrinkage 
-#' estimation with exact sparsity in both models. The two default methods are Bayesian regularized quantile regression with spike-and-slab priors
-#' under the linear model and VC model, correspondingly. In addition to default methods, users can also choose methods without robustness and/or spike--and--slab priors.
+#' estimation with exact sparsity in these models. The three default methods are Bayesian regularized quantile regression with spike-and-slab priors
+#' under the linear model, group LASSO and VC model, correspondingly. In addition to default methods, users can also choose methods without robustness and/or spike--and--slab priors.
 #' 
 #' @details The user friendly, integrated interface \strong{pqrBayes()} allows users to flexibly choose fitting models by specifying the following parameters:
 #' \tabular{rl}{
 #' robust: \tab whether to fit a robust sparse quantile regression model or a quantile varying coefficient \cr\tab model or their non-robust counterparts. \cr\cr
 #' sparse: \tab whether to use the spike-and-slab priors to impose exact sparsity. \cr\cr
-#' model: \tab whether to fit a linear model or a varying coefficient model.
+#' model: \tab whether to fit a linear model, group LASSO or a varying coefficient model.
 #' }
 #'
 #' The function pqrBayes() returns a pqrBayes object that stores the posterior estimates of regression coefficients.

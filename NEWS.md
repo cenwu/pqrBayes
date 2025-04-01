@@ -1,6 +1,10 @@
 
 ## News
 
+### pqrBayes 1.1.2 \[2025-03-31\]
+
+- Updated pqrBayes function with robust Bayesian group LASSO and 3 alternative models.
+
 ### pqrBayes 1.1.1 \[2025-02-22\]
 
 - Updated pqrBayes function with burn-in and spline parameters.

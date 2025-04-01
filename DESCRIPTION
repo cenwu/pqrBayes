@@ -1,12 +1,13 @@
 Package: pqrBayes
 Type: Package
 Title: Bayesian Penalized Quantile Regression
-Version: 1.1.1
-Date: 2025-02-22
+Version: 1.1.2
+Date: 2025-03-31
 Authors@R: c( 
               person("Kun", "Fan", role = "aut"),
               person("Cen", "Wu", role = c("aut", "cre"),email = "wucen@ksu.edu"),
               person("Jie", "Ren", role = "aut"),
+              person("Xiaoxi", "Li", role = "aut"),
               person("Fei", "Zhou", role = "aut"))
 Description: Bayesian regularized quantile regression utilizing sparse priors to 
     impose exact sparsity leads to efficient Bayesian shrinkage estimation, variable 
@@ -16,8 +17,9 @@ Description: Bayesian regularized quantile regression utilizing sparse priors to
     Ren et al. (2023) <doi:10.1111/biom.13670>), and regularized quantile varying
     coefficient models (Zhou et al.(2023) <doi:10.1016/j.csda.2023.107808>). In particular, 
     valid robust Bayesian inferences under both models in the presence of heavy-tailed errors
-    can be validated on finite samples. The Markov Chain Monte Carlo (MCMC) algorithms 
-    of the proposed and alternative models are implemented in C++.   
+    can be validated on finite samples. Additional models including robust Bayesian 
+    group LASSO are also included. The Markov Chain Monte Carlo (MCMC) algorithms 
+    of the proposed and alternative models are implemented in C++. 
 Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8

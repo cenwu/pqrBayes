@@ -4,7 +4,7 @@
 #'
 #' @param object a pqrBayes object.
 #' @param sparse logical flag. If TRUE, the sparse model is used for variable selection. The default value is TRUE.
-#' @param model the model to be fitted. Users can also choose "linear" for a linear model or "VC" for a varying coefficient model.
+#' @param model the model to be fitted. Users can also choose "linear" for a linear model, "VC" for a varying coefficient model or "group for group LASSO.
 #'
 #' @details For class `Sparse', the median probability model (MPM) (Barbieri and Berger, 2004) is used to identify predictors that are significantly associated
 #' with the response variable. For class `NonSparse', variable selection is based on 95\% credible interval.
@@ -30,7 +30,7 @@
 #' y=data$y
 #' e=data$e
 #' 
-#' fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+#' fit1=pqrBayes(g,y,u=NULL,e,d = NULL,quant=0.5,spline=NULL,model="linear")
 #' sparse=TRUE
 #' select=pqrBayes.select(obj = fit1,sparse = sparse,model="linear")
 #' 
@@ -42,7 +42,7 @@
 #' u=data$u
 #' e=data$e
 #' spline = list(kn=2,degree=2)
-#' fit1=pqrBayes(g,y,u,e,quant=0.5,spline = spline, model="VC")
+#' fit1=pqrBayes(g,y,u,e,d = NULL,quant=0.5,spline = spline,model="VC")
 #' sparse=TRUE
 #' select=pqrBayes.select(obj = fit1,sparse = sparse,model="VC")
 #' select
@@ -51,7 +51,7 @@
 #' ## non-sparse
 #' sparse=FALSE
 #' spline = list(kn=2,degree=2)
-#' fit2=pqrBayes(g,y,u,e,quant=0.5,spline = spline,sparse = sparse,model="VC")
+#' fit2=pqrBayes(g,y,u,e,d = NULL,quant=0.5,spline = spline,sparse = sparse,model="VC")
 #' select=pqrBayes.select(obj=fit2,sparse=FALSE,model="VC")
 #' select
 #' }
@@ -64,8 +64,11 @@ pqrBayes.select <- function(object,sparse=T,model="linear"){
   else if(model=="linear"){
     select = linselect(obj = object,sparse = sparse)
   }
+  else if(model=="group"){
+    select = linselect(obj = object,sparse = sparse)
+  }
   else{
-    stop("model should be either VC or linear")
+    stop("model should be either VC, linear or group")
   }
   class(select)="select"
   return(select)

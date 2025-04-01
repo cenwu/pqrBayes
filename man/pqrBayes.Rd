@@ -2,17 +2,18 @@
 % Please edit documentation in R/pqrBayes.R
 \name{pqrBayes}
 \alias{pqrBayes}
-\title{fit Bayesian penalized quantile regression for linear and varying coefficient models}
+\title{fit Bayesian penalized quantile regression for linear, group LASSO, or varying coefficient models}
 \usage{
 pqrBayes(
   g,
   y,
   u = NULL,
   e,
+  d = NULL,
   quant = 0.5,
   iterations = 10000,
   burn.in = NULL,
-  spline,
+  spline = NULL,
   robust = TRUE,
   sparse = TRUE,
   model = "linear",
@@ -25,9 +26,11 @@ pqrBayes(
 
 \item{y}{the response variable. The current version only supports the continuous response.}
 
-\item{u}{a vector of effect modifying variable of the quantile varying coefficient model. When fitting a linear model, u = NULL.}
+\item{u}{a vector of effect modifying variable of the quantile varying coefficient model. When fitting a linear model or group LASSO, u = NULL.}
 
 \item{e}{a matrix of clinical covariates not subject to selection.}
+
+\item{d}{a positive integer denotes the group size. When fitting a linear model or varying coefficient model, d = NULL.}
 
 \item{quant}{the quantile level specified by users. The default value is 0.5.}
 
@@ -35,13 +38,13 @@ pqrBayes(
 
 \item{burn.in}{the number of burn-in iterations. If NULL, the first half of MCMC iterations will be used as burn-ins.}
 
-\item{spline}{a list of the number of interior knots (kn) for B-spline and the degree of B-spline basis (degree). When fitting a linear model, spline = NULL.}
+\item{spline}{a list of the number of interior knots (kn) for B-spline and the degree of B-spline basis (degree). When fitting a linear model or group LASSO, spline = NULL.}
 
 \item{robust}{logical flag. If TRUE, robust methods will be used. Otherwise, non-robust methods will be used. The default value is TRUE.}
 
 \item{sparse}{logical flag. If TRUE, spike-and-slab priors will be adopted to impose exact sparsity on regression coefficients. Otherwise, Laplacian shrinkage will be adopted. The default value is TRUE.}
 
-\item{model}{the model to be fitted. Users can specify "linear" for a linear model and "VC" for a varying coefficient model.}
+\item{model}{the model to be fitted. Users can specify "linear" for a linear model, "group" for group LASSO and "VC" for a varying coefficient model.}
 
 \item{hyper}{a named list of hyper-parameters. The default value is NULL.}
 
@@ -53,12 +56,16 @@ an object of class "pqrBayes" is returned, which is a list with components:
 \item{coefficients}{a list of posterior estimates of coefficients}
 }
 \description{
-fit Bayesian penalized quantile regression for linear and varying coefficient models
+fit Bayesian penalized quantile regression for linear, group LASSO, or varying coefficient models
 }
 \details{
 The quantile regression model described in "\code{\link{data}}" is:
 \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}X_{ij}\gamma_j +\epsilon_{i},}
 where \eqn{\beta_k}'s are the regression coefficients for clinical covariates and \eqn{\gamma_j}'s are the regression coefficients of \eqn{\boldsymbol X}.
+
+The group LASSO model described in "\code{\link{data}}" is:
+\deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k + X_{i0}\gamma_0+ \sum_{j=1}^{m}\boldsymbol{X_{ij}^\top}\boldsymbol{\gamma_j} +\epsilon_{i},}
+where \eqn{\beta_k}'s are the regression coefficients for clinical covariates and \eqn{\boldsymbol{\gamma_j} = (\gamma_{j1},\dots,\gamma_{jd})^\top} is the vector of regression coefficients of the \eqn{n \times d} matrix \eqn{\boldsymbol X_{j}}.
 
 The quantile varying coefficient model described in "\code{\link{data}}" is:
 \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}\gamma_j(V_i)X_{ij} +\epsilon_{i},}
@@ -82,19 +89,38 @@ g=data$g
 y=data$y
 e=data$e
 
-fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+fit1=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,model="linear")
 \donttest{
 
 ## non-sparse
 sparse=FALSE
-fit2=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,sparse = sparse,model="linear")
+fit2=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,spline=NULL,sparse = sparse,model="linear")
 
 ## non-robust
 robust = FALSE
-fit3=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,robust = robust,model="linear")
+fit3=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,spline=NULL,robust = robust,model="linear")
 
 }
 
+## The group LASSO model
+data(data)
+data = data$data_group
+g=data$g
+y=data$y
+e=data$e
+
+fit1=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,model="group")
+\donttest{
+
+## non-sparse
+sparse=FALSE
+fit2=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,spline=NULL,sparse = sparse,model="group")
+
+## non-robust
+robust = FALSE
+fit3=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,spline=NULL,robust = robust,model="group")
+
+}
 ## The quantile varying coefficient model
 data(data)
 data = data$data_varying
@@ -104,7 +130,7 @@ u=data$u
 e=data$e
 
 spline = list(kn=2,degree=2)
-fit1=pqrBayes(g,y,u,e,quant=0.5,spline = spline, model="VC")
+fit1=pqrBayes(g,y,u,e,quant=0.5,spline = spline,model="VC")
 
 \donttest{
 

@@ -11,9 +11,9 @@ estimation.pqrBayes(object,coefficient,u.grid=NULL,model="linear")
 
 \item{coefficient}{the vector of quantile regression coefficients under a linear model or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
-\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a linear (quantile) regression model, u.grid = NULL.}
+\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a linear (quantile) regression model or group LASSO, u.grid = NULL.}
 
-\item{model}{the model to be fitted. Users can choose "linear" for a linear model or "VC" for a varying coefficient model.}
+\item{model}{the model to be fitted. Users can choose "linear" for a linear model, "VC" for a varying coefficient model or "group for group LASSO.}
 }
 \value{
 an object of class `pqrBayes.est' is returned, which is a list with components:
@@ -31,7 +31,7 @@ g=data$g
 y=data$y
 e=data$e
 coeff = data$coeff
-fit1=pqrBayes(g,y,u=NULL,e,quant=0.5,spline=NULL,model="linear")
+fit1=pqrBayes(g,y,u=NULL,e,d = NULL,quant=0.5,spline=NULL,model="linear")
 estimation=estimation.pqrBayes(fit1,coeff,model="linear")
 
 }
