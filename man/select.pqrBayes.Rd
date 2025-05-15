@@ -50,11 +50,19 @@ select=pqrBayes.select(obj = fit1,sparse = sparse,model="VC")
 select
 
 \donttest{
-## non-sparse
-sparse=FALSE
-spline = list(kn=2,degree=2)
-fit2=pqrBayes(g,y,u,e,d = NULL,quant=0.5,spline = spline,sparse = sparse,model="VC")
-select=pqrBayes.select(obj=fit2,sparse=FALSE,model="VC")
+## Non-sparse example with VC model
+sparse <- FALSE
+spline <- list(kn = 2, degree = 2)
+
+fit2 <- pqrBayes(
+  g = g, y = y, u = u, e = e, d = NULL,
+  quant = 0.5,
+  spline = spline,
+  sparse = sparse,
+  model = "VC"
+)
+
+select <- pqrBayes.select(obj = fit2, sparse = FALSE, model = "VC")
 select
 }
 

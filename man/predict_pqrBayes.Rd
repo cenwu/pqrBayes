@@ -9,17 +9,17 @@ predict_pqrBayes(object, g.new, u.new, e.new, y.new, quant, model, ...)
 \arguments{
 \item{object}{a pqrBayes object.}
 
-\item{g.new}{a matrix of new predictors (e.g. genetic factors) at which predictions are to be made. When being applied to the linear model or group LASSO, g.new = g.}
+\item{g.new}{a matrix of new predictors (e.g. genetic factors) at which predictions are to be made. When being applied to the linear model (i.e., LASSO), binary LASSO or group LASSO, g.new = g.}
 
-\item{u.new}{a vector of new environmental factor at which predictions are to be made. When being applied to the linear model or group LASSO, u.new = NULL.}
+\item{u.new}{a vector of new environmental factor at which predictions are to be made. When being applied to the linear model (i.e., LASSO), binary LASSO or group LASSO, u.new = NULL.}
 
-\item{e.new}{a vector or matrix of new clinical covariates at which predictions are to be made. When being applied to the linear model, e.new = e.}
+\item{e.new}{a vector or matrix of new clinical covariates at which predictions are to be made. When being applied to the linear model (i.e., LASSO), e.new = e.}
 
-\item{y.new}{a vector of the response of new observations. When being applied to the linear model or group LASSO, y.new = y.}
+\item{y.new}{a vector of the response of new observations. When being applied to the linear model (i.e., LASSO), binary LASSO or group LASSO, y.new = y.}
 
 \item{quant}{the quantile level.  The default is 0.5.}
 
-\item{model}{the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a linear model and "group" for a group LASSO.}
+\item{model}{the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO and "group" for a group LASSO.}
 
 \item{...}{other predict arguments}
 }

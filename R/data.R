@@ -1,10 +1,11 @@
-#' Simulated data under high-dimensional linear, group LASSO and quantile varying coefficient models
+#' Simulated data under high-dimensional linear, binary, group LASSO and quantile varying coefficient models
 #'
 #' @docType data
 #' @keywords datasets
 #' @name data
 #' @format 
 #' The data_linear object consists of 4 components: g, y, e and coeff. coeff contains the true values of parameters used for generating the response variable \eqn{y}.
+#' The data_binary object consists of 4 components: g, y, e and coeff. coeff contains the true values of parameters used for generating the response variable \eqn{y}.
 #' The data_group object consists of 4 components: g, y, e and coeff. coeff contains the true values of parameters used for generating the response variable \eqn{y}.
 #' The data_varying object consists of five components: g, y, u, e and coeff. coeff contains the true values of parameters used for generating the response variable \eqn{y}.
 #' 
@@ -18,6 +19,14 @@
 #' The true data generating model under sparse linear regression:
 #' \deqn{Y_i=\beta_0+\beta_{1}X_{i1}+\beta_{2}X_{i2}+\beta_{3}X_{i3}+\epsilon_i,}
 #' where \eqn{\epsilon_i\sim N(0,1)}, \eqn{\beta_{0}=0}, \eqn{\beta_{1}=1 }, \eqn{\beta_{2}=1.5} and \eqn{\beta_3=2}.
+#' 
+#' \strong{Generating Y using a sparse binary (quantile) regression model}
+#' 
+#' The true data generating model under sparse linear regression:
+#' \deqn{\tilde{Y}_i=\beta_0+\beta_{1}X_{i1}+\beta_{2}X_{i2}+\beta_{3}X_{i3}+\epsilon_i,}
+#' where \eqn{\epsilon_i\sim N(0,1)}, \eqn{\beta_{0}=0}, \eqn{\beta_{1}=0.22 }, \eqn{\beta_{2}=0.18} and \eqn{\beta_3=0.14}.
+#' 
+#' \eqn{Y_i=1} if \eqn{\tilde{Y}_i>0} and \eqn{Y_i=0} otherwise.
 #' 
 #' \strong{Generating Y using a high-dimensional group LASSO model}
 #' 
@@ -34,6 +43,13 @@
 #' @examples
 #' data(data)
 #' data = data$data_linear
+#' g=data$g
+#' dim(g)
+#' y=data$y
+#' coeff=data$coeff
+#' print(coeff)
+#' 
+#' data = data$data_binary
 #' g=data$g
 #' dim(g)
 #' y=data$y

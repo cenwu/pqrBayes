@@ -1,25 +1,31 @@
-#' fit Bayesian penalized quantile regression for linear, group LASSO, or varying coefficient models
+#' fit Bayesian penalized quantile regression for linear, binary LASSO, group LASSO, or varying coefficient models
 #' 
 #' @keywords models
 #' @param g the matrix of predictors (subject to selection). Users do not need to specify an intercept which will be automatically included. 
-#' @param y the response variable. The current version only supports the continuous response.
+#' @param y the response variable.
 #' @param u a vector of effect modifying variable of the quantile varying coefficient model. When fitting a linear model or group LASSO, u = NULL.
 #' @param e a matrix of clinical covariates not subject to selection.
 #' @param quant the quantile level specified by users. The default value is 0.5.
 #' @param d a positive integer denotes the group size. When fitting a linear model or varying coefficient model, d = NULL.
 #' @param iterations the number of MCMC iterations. The default value is 10,000.
 #' @param burn.in the number of burn-in iterations. If NULL, the first half of MCMC iterations will be used as burn-ins.
-#' @param spline a list of the number of interior knots (kn) for B-spline and the degree of B-spline basis (degree). When fitting a linear model or group LASSO, spline = NULL.
+#' @param spline a list of the number of interior knots (kn) for B-spline and the degree of B-spline basis (degree). When fitting LASSO, binary LASSO and group LASSO, spline = NULL.
 #' @param robust logical flag. If TRUE, robust methods will be used. Otherwise, non-robust methods will be used. The default value is TRUE.
 #' @param sparse logical flag. If TRUE, spike-and-slab priors will be adopted to impose exact sparsity on regression coefficients. Otherwise, Laplacian shrinkage will be adopted. The default value is TRUE.
-#' @param model the model to be fitted. Users can specify "linear" for a linear model, "group" for group LASSO and "VC" for a varying coefficient model.
+#' @param model the model to be fitted. Users can specify "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.
 #' @param hyper a named list of hyper-parameters. The default value is NULL.
 #' @param debugging logical flag. If TRUE, progress will be output to the console and extra information will be returned. The default value is FALSE.
 #'
 #' @details 
-#' The quantile regression model described in "\code{\link{data}}" is:
+#' The linear quantile regression model described in "\code{\link{data}}" is:
 #' \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}X_{ij}\gamma_j +\epsilon_{i},}
 #' where \eqn{\beta_k}'s are the regression coefficients for clinical covariates and \eqn{\gamma_j}'s are the regression coefficients of \eqn{\boldsymbol X}.
+#' 
+#' The binary quantile regression model described in "\code{\link{data}}" is:
+#' \deqn{\tilde{Y}_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}X_{ij}\gamma_j +\epsilon_{i},}
+#' where \eqn{\beta_k}'s are the regression coefficients for clinical covariates and \eqn{\gamma_j}'s are the regression coefficients of \eqn{\boldsymbol X}.
+#' 
+#' \eqn{Y_{i}=1} if \eqn{\tilde{Y}_{i}>0} and \eqn{Y_{i}=0} otherwise.
 #' 
 #' The group LASSO model described in "\code{\link{data}}" is:
 #' \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k + X_{i0}\gamma_0+ \sum_{j=1}^{m}\boldsymbol{X_{ij}^\top}\boldsymbol{\gamma_j} +\epsilon_{i},}
@@ -44,26 +50,44 @@
 #' \item{coefficients}{a list of posterior estimates of coefficients}
 #' 
 #' @examples
-#' ## The quantile regression model
+#' ## The quantile (linear and binary) regression model
 #' data(data)
 #' data = data$data_linear
 #' g=data$g
 #' y=data$y
 #' e=data$e
+#' data(data)
+#' data_1=data$data_binary
+#' g_1=data_1$g
+#' y_1=data_1$y
+#' e_1=data_1$e
 #' 
 #' fit1=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,model="linear")
+#' fit1_1=pqrBayes(g_1,y_1,u=NULL,e_1,d=NULL,quant=0.5,model="binary")
 
 #' \donttest{
 #'
-#' ## non-sparse
-#' sparse=FALSE
-#' fit2=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,spline=NULL,sparse = sparse,model="linear")
-#' 
-#' ## non-robust
-#' robust = FALSE
-#' fit3=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,spline=NULL,robust = robust,model="linear")
-#' 
+#' ## Non-sparse example (linear model)
+#' sparse <- FALSE
+#' fit2 <- pqrBayes(
+#'   g = g, y = y, u = NULL, e = e, d = NULL,
+#'   quant = 0.5,
+#'   spline = NULL,
+#'   sparse = sparse,
+#'   model = "linear"
+#' )
+#'
+#' ## Non-robust example (linear model)
+#' robust <- FALSE
+#' fit3 <- pqrBayes(
+#'   g = g, y = y, u = NULL, e = e, d = NULL,
+#'   quant = 0.5,
+#'   spline = NULL,
+#'   robust = robust,
+#'   model = "linear"
+#' )
 #' }
+
 #' 
 #' ## The group LASSO model
 #' data(data)
@@ -75,15 +99,25 @@
 #' fit1=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,model="group")
 #' \donttest{
 #'
-#' ## non-sparse
-#' sparse=FALSE
-#' fit2=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,spline=NULL,sparse = sparse,model="group")
-#' 
-#' ## non-robust
-#' robust = FALSE
-#' fit3=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,spline=NULL,robust = robust,model="group")
-#' 
+#' ## Non-sparse version
+#' sparse <- FALSE
+#' fit2 <- pqrBayes(
+#'   g = g, y = y, u = NULL, e = e, d = 3,
+#'   quant = 0.5, spline = NULL,
+#'   sparse = sparse,
+#'   model = "group"
+#' )
+#'
+#' ## Non-robust version
+#' robust <- FALSE
+#' fit3 <- pqrBayes(
+#'   g = g, y = y, u = NULL, e = e, d = 3,
+#'   quant = 0.5, spline = NULL,
+#'   robust = robust,
+#'   model = "group"
+#' )
 #' }
+
 #' ## The quantile varying coefficient model
 #' data(data)
 #' data = data$data_varying
@@ -97,15 +131,27 @@
 #'
 #' \donttest{
 #'
-#' ## non-sparse
-#' sparse=FALSE
-#' fit2=pqrBayes(g,y,u,e,quant=0.5,spline = spline,sparse = sparse,model="VC")
-#' 
-#' ## non-robust
-#' robust = FALSE
-#' fit3=pqrBayes(g,y,u,e,quant=0.5,spline = spline,robust = robust,model="VC")
-#' 
+#' ## Non-sparse example
+#' sparse <- FALSE
+#' fit2 <- pqrBayes(
+#'   g = g, y = y, u = u, e = e,
+#'   quant = 0.5,
+#'   spline = spline,
+#'   sparse = sparse,
+#'   model = "VC"
+#' )
+#'
+#' ## Non-robust example
+#' robust <- FALSE
+#' fit3 <- pqrBayes(
+#'   g = g, y = y, u = u, e = e,
+#'   quant = 0.5,
+#'   spline = spline,
+#'   robust = robust,
+#'   model = "VC"
+#' )
 #' }
+
 #' @export
 #' @references
 #' 
@@ -121,17 +167,28 @@
 #' {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}
 
 
-pqrBayes <- function(g, y, u=NULL, e, d=NULL, quant=0.5, iterations=10000, burn.in=NULL,spline=NULL, robust=TRUE,sparse=TRUE, model="linear",hyper=NULL,debugging=FALSE){
+pqrBayes <- function(g, y, u = NULL, e, d = NULL, quant = 0.5, iterations = 10000, 
+                     burn.in = NULL, spline = NULL, robust = TRUE, sparse = TRUE, 
+                     model = "linear",
+                     hyper = NULL, debugging = FALSE) {
   
-  if(model=="VC"){
+  if (model == "VC") {
     kn = as.integer(spline$kn); degree = as.integer(spline$degree)
-    fit = pqrBayes_vc(g, y, u, e,quant, iterations, burn.in, kn, degree,robust,sparse, hyper,debugging)
-  }else if(model=="linear"){
-    fit = pqrBayes_lin(g, y, e, quant, iterations, burn.in, robust,sparse ,hyper,debugging)
-  }else if(model=="group"){
-    fit = pqrBayes_g(g, y, e, d, quant, iterations, burn.in, robust,sparse ,hyper,debugging)
-  }else{
-    stop("model should be either VC, linear or group.")
+    fit = pqrBayes_vc(g, y, u, e, quant, iterations, burn.in, kn, degree, robust, sparse, hyper, debugging)
+    
+  } else if (model == "linear") {
+    fit = pqrBayes_lin(g, y, e, quant, iterations, burn.in, robust, sparse, hyper, debugging)
+    
+  } else if (model == "binary") {
+    fit = pqrBayes_bin(g, y, e, quant, iterations, burn.in, robust, sparse, hyper, debugging)
+    
+  }else if (model == "group") {
+    fit = pqrBayes_g(g, y, e, d, quant, iterations, burn.in, robust, sparse, hyper, debugging)
+    
+  } else {
+    stop("model should be one of: 'VC', 'linear', 'binary' or 'group'.")
   }
+  
   return(fit)
 }
+

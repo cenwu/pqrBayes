@@ -48,13 +48,22 @@
 #' select
 #'
 #' \donttest{
-#' ## non-sparse
-#' sparse=FALSE
-#' spline = list(kn=2,degree=2)
-#' fit2=pqrBayes(g,y,u,e,d = NULL,quant=0.5,spline = spline,sparse = sparse,model="VC")
-#' select=pqrBayes.select(obj=fit2,sparse=FALSE,model="VC")
+#' ## Non-sparse example with VC model
+#' sparse <- FALSE
+#' spline <- list(kn = 2, degree = 2)
+#'
+#' fit2 <- pqrBayes(
+#'   g = g, y = y, u = u, e = e, d = NULL,
+#'   quant = 0.5,
+#'   spline = spline,
+#'   sparse = sparse,
+#'   model = "VC"
+#' )
+#'
+#' select <- pqrBayes.select(obj = fit2, sparse = FALSE, model = "VC")
 #' select
 #' }
+
 #'
 #' @export
 pqrBayes.select <- function(object,sparse=T,model="linear"){
@@ -64,11 +73,14 @@ pqrBayes.select <- function(object,sparse=T,model="linear"){
   else if(model=="linear"){
     select = linselect(obj = object,sparse = sparse)
   }
+  else if(model=="binary"){
+    select = linselect(obj = object,sparse = sparse)
+  }
   else if(model=="group"){
     select = linselect(obj = object,sparse = sparse)
   }
   else{
-    stop("model should be either VC, linear or group")
+    stop("model should be either VC, linear, binary or group")
   }
   class(select)="select"
   return(select)

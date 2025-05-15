@@ -9,11 +9,11 @@ estimation.pqrBayes(object,coefficient,u.grid=NULL,model="linear")
 \arguments{
 \item{object}{an object of class `pqrBayes'.}
 
-\item{coefficient}{the vector of quantile regression coefficients under a linear model or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
+\item{coefficient}{the vector of quantile regression coefficients under a linear model (i.e., LASSO), binary LASSO and group LASSO or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
-\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a linear (quantile) regression model or group LASSO, u.grid = NULL.}
+\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a linear regression model (i.e., LASSO), binary LASSO or group LASSO, u.grid = NULL.}
 
-\item{model}{the model to be fitted. Users can choose "linear" for a linear model, "VC" for a varying coefficient model or "group for group LASSO.}
+\item{model}{the model to be fitted. Users can choose "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO, "group" for group LASSO or "VC" for a varying coefficient model.}
 }
 \value{
 an object of class `pqrBayes.est' is returned, which is a list with components:
@@ -21,7 +21,7 @@ an object of class `pqrBayes.est' is returned, which is a list with components:
 \item{coeff.est}{estimated values of the regression coefficients or the varying coefficients.}
 }
 \description{
-Calculate estimated regression coefficients with estimation accuracy from linear and quantile VC models, respectively.
+Calculate estimated regression coefficients with estimation accuracy from linear, binary LASSO, group LASSO and quantile VC models, respectively.
 }
 \examples{
 ## The quantile regression model

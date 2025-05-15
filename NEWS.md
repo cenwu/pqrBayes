@@ -1,6 +1,10 @@
 
 ## News
 
+### pqrBayes 1.1.3 \[2025-05-14\]
+
+- Added functions to fit robust Bayesian binary LASSO and their non-robust counterparts. 
+
 ### pqrBayes 1.1.2 \[2025-03-31\]
 
 - Updated pqrBayes function with robust Bayesian group LASSO and 3 alternative models.

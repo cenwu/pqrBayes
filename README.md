@@ -25,7 +25,7 @@ Bayesian regularized quantile regression utilizing sparse priors to
     coefficient models ([Zhou et al.(2023)](https://doi.org/10.1016/j.csda.2023.107808)). In particular, 
     valid robust Bayesian inferences under both models in the presence of heavy-tailed errors
     can be validated on finite samples. Additional models including robust Bayesian 
-    group LASSO are also included. The Markov Chain Monte Carlo (MCMC) algorithms 
+    group LASSO and robust Bayesian binary LASSO are also included. The Markov Chain Monte Carlo (MCMC) algorithms 
     of the proposed and alternative models are implemented in C++. 
    
 
@@ -194,7 +194,7 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
 ## Example 3 (Bayesian Shrinkage Estimation for Robust Bayesian Group LASSO)
 
-#### Data Generation for Linear Model 
+#### Data Generation for Group LASSO 
 
     Data <- function(n,p,quant){
       sig1 = matrix(0,p,p)

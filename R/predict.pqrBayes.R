@@ -3,12 +3,12 @@
 #' Make predictions from a pqrBayes object
 #'
 #' @param object a pqrBayes object.
-#' @param g.new a matrix of new predictors (e.g. genetic factors) at which predictions are to be made. When being applied to the linear model or group LASSO, g.new = g.
-#' @param u.new a vector of new environmental factor at which predictions are to be made. When being applied to the linear model or group LASSO, u.new = NULL.
-#' @param e.new a vector or matrix of new clinical covariates at which predictions are to be made. When being applied to the linear model, e.new = e.
-#' @param y.new a vector of the response of new observations. When being applied to the linear model or group LASSO, y.new = y.
+#' @param g.new a matrix of new predictors (e.g. genetic factors) at which predictions are to be made. When being applied to the linear model (i.e., LASSO), binary LASSO or group LASSO, g.new = g.
+#' @param u.new a vector of new environmental factor at which predictions are to be made. When being applied to the linear model (i.e., LASSO), binary LASSO or group LASSO, u.new = NULL.
+#' @param e.new a vector or matrix of new clinical covariates at which predictions are to be made. When being applied to the linear model (i.e., LASSO), e.new = e.
+#' @param y.new a vector of the response of new observations. When being applied to the linear model (i.e., LASSO), binary LASSO or group LASSO, y.new = y.
 #' @param quant the quantile level.  The default is 0.5.
-#' @param model the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a linear model and "group" for a group LASSO.
+#' @param model the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO and "group" for a group LASSO.
 #' @param ... other predict arguments
 #' 
 #' @details g.new (u.new) must have the same number of columns as g (u) used for fitting the model. By default, the clinical covariates are NULL unless 
@@ -37,12 +37,14 @@ predict_pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new, quant=0.5,mod
     pqrBayes.pred = predict_vc(object, g.new, u.new, e.new, y.new, quant,...)
   }else if(model=="linear"){
     pqrBayes.pred = predict_lin(object, g.new, e.new, y.new, quant,...)
+  }else if(model=="binary"){
+    pqrBayes.pred = predict_bin(object, g.new, e.new, y.new, quant,...)
   }else if(model=="group"){
     pqrBayes.pred = predict_lin(object, g.new, e.new, y.new, quant,...)
   }
   
   else{
-    stop("model should be either VC, linear or group")
+    stop("model should be either VC, linear, binary or group")
   }
   class(pqrBayes.pred) = "pqrBayes.pred"
   return(pqrBayes.pred)
