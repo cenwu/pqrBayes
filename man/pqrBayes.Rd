@@ -196,6 +196,9 @@ Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian regularized quantile v
 Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian variable selection for gene-environment interactions. 
 {\emph{Biometrics}, 79(2), 684-694} \doi{10.1111/biom.13670}
 
+Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. 
+{\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
+
 Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}
 }

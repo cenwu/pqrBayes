@@ -1,0 +1,26 @@
+{
+    "args": [
+        "-std=gnu++17",
+        "-IC:/PROGRA~1/R/R-44~1.1/include",
+        "-DNDEBUG",
+        "-fopenmp",
+        "-IC:/Users/cenwu/AppData/Local/R/win-library/4.4/Rcpp/include",
+        "-IC:/Users/cenwu/AppData/Local/R/win-library/4.4/RcppArmadillo/include",
+        "-DEIGEN_DONT_VECTORIZE",
+        "-nostdinc",
+        "-Ic:/rbuild~1/4.4/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++",
+        "-Ic:/rbuild~1/4.4/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix",
+        "-Ic:/rbuild~1/4.4/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward",
+        "-Ic:/rbuild~1/4.4/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include",
+        "-Ic:/rbuild~1/4.4/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include",
+        "-Ic:/rbuild~1/4.4/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed",
+        "-include",
+        "C:/Users/cenwu/Documents/GitHub/pqrBayes/.Rproj.user/E5C542BE/compilation-database/mingw64/cpp-definitions.h"
+    ],
+    "pch": "RcppArmadillo",
+    "is_cpp": true,
+    "hash": "175339581617533958161753395816",
+    "compiler": "1391768606531529385",
+    "rversion": "4.4.1",
+    "dbversion": 4
+}
