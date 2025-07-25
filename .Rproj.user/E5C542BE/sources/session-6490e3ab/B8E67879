@@ -3,7 +3,7 @@
     "path": "~/GitHub/pqrBayes/README.md",
     "project_path": "README.md",
     "type": "markdown",
-    "hash": "2783490209",
+    "hash": "870137888",
     "contents": "",
     "dirty": false,
     "created": 1753400230722.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "228,59",
-        "scrollLine": "220"
+        "cursorPosition": "146,0",
+        "scrollLine": "141"
     },
     "folds": "",
-    "lastKnownWriteTime": 1753400691,
+    "lastKnownWriteTime": 1753405524,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1753400691649,
+    "last_content_update": 1753405524059,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -3,7 +3,7 @@
     "path": "~/GitHub/pqrBayes/DESCRIPTION",
     "project_path": "DESCRIPTION",
     "type": "dcf",
-    "hash": "0",
+    "hash": "1130554534",
     "contents": "",
     "dirty": false,
     "created": 1753400220258.0,
@@ -11,14 +11,16 @@
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "20,20",
+        "scrollLine": "10"
     },
     "folds": "",
-    "lastKnownWriteTime": 1753399997,
+    "lastKnownWriteTime": 1753404014,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1753399997,
+    "last_content_update": 1753404014169,
     "read_only": false,
     "read_only_alternatives": []
 }

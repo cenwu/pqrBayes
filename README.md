@@ -24,8 +24,8 @@ Bayesian regularized quantile regression utilizing sparse priors to
     [Ren et al. (2023)](https://doi.org/10.1111/biom.13670), and regularized quantile varying
     coefficient models ([Zhou et al.(2023)](https://doi.org/10.1016/j.csda.2023.107808)). In particular, 
     valid robust Bayesian inferences under both models in the presence of heavy-tailed errors
-    can be validated on finite samples. Additional models includes robust Bayesian 
-    group LASSO and robust binary Bayesian LASSO ([Fan and Wu (2025)](https://doi.org/10.1002/sta4.70078). 
+    can be validated on finite samples. Additional models with spike-and-slab priors 
+    include robust Bayesian group LASSO and robust binary Bayesian LASSO ([Fan and Wu (2025)](https://doi.org/10.1002/sta4.70078). 
     The Markov Chain Monte Carlo (MCMC) algorithms of the proposed and alternative models are implemented in C++. 
    
 
@@ -84,22 +84,20 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
     # an intercept is automatically included by the package
 
+    # RBLSS, robust Bayesian LASSO with spike-and-slab priors, Ren et al. Biometrics. (2023)
     fit = pqrBayes(g, y, u=NULL, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "linear", hyper=NULL,debugging=FALSE)
-
     coverage = coverage(fit,coefficient,u.grid=NULL, model = "linear")
 
-    # RBL, Bayesian regularized quantile LASSO, Li, Xi and Lin. Bayesian Anal. (2010)
+    # RBL, Bayesian quantile LASSO, Li, Xi and Lin. Bayesian Anal. (2010)
     fit1 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = TRUE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
-
     coverage1 = coverage(fit1,coefficient,u.grid=NULL, model = "linear")
     
+    # BLSS, Bayesian LASSO with spike-and-slab priors, Ren et al. Biometrics. (2023)
     fit2 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=TRUE, model= "linear", hyper=NULL,debugging=FALSE)
-   
     coverage2 = coverage(fit2,coefficient,u.grid=NULL, model = "linear")
   
-    # BL, the Bayesian LASSO,  Park and Casella (2008)
+    # BL, Bayesian LASSO,  Park and Casella (2008)
     fit3 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
-    
     coverage3 = coverage(fit3,coefficient,u.grid=NULL, model = "linear")
   
     CI_RBLSS[h,] = coverage
@@ -146,7 +144,7 @@ Bayesian regularized quantile regression utilizing sparse priors to
     rep=200;
     quant = 0.5; # focus on median for Bayesian inference
 
-    CI_RBGLSS = CI_RBGL = CI_BGLSS = CI_BGL= c()
+    CI_BQRVCSS = CI_BQRVC = CI_BVCSS = CI_BVC= c()
 
     for (h in 1:rep) {
     dat = Data(n,p,quant)
@@ -165,34 +163,34 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
     # a varying intercept is automatically included by the package
 
+    # BQRVCSS, Bayesian regularized quantile VC model with spike-and-slab priors. Zhou et al. CSDA (2023)
     fit = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2,degree=2), robust = TRUE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
-    
     coverage = coverage(fit,coefficient,u.grid, model = "VC")
 
+    # BQRVC, Bayesian regularized quantile VC model. Zhou et al. CSDA (2023)
     fit1 = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = TRUE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
-    
     coverage1 = coverage(fit1,coefficient,u.grid, model = "VC")
   
+    # BVCSS, Bayesian regularized VC model with spike-and-slab priors. Zhou et al. CSDA (2023)
     fit2 = pqrBayes(g, y, u, d = NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
-    
     coverage2 = coverage(fit2,coefficient,u.grid, model = "VC")
   
+    # BVC, Bayesian regularized VC model. Zhou et al. CSDA (2023)
     fit3 = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
-   
     coverage3 = coverage(fit3,coefficient,u.grid,model = "VC")
   
-    CI_RBGLSS = rbind(CI_RBGLSS,coverage)
-    CI_RBGL   = rbind(CI_RBGL,coverage1)
-    CI_BGLSS  = rbind(CI_BGLSS,coverage2)
+    CI_BQRVCSS = rbind(CI_BQRVCSS,coverage)
+    CI_BQRVC   = rbind(CI_BQRVC,coverage1)
+    CI_BVCSS  = rbind(CI_BVCSS,coverage2)
     CI_BGL    = rbind(CI_BGL,coverage3)
     cat("Replicate = ", h, "\n")
     
     }
     # the varying intercept has not been regularized
-    cp_RBGLSS =  colMeans(CI_RBGLSS) # 95% empirical coverage probabilities for the varying coefficients under the default setting
-    cp_BGLSS  =  colMeans(CI_BGLSS)
-    cp_RBGL   =  colMeans(CI_RBGL)
-    cp_BGL    =  colMeans(CI_BGL)
+    cp_BQRVCSS =  colMeans(CI_BQRVCSS) # 95% empirical coverage probabilities for the varying coefficients under the default setting
+    cp_BQRVC  =  colMeans(CI_BQRVC)
+    cp_BVCSS   =  colMeans(CI_BVCSS)
+    cp_BVC    =  colMeans(CI_BVC)
 
 ## Example 3 (Bayesian Shrinkage Estimation for Robust Bayesian Group LASSO)
 
