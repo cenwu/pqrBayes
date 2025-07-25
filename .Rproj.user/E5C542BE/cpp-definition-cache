@@ -1,0 +1,299 @@
+[
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BBL.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BBL#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S0_#I#S1_#S1_#S1_#S0_#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BBL(arma::mat, arma::vec, arma::vec, arma::mat, int, arma::vec, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BBL.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BBLSS.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BBLSS#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S0_#I#S1_#S1_#S1_#S0_#d#d#d#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BBLSS(arma::mat, arma::vec, arma::vec, arma::mat, int, arma::vec, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BBLSS.cpp",
+                "line": 14,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BGL-SS0.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BGLPointMass#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#i#i#I#S1_#S1_#S1_#S0_#d#d#d#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BGLPointMass(arma::mat, arma::vec, arma::mat, unsigned int, unsigned int, int, arma::vec, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BGL-SS0.cpp",
+                "line": 14,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BGL.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BGL#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#i#i#I#S1_#S1_#S1_#S0_#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BGL(arma::mat, arma::vec, arma::mat, unsigned int, unsigned int, int, arma::vec, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BGL.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BL.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BL#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#I#S1_#S1_#S1_#S0_#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BL(arma::mat, arma::vec, arma::mat, int, arma::vec, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BL.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BLSS.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BLSS#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#I#S1_#S1_#S1_#S0_#d#d#d#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BLSS(arma::mat, arma::vec, arma::mat, int, arma::vec, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BLSS.cpp",
+                "line": 14,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BQL.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BRL#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#I#S1_#S1_#d#S1_#S1_#S0_#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BRL(arma::mat, arma::vec, arma::mat, int, arma::vec, arma::vec, double, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BQL.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BQLSS.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BRLSS#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#I#S1_#S1_#d#S1_#S1_#S0_#d#d#d#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BRLSS(arma::mat, arma::vec, arma::mat, int, arma::vec, arma::vec, double, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BQLSS.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRBL.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BRBL#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S0_#I#S1_#S1_#d#S1_#S1_#S0_#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BRBL(arma::mat, arma::vec, arma::vec, arma::mat, int, arma::vec, arma::vec, double, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRBL.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRBLSS.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BRBLSS#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S0_#I#S1_#S1_#d#S1_#S1_#S0_#d#d#d#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BRBLSS(arma::mat, arma::vec, arma::vec, arma::mat, int, arma::vec, arma::vec, double, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRBLSS.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRGL-SS2.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BRGL_SS#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#i#i#I#S1_#S0_#d#S1_#S1_#S0_#d#d#d#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BRGL_SS(arma::mat, arma::vec, arma::mat, unsigned int, unsigned int, int, arma::vec, arma::mat, double, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRGL-SS2.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRGL.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@BRGL#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S0_#i#i#I#S1_#S0_#d#S1_#S1_#S0_#d#d#d#d#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "BRGL(arma::mat, arma::vec, arma::mat, unsigned int, unsigned int, int, arma::vec, arma::mat, double, arma::vec, arma::vec, arma::mat, double, double, double, double, double, double, int)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BRGL.cpp",
+                "line": 13,
+                "column": 12,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+        "file_last_write": 1753480636.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rtnorm#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rtnorm(double, double)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 13,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rtnorm0#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rtnorm0(double, double)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 30,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rtnorm1#I#$@N@arma@S@Col>#d#S0_#S0_#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rtnorm1(int, arma::vec, arma::vec, arma::vec, arma::vec)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 35,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rtnorm2#d#b#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rtnorm2(double, bool, double, double)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 51,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rinvgaussian#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rinvgaussian(double, double)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 93,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@rinvGauss#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rinvGauss(double, double)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 112,
+                "column": 8,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mvrnormCpp#&1$@N@arma@S@Col>#d#&1$@N@arma@S@Mat>#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mvrnormCpp(const arma::vec &, const arma::mat &, double)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 134,
+                "column": 11,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@mvrnormCpp#&1$@N@arma@S@Col>#d#&1$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "mvrnormCpp(const arma::vec &, const arma::mat &)",
+                "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.cpp",
+                "line": 166,
+                "column": 11,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    },
+    {
+        "file": "C:/Users/cenwu/Documents/GitHub/pqrBayes/src/BVCUtilities.h",
+        "file_last_write": 1753480636.0,
+        "definitions": [],
+        "hidden": false
+    }
+]
