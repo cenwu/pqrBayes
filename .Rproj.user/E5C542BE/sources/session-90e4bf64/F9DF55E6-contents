@@ -13,8 +13,8 @@ Description: Bayesian regularized quantile regression utilizing sparse priors to
     promote exact sparsity leads to efficient Bayesian shrinkage estimation, variable 
     selection and statistical inference. In this package, we have implemented robust
     Bayesian variable selection with spike-and-slab priors under high-dimensional
-    linear regression models (Fan et al. (2024) <doi:10.3390/e26090794> and  
-    Ren et al. (2023) <doi:10.1111/biom.13670>), and regularized quantile varying
+    linear regression models (Fan et al. (2024) <doi:10.3390/e26090794>) and  
+    (Ren et al. (2023) <doi:10.1111/biom.13670>), and regularized quantile varying
     coefficient models (Zhou et al.(2023) <doi:10.1016/j.csda.2023.107808>). In particular, 
     valid robust Bayesian inferences under both models in the presence of heavy-tailed errors
     can be validated on finite samples. Additional models with spike-and-slab priors include 
