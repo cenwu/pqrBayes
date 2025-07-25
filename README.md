@@ -20,8 +20,8 @@ Bayesian regularized quantile regression utilizing sparse priors to
     promote exact sparsity leads to efficient Bayesian shrinkage estimation, variable 
     selection and statistical inference. In this package, we have implemented robust
     Bayesian variable selection with spike-and-slab priors under high-dimensional
-    linear regression models ([Fan et al. (2024)](https://doi.org/10.3390/e26090794)) and 
-    ([Ren et al. (2023)](https://doi.org/10.1111/biom.13670)), and regularized quantile varying
+    linear regression models ([Fan et al. (2024)](https://doi.org/10.3390/e26090794) and 
+    [Ren et al. (2023)](https://doi.org/10.1111/biom.13670)), and regularized quantile varying
     coefficient models ([Zhou et al.(2023)](https://doi.org/10.1016/j.csda.2023.107808)). In     
     particular, valid robust Bayesian inferences under both models in the presence of heavy-tailed 
     errors can be validated on finite samples. Additional models with spike-and-slab priors 
@@ -82,17 +82,17 @@ Bayesian regularized quantile regression utilizing sparse priors to
     g = dat$x
     coefficient = dat$beta
 
-    # an intercept is automatically included by the package
+    # an intercept not subject to regularization is automatically included by the package
 
-    # RBLSS: robust Bayesian LASSO with spike-and-slab priors (Ren et al., Biometrics. 2023)
+    # RBLSS: robust Bayesian LASSO with spike-and-slab priors (Ren et al., Biometrics, 2023)
     fit = pqrBayes(g, y, u=NULL, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "linear", hyper=NULL,debugging=FALSE)
     coverage = coverage(fit,coefficient,u.grid=NULL, model = "linear")
 
-    # RBL: Bayesian quantile LASSO (Li, Xi and Lin, Bayesian Analysis 2010)
+    # RBL: Bayesian quantile LASSO (Li, Xi & Lin, Bayesian Analysis, 2010)
     fit1 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = TRUE, sparse=FALSE, model = "linear", hyper=NULL,debugging=FALSE)
     coverage1 = coverage(fit1,coefficient,u.grid=NULL, model = "linear")
     
-    # BLSS: Bayesian LASSO with spike-and-slab priors (Ren et al. Biometrics. 2023)
+    # BLSS: Bayesian LASSO with spike-and-slab priors (Ren et al., Biometrics, 2023)
     fit2 = pqrBayes(g, y, u=NULL,d=NULL, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL, robust = FALSE, sparse=TRUE, model= "linear", hyper=NULL,debugging=FALSE)
     coverage2 = coverage(fit2,coefficient,u.grid=NULL, model = "linear")
   
@@ -163,19 +163,19 @@ Bayesian regularized quantile regression utilizing sparse priors to
 
     # a varying intercept not subject to regularization is automatically included by the package
 
-    # BQRVCSS: Bayesian regularized quantile VC model with spike-and-slab priors (Zhou et al. CSDA, 2023)
+    # BQRVCSS: Bayesian regularized quantile VC model with spike-and-slab priors (Zhou et al., CSDA, 2023)
     fit = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2,degree=2), robust = TRUE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
     coverage = coverage(fit,coefficient,u.grid, model = "VC")
 
-    # BQRVC: Bayesian regularized quantile VC model (Zhou et al. CSDA, 2023)
+    # BQRVC: Bayesian regularized quantile VC model (Zhou et al., CSDA, 2023)
     fit1 = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = TRUE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
     coverage1 = coverage(fit1,coefficient,u.grid, model = "VC")
   
-    # BVCSS: Bayesian regularized VC model with spike-and-slab priors (Zhou et al. CSDA, 2023)
+    # BVCSS: Bayesian regularized VC model with spike-and-slab priors (Zhou et al., CSDA, 2023)
     fit2 = pqrBayes(g, y, u, d = NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=TRUE, model = "VC", hyper=NULL,debugging=FALSE)
     coverage2 = coverage(fit2,coefficient,u.grid, model = "VC")
   
-    # BVC: Bayesian regularized VC model (Zhou et al. CSDA, 2023)
+    # BVC: Bayesian regularized VC model (Zhou et al., CSDA, 2023)
     fit3 = pqrBayes(g, y, u, d=NULL,e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = list(kn=2, degree=2), robust = FALSE, sparse=FALSE, model = "VC", hyper=NULL,debugging=FALSE)
     coverage3 = coverage(fit3,coefficient,u.grid,model = "VC")
   
@@ -224,9 +224,8 @@ Bayesian regularized quantile regression utilizing sparse priors to
     g = dat$x
     coefficient = dat$beta
 
-    # an intercept is automatically included by the package
-    # the intercept has not been regularized
-    
+    # an intercept not subject to regularization is automatically included by the package
+  
     # RBGLSS, (Ren et al. Biometrics, 2023)
     fit = pqrBayes(g, y, u=NULL,d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, spline = NULL,robust = TRUE, sparse=TRUE, model = "group", hyper=NULL,debugging=FALSE)
     estimation_1 = estimation.pqrBayes(fit,coefficient,model="group")
