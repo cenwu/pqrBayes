@@ -1,12 +1,12 @@
 ## News
 
+### pqrBayes 1.2.0 \[2025-12-07]
+
+* Updated pqrBayes function with robust Bayesian regression with the horseshoe family of (horseshoe, horseshoe+ and regularized horseshoe) priors and 3 non-robust alternatives.
+
 ### pqrBayes 1.1.4 \[2025-07-25]
 
-* Updated references and annotations for examples.
-
-### pqrBayes 1.1.3 \[2025-05-14]
-
-* Added functions to fit robust binary Bayesian LASSO and their non-robust counterparts.
+* Updated references and annotations of examples.
 
 ### pqrBayes 1.1.2 \[2025-03-31]
 

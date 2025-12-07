@@ -2,20 +2,18 @@
 % Please edit documentation in R/pqrBayes.R
 \name{pqrBayes}
 \alias{pqrBayes}
-\title{fit Bayesian penalized quantile regression for linear, binary LASSO, group LASSO, or varying coefficient models}
+\title{fit Bayesian penalized quantile regression for the sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors}
 \usage{
 pqrBayes(
   g,
   y,
-  u = NULL,
   e,
   d = NULL,
   quant = 0.5,
   iterations = 10000,
   burn.in = NULL,
-  spline = NULL,
   robust = TRUE,
-  sparse = TRUE,
+  prior = "SS",
   model = "linear",
   hyper = NULL,
   debugging = FALSE
@@ -26,25 +24,21 @@ pqrBayes(
 
 \item{y}{the response variable.}
 
-\item{u}{a vector of effect modifying variable of the quantile varying coefficient model. When fitting a linear model or group LASSO, u = NULL.}
-
 \item{e}{a matrix of clinical covariates not subject to selection.}
 
-\item{d}{a positive integer denotes the group size. When fitting a linear model or varying coefficient model, d = NULL.}
+\item{d}{a positive integer denotes the group size. When fitting a sparse linear or varying coefficient model, d = NULL.}
 
 \item{quant}{the quantile level specified by users. The default value is 0.5.}
 
 \item{iterations}{the number of MCMC iterations. The default value is 10,000.}
 
-\item{burn.in}{the number of burn-in iterations. If NULL, the first half of MCMC iterations will be used as burn-ins.}
+\item{burn.in}{the number of burn-in iterations. If NULL, the first half of MCMC iterations will be discarded as burn-ins.}
 
-\item{spline}{a list of the number of interior knots (kn) for B-spline and the degree of B-spline basis (degree). When fitting LASSO, binary LASSO and group LASSO, spline = NULL.}
+\item{robust}{logical flag. If TRUE, robust methods are used. Otherwise, non-robust methods are used. The default value is TRUE.}
 
-\item{robust}{logical flag. If TRUE, robust methods will be used. Otherwise, non-robust methods will be used. The default value is TRUE.}
+\item{prior}{the type of prior used for variable selection. Users can specify "SS" for the spike-and-slab prior, "HS" for the horseshoe prior, "HS+" for the horseshoe plus prior, "RHS" for the regularized horseshoe prior and "Laplace" for the Laplace prior. The default value is "SS".}
 
-\item{sparse}{logical flag. If TRUE, spike-and-slab priors will be adopted to impose exact sparsity on regression coefficients. Otherwise, Laplacian shrinkage will be adopted. The default value is TRUE.}
-
-\item{model}{the model to be fitted. Users can specify "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.}
+\item{model}{the model to be fitted. Users can specify "linear" for a sparse linear model, "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.}
 
 \item{hyper}{a named list of hyper-parameters. The default value is NULL.}
 
@@ -56,10 +50,10 @@ an object of class "pqrBayes" is returned, which is a list with components:
 \item{coefficients}{a list of posterior estimates of coefficients}
 }
 \description{
-fit Bayesian penalized quantile regression for linear, binary LASSO, group LASSO, or varying coefficient models
+fit Bayesian penalized quantile regression for the sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors
 }
 \details{
-The linear quantile regression model described in "\code{\link{data}}" is:
+The sparse linear quantile regression model described in "\code{\link{data}}" is:
 \deqn{Y_{i}=\sum_{k=1}^{q} E_{ik} \beta_k +\sum_{j=0}^{p}X_{ij}\gamma_j +\epsilon_{i},}
 where \eqn{\beta_k}'s are the regression coefficients for clinical covariates and \eqn{\gamma_j}'s are the regression coefficients of \eqn{\boldsymbol X}.
 
@@ -88,7 +82,7 @@ The list can have the following named components
 Please check the references for more details about the prior distributions.
 }
 \examples{
-## The quantile (linear and binary) regression model
+## The sparse quantile (linear and binary) regression model
 data(data)
 data = data$data_linear
 g=data$g
@@ -100,27 +94,23 @@ g_1=data_1$g
 y_1=data_1$y
 e_1=data_1$e
 
-fit1=pqrBayes(g,y,u=NULL,e,d=NULL,quant=0.5,model="linear")
-fit1_1=pqrBayes(g_1,y_1,u=NULL,e_1,d=NULL,quant=0.5,model="binary")
+fit1=pqrBayes(g,y,e,d=NULL,quant=0.5,model="linear")
+fit1_1=pqrBayes(g_1,y_1,e_1,d=NULL,quant=0.5,model="binary")
 \donttest{
 
-## Non-sparse example (linear model)
-sparse <- FALSE
+## Non-sparse example (LASSO)
 fit2 <- pqrBayes(
-  g = g, y = y, u = NULL, e = e, d = NULL,
+  g = g, y = y, e = e, d = NULL,
   quant = 0.5,
-  spline = NULL,
-  sparse = sparse,
+  prior = "Laplace",
   model = "linear"
 )
 
-## Non-robust example (linear model)
-robust <- FALSE
+## Non-robust example (LASSO)
 fit3 <- pqrBayes(
-  g = g, y = y, u = NULL, e = e, d = NULL,
+  g = g, y = y, e = e, d = NULL,
   quant = 0.5,
-  spline = NULL,
-  robust = robust,
+  robust = FALSE,
   model = "linear"
 )
 }
@@ -132,24 +122,22 @@ g=data$g
 y=data$y
 e=data$e
 
-fit1=pqrBayes(g,y,u=NULL,e,d=3,quant=0.5,model="group")
+fit1=pqrBayes(g,y,e,d=3,quant=0.5,model="group")
 \donttest{
 
 ## Non-sparse version
-sparse <- FALSE
 fit2 <- pqrBayes(
-  g = g, y = y, u = NULL, e = e, d = 3,
-  quant = 0.5, spline = NULL,
-  sparse = sparse,
+  g = g, y = y, e = e, d = 3,
+  quant = 0.5,
+  prior = "Laplace",
   model = "group"
 )
 
 ## Non-robust version
-robust <- FALSE
 fit3 <- pqrBayes(
-  g = g, y = y, u = NULL, e = e, d = 3,
-  quant = 0.5, spline = NULL,
-  robust = robust,
+  g = g, y = y, e = e, d = 3,
+  quant = 0.5,
+  robust = FALSE,
   model = "group"
 )
 }
@@ -158,31 +146,24 @@ data(data)
 data = data$data_varying
 g=data$g
 y=data$y
-u=data$u
 e=data$e
-
-spline = list(kn=2,degree=2)
-fit1=pqrBayes(g,y,u,e,quant=0.5,spline = spline,model="VC")
+fit1=pqrBayes(g,y,e,quant=0.5,model="VC")
 
 \donttest{
 
 ## Non-sparse example
-sparse <- FALSE
 fit2 <- pqrBayes(
-  g = g, y = y, u = u, e = e,
+  g = g, y = y, e = e,
   quant = 0.5,
-  spline = spline,
-  sparse = sparse,
+  prior = "Laplace",
   model = "VC"
 )
 
 ## Non-robust example
-robust <- FALSE
 fit3 <- pqrBayes(
-  g = g, y = y, u = u, e = e,
+  g = g, y = y, e = e,
   quant = 0.5,
-  spline = spline,
-  robust = robust,
+  robust = FALSE,
   model = "VC"
 )
 }
@@ -198,6 +179,9 @@ Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian 
 
 Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. 
 {\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
+
+#' Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors 
+{\emph{arXiv:2507.10975} } 
 
 Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}

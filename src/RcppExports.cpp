@@ -353,6 +353,175 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// RBhorse_plus
+Rcpp::List RBhorse_plus(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, double hatSigma, arma::vec hatV, arma::vec hatSg, arma::vec hatetaSq, arma::vec hatnu_1, arma::vec hatnu_2, arma::mat invSigAlpha0, double hatTauSq, double xi1, double xi2, double hatZeta, double a, double b, int progress);
+RcppExport SEXP _pqrBayes_RBhorse_plus(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatSigmaSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP hatetaSqSEXP, SEXP hatnu_1SEXP, SEXP hatnu_2SEXP, SEXP invSigAlpha0SEXP, SEXP hatTauSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP hatZetaSEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type xx(xxSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type maxSteps(maxStepsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatAlpha(hatAlphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatBeta(hatBetaSEXP);
+    Rcpp::traits::input_parameter< double >::type hatSigma(hatSigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatV(hatVSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatSg(hatSgSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatetaSq(hatetaSqSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu_1(hatnu_1SEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu_2(hatnu_2SEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type invSigAlpha0(invSigAlpha0SEXP);
+    Rcpp::traits::input_parameter< double >::type hatTauSq(hatTauSqSEXP);
+    Rcpp::traits::input_parameter< double >::type xi1(xi1SEXP);
+    Rcpp::traits::input_parameter< double >::type xi2(xi2SEXP);
+    Rcpp::traits::input_parameter< double >::type hatZeta(hatZetaSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< int >::type progress(progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(RBhorse_plus(xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatV, hatSg, hatetaSq, hatnu_1, hatnu_2, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, progress));
+    return rcpp_result_gen;
+END_RCPP
+}
+// RBhorse
+Rcpp::List RBhorse(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, double hatSigma, arma::vec hatV, arma::vec hatSg, arma::vec hatnu, arma::mat invSigAlpha0, double hatTauSq, double xi1, double xi2, double hatZeta, double a, double b, int progress);
+RcppExport SEXP _pqrBayes_RBhorse(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatSigmaSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP hatnuSEXP, SEXP invSigAlpha0SEXP, SEXP hatTauSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP hatZetaSEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type xx(xxSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type maxSteps(maxStepsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatAlpha(hatAlphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatBeta(hatBetaSEXP);
+    Rcpp::traits::input_parameter< double >::type hatSigma(hatSigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatV(hatVSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatSg(hatSgSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu(hatnuSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type invSigAlpha0(invSigAlpha0SEXP);
+    Rcpp::traits::input_parameter< double >::type hatTauSq(hatTauSqSEXP);
+    Rcpp::traits::input_parameter< double >::type xi1(xi1SEXP);
+    Rcpp::traits::input_parameter< double >::type xi2(xi2SEXP);
+    Rcpp::traits::input_parameter< double >::type hatZeta(hatZetaSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< int >::type progress(progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(RBhorse(xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatV, hatSg, hatnu, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, progress));
+    return rcpp_result_gen;
+END_RCPP
+}
+// RBhorse_reg
+Rcpp::List RBhorse_reg(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, double hatSigma, double hatcSq, arma::vec hatV, arma::vec hatSg, arma::vec hatnu, arma::mat invSigAlpha0, double hatTauSq, double xi1, double xi2, double hatZeta, double a, double b, double c, double d, int progress);
+RcppExport SEXP _pqrBayes_RBhorse_reg(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatSigmaSEXP, SEXP hatcSqSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP hatnuSEXP, SEXP invSigAlpha0SEXP, SEXP hatTauSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP hatZetaSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP dSEXP, SEXP progressSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type xx(xxSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type maxSteps(maxStepsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatAlpha(hatAlphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatBeta(hatBetaSEXP);
+    Rcpp::traits::input_parameter< double >::type hatSigma(hatSigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type hatcSq(hatcSqSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatV(hatVSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatSg(hatSgSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu(hatnuSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type invSigAlpha0(invSigAlpha0SEXP);
+    Rcpp::traits::input_parameter< double >::type hatTauSq(hatTauSqSEXP);
+    Rcpp::traits::input_parameter< double >::type xi1(xi1SEXP);
+    Rcpp::traits::input_parameter< double >::type xi2(xi2SEXP);
+    Rcpp::traits::input_parameter< double >::type hatZeta(hatZetaSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type d(dSEXP);
+    Rcpp::traits::input_parameter< int >::type progress(progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(RBhorse_reg(xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatcSq, hatV, hatSg, hatnu, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, c, d, progress));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Bhorse_plus
+Rcpp::List Bhorse_plus(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatBeta, arma::vec hatAlpha, arma::vec hatlamSq, arma::vec hatetaSq, arma::vec hatnu_1, arma::vec hatnu_2, arma::mat invSigAlpha0, double hatTauSq, double hatSigmaSq, double hatZeta, double a, double b, int progress);
+RcppExport SEXP _pqrBayes_Bhorse_plus(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatlamSqSEXP, SEXP hatetaSqSEXP, SEXP hatnu_1SEXP, SEXP hatnu_2SEXP, SEXP invSigAlpha0SEXP, SEXP hatTauSqSEXP, SEXP hatSigmaSqSEXP, SEXP hatZetaSEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type xx(xxSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type maxSteps(maxStepsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatBeta(hatBetaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatAlpha(hatAlphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatlamSq(hatlamSqSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatetaSq(hatetaSqSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu_1(hatnu_1SEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu_2(hatnu_2SEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type invSigAlpha0(invSigAlpha0SEXP);
+    Rcpp::traits::input_parameter< double >::type hatTauSq(hatTauSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatSigmaSq(hatSigmaSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatZeta(hatZetaSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< int >::type progress(progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(Bhorse_plus(xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatetaSq, hatnu_1, hatnu_2, invSigAlpha0, hatTauSq, hatSigmaSq, hatZeta, a, b, progress));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Bhorse
+Rcpp::List Bhorse(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatBeta, arma::vec hatAlpha, arma::vec hatlamSq, arma::vec hatnu, arma::mat invSigAlpha0, double hatTauSq, double hatSigmaSq, double hatZeta, double a, double b, int progress);
+RcppExport SEXP _pqrBayes_Bhorse(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatlamSqSEXP, SEXP hatnuSEXP, SEXP invSigAlpha0SEXP, SEXP hatTauSqSEXP, SEXP hatSigmaSqSEXP, SEXP hatZetaSEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type xx(xxSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type maxSteps(maxStepsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatBeta(hatBetaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatAlpha(hatAlphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatlamSq(hatlamSqSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu(hatnuSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type invSigAlpha0(invSigAlpha0SEXP);
+    Rcpp::traits::input_parameter< double >::type hatTauSq(hatTauSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatSigmaSq(hatSigmaSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatZeta(hatZetaSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< int >::type progress(progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(Bhorse(xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatnu, invSigAlpha0, hatTauSq, hatSigmaSq, hatZeta, a, b, progress));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Bhorse_reg
+Rcpp::List Bhorse_reg(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatBeta, arma::vec hatAlpha, arma::vec hatlamSq, arma::vec hatnu, arma::mat invSigAlpha0, double hatTauSq, double hatcSq, double hatSigmaSq, double hatZeta, double a, double b, double c, double d, int progress);
+RcppExport SEXP _pqrBayes_Bhorse_reg(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatlamSqSEXP, SEXP hatnuSEXP, SEXP invSigAlpha0SEXP, SEXP hatTauSqSEXP, SEXP hatcSqSEXP, SEXP hatSigmaSqSEXP, SEXP hatZetaSEXP, SEXP aSEXP, SEXP bSEXP, SEXP cSEXP, SEXP dSEXP, SEXP progressSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type xx(xxSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type maxSteps(maxStepsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatBeta(hatBetaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatAlpha(hatAlphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatlamSq(hatlamSqSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type hatnu(hatnuSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type invSigAlpha0(invSigAlpha0SEXP);
+    Rcpp::traits::input_parameter< double >::type hatTauSq(hatTauSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatcSq(hatcSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatSigmaSq(hatSigmaSqSEXP);
+    Rcpp::traits::input_parameter< double >::type hatZeta(hatZetaSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type c(cSEXP);
+    Rcpp::traits::input_parameter< double >::type d(dSEXP);
+    Rcpp::traits::input_parameter< int >::type progress(progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(Bhorse_reg(xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatnu, invSigAlpha0, hatTauSq, hatcSq, hatSigmaSq, hatZeta, a, b, c, d, progress));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_pqrBayes_BBL", (DL_FUNC) &_pqrBayes_BBL, 16},
@@ -367,6 +536,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_pqrBayes_BRBLSS", (DL_FUNC) &_pqrBayes_BRBLSS, 21},
     {"_pqrBayes_BRGL_SS", (DL_FUNC) &_pqrBayes_BRGL_SS, 22},
     {"_pqrBayes_BRGL", (DL_FUNC) &_pqrBayes_BRGL, 19},
+    {"_pqrBayes_RBhorse_plus", (DL_FUNC) &_pqrBayes_RBhorse_plus, 20},
+    {"_pqrBayes_RBhorse", (DL_FUNC) &_pqrBayes_RBhorse, 18},
+    {"_pqrBayes_RBhorse_reg", (DL_FUNC) &_pqrBayes_RBhorse_reg, 21},
+    {"_pqrBayes_Bhorse_plus", (DL_FUNC) &_pqrBayes_Bhorse_plus, 17},
+    {"_pqrBayes_Bhorse", (DL_FUNC) &_pqrBayes_Bhorse, 15},
+    {"_pqrBayes_Bhorse_reg", (DL_FUNC) &_pqrBayes_Bhorse_reg, 18},
     {NULL, NULL, 0}
 };
 

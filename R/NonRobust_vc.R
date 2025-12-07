@@ -1,4 +1,8 @@
-NonRobust_vc <- function(g, y, u, e,iterations, kn, degree,sparse,debugging){
+NonRobust_vc <- function(g, y, u, e,iterations, kn, degree,prior,debugging){
+  
+  if (prior %in% c("HS", "HS+", "RHS")) {
+    stop("The specified prior is currently not supported. Only 'SS' (spike-and-slab) prior is implemented.")
+  }
   p = dim(g)[2]
   
   x = cbind(1,g)
@@ -66,10 +70,11 @@ NonRobust_vc <- function(g, y, u, e,iterations, kn, degree,sparse,debugging){
   gamma = 0.1
   mu.star=nu.star=1 
   progress = ifelse(debugging, 10^(floor(log10(iterations))-1), 0)
-  if(sparse){fit=BGLPointMass(xx1, y, CLC, p, d, iterations, hatAlpha, hat.r, invTAUsq.star, invSigAlpha0, hat.pi.s,
+  if(prior=="SS"){fit=BGLPointMass(xx1, y, CLC, p, d, iterations, hatAlpha, hat.r, invTAUsq.star, invSigAlpha0, hat.pi.s,
                               lambda.star, hat.sigma.sq, a.star, b.star, alpha, gamma, mu.star, nu.star, progress)}
-  else{fit=BGL(xx1, y, CLC, p, d, iterations, hat.r, hatAlpha, invTAUsq.star, invSigAlpha0, lambda.star, 
+  else if (prior=="Laplace"){fit=BGL(xx1, y, CLC, p, d, iterations, hat.r, hatAlpha, invTAUsq.star, invSigAlpha0, lambda.star, 
                hat.sigma.sq, a.star, b.star, alpha, gamma, progress)}
+  else{stop("The specified prior is currently not supported.")}
   out=list(fit=fit,iterations=iterations,kn=kn,degree=degree)
   return(out)
 }

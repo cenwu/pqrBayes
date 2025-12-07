@@ -1,11 +1,11 @@
 #' Estimation and estimation accuracy for a pqrBayes object
 #'
-#' Calculate estimated regression coefficients with estimation accuracy from linear, binary LASSO, group LASSO and quantile VC models, respectively.
+#' Calculate estimated regression coefficients with estimation accuracy from the sparse linear model, binary LASSO, group LASSO and quantile VC models, respectively.
 #'
 #' @param object an object of class `pqrBayes'.
-#' @param coefficient the vector of quantile regression coefficients under a linear model (i.e., LASSO), binary LASSO and group LASSO or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.
-#' @param u.grid the vector of grid points under a varying coefficient model. When fitting a linear regression model (i.e., LASSO), binary LASSO or group LASSO, u.grid = NULL.
-#' @param model the model to be fitted. Users can choose "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO, "group" for group LASSO or "VC" for a varying coefficient model.
+#' @param coefficient the vector of quantile regression coefficients under a sparse linear model, binary LASSO and group LASSO or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.
+#' @param u.grid the vector of grid points under a varying coefficient model. When fitting a sparse linear model, binary LASSO or group LASSO, u.grid = NULL.
+#' @param model the model to be fitted. Users can choose "linear" for a sparse linear model, "binary" for binary LASSO, "group" for group LASSO or "VC" for a varying coefficient model.
 #' @usage estimation.pqrBayes(object,coefficient,u.grid=NULL,model="linear")
 #' @return  an object of class `pqrBayes.est' is returned, which is a list with components:
 #' \item{error}{mean square error or integrated mean square errors and total integrated mean square error.}
@@ -19,7 +19,7 @@
 #' y=data$y
 #' e=data$e
 #' coeff = data$coeff
-#' fit1=pqrBayes(g,y,u=NULL,e,d = NULL,quant=0.5,spline=NULL,model="linear")
+#' fit1=pqrBayes(g,y,e,d = NULL,quant=0.5,model="linear")
 #' estimation=estimation.pqrBayes(fit1,coeff,model="linear")
 
 #'

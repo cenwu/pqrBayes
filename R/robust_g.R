@@ -1,5 +1,7 @@
-Robust_g <- function(g, y, e, d, quant, iterations,sparse, hyper,debugging){
-  
+Robust_g <- function(g, y, e, d, quant, iterations, prior, hyper,debugging){
+  if (prior %in% c("HS", "HS+", "RHS")) {
+    stop("The specified prior is currently not supported. Only 'SS' (spike-and-slab) prior is implemented.")
+  }
   p = dim(g)[2]
   
   x = cbind(1,g)
@@ -35,13 +37,14 @@ Robust_g <- function(g, y, e, d, quant, iterations,sparse, hyper,debugging){
   r = ifelse(is.null(hyper$d2), 1, hyper$d2)
   
   progress = ifelse(debugging, 10^(floor(log10(iterations))-1), 0)
-  if(sparse){
+  if(prior== "SS"){
     fit=BRGL_SS(g, y, w, p/d, d, iterations, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq,
                 xi1, xi2, r, a, b, sh0_1, sh0_0, progress)
   }
-  else{fit= BRGL(g, y, w, p/d, d, iterations, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq,
+  else if(prior=="Laplace"){fit= BRGL(g, y, w, p/d, d, iterations, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq,
                  xi1, xi2, r, a, b, progress)
   }
+  else{stop("The specified prior is currently not supported.")}
   out = list(fit=fit,iterations=iterations)
   return(out)
 }

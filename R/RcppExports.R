@@ -49,3 +49,27 @@ BRGL <- function(xx, y, W, s, L, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatS
     .Call(`_pqrBayes_BRGL`, xx, y, W, s, L, maxSteps, hatAlpha, hatBeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq, xi1, xi2, r, a, b, progress)
 }
 
+RBhorse_plus <- function(xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatV, hatSg, hatetaSq, hatnu_1, hatnu_2, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, progress) {
+    .Call(`_pqrBayes_RBhorse_plus`, xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatV, hatSg, hatetaSq, hatnu_1, hatnu_2, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, progress)
+}
+
+RBhorse <- function(xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatV, hatSg, hatnu, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, progress) {
+    .Call(`_pqrBayes_RBhorse`, xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatV, hatSg, hatnu, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, progress)
+}
+
+RBhorse_reg <- function(xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatcSq, hatV, hatSg, hatnu, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, c, d, progress) {
+    .Call(`_pqrBayes_RBhorse_reg`, xx, y, W, maxSteps, hatAlpha, hatBeta, hatSigma, hatcSq, hatV, hatSg, hatnu, invSigAlpha0, hatTauSq, xi1, xi2, hatZeta, a, b, c, d, progress)
+}
+
+Bhorse_plus <- function(xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatetaSq, hatnu_1, hatnu_2, invSigAlpha0, hatTauSq, hatSigmaSq, hatZeta, a, b, progress) {
+    .Call(`_pqrBayes_Bhorse_plus`, xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatetaSq, hatnu_1, hatnu_2, invSigAlpha0, hatTauSq, hatSigmaSq, hatZeta, a, b, progress)
+}
+
+Bhorse <- function(xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatnu, invSigAlpha0, hatTauSq, hatSigmaSq, hatZeta, a, b, progress) {
+    .Call(`_pqrBayes_Bhorse`, xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatnu, invSigAlpha0, hatTauSq, hatSigmaSq, hatZeta, a, b, progress)
+}
+
+Bhorse_reg <- function(xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatnu, invSigAlpha0, hatTauSq, hatcSq, hatSigmaSq, hatZeta, a, b, c, d, progress) {
+    .Call(`_pqrBayes_Bhorse_reg`, xx, y, W, maxSteps, hatBeta, hatAlpha, hatlamSq, hatnu, invSigAlpha0, hatTauSq, hatcSq, hatSigmaSq, hatZeta, a, b, c, d, progress)
+}
+

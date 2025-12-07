@@ -4,14 +4,14 @@
 \alias{pqrBayes.select}
 \title{Variable selection for a pqrBayes object}
 \usage{
-pqrBayes.select(object,sparse=T,model="linear")
+pqrBayes.select(object,prior="SS",model="linear")
 }
 \arguments{
 \item{object}{a pqrBayes object.}
 
-\item{sparse}{logical flag. If TRUE, the sparse model is used for variable selection. The default value is TRUE.}
+\item{prior}{the prior used in the pqrBayes function. Users can choose "SS" for the spike-and-slab prior, "HS" for the horseshoe prior, "HS+" for the horseshoe plus prior, "RHS" for the regularized horseshoe prior and "Laplace" for the Laplace prior. The default value is "SS".}
 
-\item{model}{the model to be fitted. Users can also choose "linear" for a linear model, "VC" for a varying coefficient model or "group for group LASSO.}
+\item{model}{the model to be fitted. Users can also choose "linear" for a sparse linear model, "VC" for a varying coefficient model or "group" for group LASSO.}
 }
 \value{
 an object of class `select' is returned, which includes the indices of the selected predictors (e.g. genetic factors).
@@ -25,44 +25,36 @@ with the response variable. For class `NonSparse', variable selection is based o
 Please check the references for more details about the variable selection.
 }
 \examples{
-## The quantile regression model
+## The sparse quantile regression model
 data(data)
 data = data$data_linear
 g=data$g
 y=data$y
 e=data$e
 
-fit1=pqrBayes(g,y,u=NULL,e,d = NULL,quant=0.5,spline=NULL,model="linear")
-sparse=TRUE
-select=pqrBayes.select(obj = fit1,sparse = sparse,model="linear")
+fit1=pqrBayes(g,y,e,d = NULL,quant=0.5,model="linear")
+select=pqrBayes.select(obj = fit1,prior = "SS",model="linear")
 
 ## The quantile varying coefficient model
 data(data)
 data = data$data_varying
 g=data$g
 y=data$y
-u=data$u
 e=data$e
-spline = list(kn=2,degree=2)
-fit1=pqrBayes(g,y,u,e,d = NULL,quant=0.5,spline = spline,model="VC")
-sparse=TRUE
-select=pqrBayes.select(obj = fit1,sparse = sparse,model="VC")
+fit1=pqrBayes(g,y,e,d = NULL,quant=0.5,model="VC")
+select=pqrBayes.select(obj = fit1,prior = "SS",model="VC")
 select
 
 \donttest{
 ## Non-sparse example with VC model
-sparse <- FALSE
-spline <- list(kn = 2, degree = 2)
-
 fit2 <- pqrBayes(
-  g = g, y = y, u = u, e = e, d = NULL,
+  g = g, y = y, e = e, d = NULL,
   quant = 0.5,
-  spline = spline,
-  sparse = sparse,
+  prior= "Laplace",
   model = "VC"
 )
 
-select <- pqrBayes.select(obj = fit2, sparse = FALSE, model = "VC")
+select <- pqrBayes.select(obj = fit2, prior = "SS", model = "VC")
 select
 }
 

@@ -1,5 +1,5 @@
 pqrBayes_bin <- function(g, y, e, quant = 0.5, iterations = 10000, burn.in,
-                         robust = TRUE, sparse = TRUE,
+                         robust = TRUE, prior = "SS",
                          hyper = NULL, debugging = FALSE) {
 
   
@@ -17,9 +17,9 @@ pqrBayes_bin <- function(g, y, e, quant = 0.5, iterations = 10000, burn.in,
   
   # Call appropriate model
     if (robust) {
-      out <- Robust_bin(g, y, e, quant, iterations, sparse, hyper, debugging)
+      out <- Robust_bin(g, y, e, quant, iterations, prior, hyper, debugging)
     } else {
-      out <- NonRobust_bin(g, y, e, iterations, sparse, debugging)
+      out <- NonRobust_bin(g, y, e, iterations, prior, debugging)
     }
   
   # Extract posterior samples

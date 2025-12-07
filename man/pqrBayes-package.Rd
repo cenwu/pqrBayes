@@ -2,19 +2,21 @@
 % Please edit documentation in R/pqrBayes-package.R
 \name{pqrBayes-package}
 \alias{pqrBayes-package}
-\title{Bayesian penalized quantile regression for linear, binary LASSO, group LASSO and varying coefficient models}
+\title{Bayesian penalized quantile regression for the sparse linear model, binary LASSO, group LASSO and varying coefficient models based on spike-and-slab priors and/or the horseshoe family of priors}
 \description{
-In this package, we implement Bayesian penalized quantile regression for linear regression (i.e., LASSO), binary LASSO, group LASSO and quantile varying coefficient (VC) models. 
-Point-mass spike-and-slab priors have been incorporated in the Bayesian hierarchical models to facilitate Bayesian shrinkage 
-estimation with exact sparsity in these models. The four default methods are Bayesian regularized quantile regression with spike-and-slab priors
-under the linear (i.e., LASSO), binary LASSO, group LASSO and VC model, correspondingly. In addition to default methods, users can also choose methods without robustness and/or spike--and--slab priors.
+In this package, we implement Bayesian penalized quantile regression for sparse linear, binary LASSO, group LASSO and quantile varying coefficient (VC) models. 
+The point-mass spike-and-slab priors and horseshoe family of (horseshoe, horseshoe+ and regularized horseshoe) priors have been incorporated in the Bayesian hierarchical
+models to facilitate Bayesian shrinkage estimation, variable selection and statistical inference. For the spike-and-slab priors, the four default methods are Bayesian
+regularized quantile regression with spike-and-slab priors under the sparse linear (i.e. LASSO), binary LASSO, group LASSO and VC model, correspondingly. In addition to the default methods, 
+users can also choose models without robustness and/or spike--and--slab priors. Furthermore, under sparse linear models, we have implemented the horseshoe family of (horseshoe, horseshoe+
+and regularized horseshoe) priors and the three non-robust alternatives. Currently, the horseshoe family of priors is only implemented under the sparse linear model.
 }
 \details{
 The user friendly, integrated interface \strong{pqrBayes()} allows users to flexibly choose fitting models by specifying the following parameters:
 \tabular{rl}{
-robust: \tab whether to fit a robust sparse quantile regression model (LASSO, binary LASSO, \cr\tab group LASSO or Varying Coefficient models) or their non-robust counterparts. \cr\cr
-sparse: \tab whether to use the spike-and-slab priors to impose exact sparsity. \cr\cr
-model: \tab whether to fit a linear model (i.e., LASSO), binary LASSO, group LASSO \cr\tab or a varying coefficient model.
+robust: \tab whether to fit a robust sparse quantile regression model (the sparse linear model, binary LASSO, \cr\tab group LASSO or Varying Coefficient models) or their non-robust counterparts. \cr\cr
+prior: \tab specify which prior to use (the spike-and-slab prior, Laplace prior \cr\tab and the horseshoe family of priors). \cr\cr
+model: \tab whether to fit a sparse linear model, binary LASSO, group LASSO \cr\tab or a varying coefficient model.
 }
 
 The function pqrBayes() returns a pqrBayes object that stores the posterior estimates of regression coefficients.
@@ -30,6 +32,9 @@ Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian 
 
 Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. 
 {\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
+
+Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors 
+{\emph{arXiv:2507.10975}} \url{https://arxiv.org/abs/2507.10975} 
 
 Wu, C., and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
 {\emph{Briefings in Bioinformatics}, 16(5), 873–883} \doi{10.1093/bib/bbu046}

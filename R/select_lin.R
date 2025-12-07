@@ -1,6 +1,5 @@
-linselect <- function(obj,sparse){
-  if(sparse){
-    method="Sparse"
+linselect <- function(obj,prior){
+  if(prior=="SS"){
     mpm <- function(x)
     {
       if (mean(x) >= 0.5) {1}
@@ -14,9 +13,8 @@ linselect <- function(obj,sparse){
       q_t1 = mpm(t1)
       id = c(id,q_t1)
     }
-    linselect=list(method=method,id=id)
+    linselect=list(id=id)
   }else{
-    method="Nonsparse"
     fun <- function(x)
     {
       pp = prod(x)
@@ -31,7 +29,7 @@ linselect <- function(obj,sparse){
     }
     id = apply(q_t1, 2, fun)
     
-    linselect=list(method=method,id=id)
+    linselect=list(id=id)
   }
   
   #class(VCselect)="VCselect"

@@ -1,12 +1,12 @@
-VCselect <- function(obj,sparse){
-  if(sparse){
-    method="Sparse"
+VCselect <- function(obj,prior){
+  if(prior=="SS"){
+   
     idgene=obj$obj$idgene
     iterations = obj$obj$iterations
     id=which(idgene>iterations/4)
-    VCselect=list(method=method,id=id,idgene = idgene)
+    VCselect=list(id=id,idgene = idgene)
   }else{
-    method="Nonsparse"
+    
     kn = obj$obj$kn
     degree = obj$obj$degree
     d=kn+degree+1
@@ -36,7 +36,7 @@ VCselect <- function(obj,sparse){
       }
     }
     id=which(idgene==1)
-    VCselect=list(method=method,id=id,idgene = idgene)
+    VCselect=list(id=id,idgene = idgene)
   }
   
   #class(VCselect)="VCselect"

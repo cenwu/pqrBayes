@@ -9,11 +9,11 @@ estimation.pqrBayes(object,coefficient,u.grid=NULL,model="linear")
 \arguments{
 \item{object}{an object of class `pqrBayes'.}
 
-\item{coefficient}{the vector of quantile regression coefficients under a linear model (i.e., LASSO), binary LASSO and group LASSO or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
+\item{coefficient}{the vector of quantile regression coefficients under a sparse linear model, binary LASSO and group LASSO or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
-\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a linear regression model (i.e., LASSO), binary LASSO or group LASSO, u.grid = NULL.}
+\item{u.grid}{the vector of grid points under a varying coefficient model. When fitting a sparse linear model, binary LASSO or group LASSO, u.grid = NULL.}
 
-\item{model}{the model to be fitted. Users can choose "linear" for a linear model (i.e., LASSO), "binary" for binary LASSO, "group" for group LASSO or "VC" for a varying coefficient model.}
+\item{model}{the model to be fitted. Users can choose "linear" for a sparse linear model, "binary" for binary LASSO, "group" for group LASSO or "VC" for a varying coefficient model.}
 }
 \value{
 an object of class `pqrBayes.est' is returned, which is a list with components:
@@ -21,7 +21,7 @@ an object of class `pqrBayes.est' is returned, which is a list with components:
 \item{coeff.est}{estimated values of the regression coefficients or the varying coefficients.}
 }
 \description{
-Calculate estimated regression coefficients with estimation accuracy from linear, binary LASSO, group LASSO and quantile VC models, respectively.
+Calculate estimated regression coefficients with estimation accuracy from the sparse linear model, binary LASSO, group LASSO and quantile VC models, respectively.
 }
 \examples{
 ## The quantile regression model
@@ -31,7 +31,7 @@ g=data$g
 y=data$y
 e=data$e
 coeff = data$coeff
-fit1=pqrBayes(g,y,u=NULL,e,d = NULL,quant=0.5,spline=NULL,model="linear")
+fit1=pqrBayes(g,y,e,d = NULL,quant=0.5,model="linear")
 estimation=estimation.pqrBayes(fit1,coeff,model="linear")
 
 }

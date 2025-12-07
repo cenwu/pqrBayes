@@ -1,4 +1,8 @@
-Robust_vc <- function(g, y, u, e,quant, iterations, kn, degree,sparse, hyper,debugging){
+Robust_vc <- function(g, y, u, e,quant, iterations, kn, degree,prior, hyper,debugging){
+  
+  if (prior %in% c("HS", "HS+", "RHS")) {
+    stop("The specified prior is currently not supported. Only 'SS' (spike-and-slab) prior is implemented.")
+  }
   p = dim(g)[2]
   
   x = cbind(1,g)
@@ -73,10 +77,11 @@ Robust_vc <- function(g, y, u, e,quant, iterations, kn, degree,sparse, hyper,deb
   r = ifelse(is.null(hyper$d2), 1, hyper$d2)
   hatbeta=matrix(hat.r,ncol=p) + 10^-5
   progress = ifelse(debugging, 10^(floor(log10(iterations))-1), 0)
-  if(sparse){fit=BRGL_SS(xx1, y, CLC, p, d, iterations, hatAlpha, hatbeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq,
+  if(prior=="SS"){fit=BRGL_SS(xx1, y, CLC, p, d, iterations, hatAlpha, hatbeta, hatTau, hatV, hatSg, invSigAlpha0, hatPi, hatEtaSq,
                          xi1, xi2, r, a, b, sh0_1, sh0_0, progress)}
-  else{fit=BRGL(xx1, y, CLC, p, d, iterations, hatAlpha, hatbeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq,
+  else if (prior=="Laplace"){fit=BRGL(xx1, y, CLC, p, d, iterations, hatAlpha, hatbeta, hatTau, hatV, hatSg, invSigAlpha0, hatEtaSq,
                 xi1, xi2, r, a, b, progress)}
+  else{stop("The specified prior is currently not supported.")}
   out = list(fit = fit,kn = kn,degree = degree,iterations = iterations)
   return(out)
 }
