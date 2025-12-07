@@ -22,7 +22,7 @@ Description: Bayesian regularized quantile regression utilizing two major classe
     <doi:10.1002/sta4.70078>). Besides, robust sparse Bayesian regression with the horseshoe
     family of (horseshoe, horseshoe+ and regularized horseshoe) priors has also been implemented
     and yielded valid inference results under heavy-tailed model errors(Fan et al.(2025) 
-    <https://arxiv.org/abs/2507.10975>). The Markov chain Monte Carlo (MCMC) algorithms of 
+    <doi:10.48550/arXiv.2507.10975>). The Markov chain Monte Carlo (MCMC) algorithms of 
     the proposed and alternative models are implemented in C++. 
 Depends: R (>= 3.5.0)
 License: GPL-2

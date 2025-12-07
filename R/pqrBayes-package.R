@@ -36,7 +36,7 @@ NULL
 #' {\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
 #' 
 #' Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors 
-#' {\emph{arXiv:2507.10975}} \url{https://arxiv.org/abs/2507.10975} 
+#' {\emph{arXiv preprint}}  \doi{10.48550/arXiv.2507.10975}
 #' 
 #' Wu, C., and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
 #' {\emph{Briefings in Bioinformatics}, 16(5), 873–883} \doi{10.1093/bib/bbu046}

@@ -180,8 +180,8 @@ Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian 
 Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. 
 {\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
 
-Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors 
-{\emph{arXiv:2507.10975} } 
+Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. 
+{\emph{arXiv preprint}} \doi{10.48550/arXiv.2507.10975}
 
 Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}

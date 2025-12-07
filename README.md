@@ -28,7 +28,7 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     include robust Bayesian group LASSO and robust binary Bayesian LASSO ([Fan and Wu (2025)](https://doi.org/10.1002/sta4.70078)). 
     Besides, robust sparse Bayesian regression with the horseshoe family of (horseshoe, horseshoe+ and 
     regularized horseshoe) priors has also been implemented and yielded valid inference results under heavy-tailed model errors
-    ([Fan et al.(2025)](https://arxiv.org/abs/2507.10975)). The Markov Chain Monte Carlo (MCMC) 
+    ([Fan et al.(2025)](https://doi.org/10.48550/arXiv.2507.10975)). The Markov Chain Monte Carlo (MCMC) 
     algorithms of the proposed and alternative models are implemented in C++. 
    
 
@@ -457,4 +457,4 @@ This package provides implementation for methods from
   - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  [Computational Statistics & Data Analysis, 107808](https://doi.org/10.1016/j.csda.2023.107808)
   - Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y., and Wu, C. (2023). Robust Bayesian variable selection for gene–environment interactions. [Biometrics, 79(2), 684-694](https://doi.org/10.1111/biom.13670)
   - Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. [Stat, 14(3), e70078.](https://doi.org/10.1002/sta4.70078)
-  - Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. [arXiv:2507.10975](https://arxiv.org/abs/2507.10975)
+  - Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. [arXiv:2507.10975](https://doi.org/10.48550/arXiv.2507.10975)
