@@ -2,7 +2,7 @@
 % Please edit documentation in R/pqrBayes.R
 \name{pqrBayes}
 \alias{pqrBayes}
-\title{fit Bayesian penalized quantile regression for the sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors}
+\title{fit Bayesian penalized quantile regression for a sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors}
 \usage{
 pqrBayes(
   g,
@@ -28,7 +28,7 @@ pqrBayes(
 
 \item{d}{a positive integer denotes the group size. When fitting a sparse linear or varying coefficient model, d = NULL.}
 
-\item{quant}{the quantile level specified by users. The default value is 0.5.}
+\item{quant}{the quantile level specified by users. Required when robust = TRUE. Ignored (set to NULL) when robust = FALSE.The default value is 0.5.}
 
 \item{iterations}{the number of MCMC iterations. The default value is 10,000.}
 
@@ -38,7 +38,7 @@ pqrBayes(
 
 \item{prior}{the type of prior used for variable selection. Users can specify "SS" for the spike-and-slab prior, "HS" for the horseshoe prior, "HS+" for the horseshoe plus prior, "RHS" for the regularized horseshoe prior and "Laplace" for the Laplace prior. The default value is "SS".}
 
-\item{model}{the model to be fitted. Users can specify "linear" for a sparse linear model, "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.}
+\item{model}{the model to be fitted. Users can specify "linear" for a sparse linear model (with a continuous response), "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.}
 
 \item{hyper}{a named list of hyper-parameters. The default value is NULL.}
 
@@ -50,7 +50,7 @@ an object of class "pqrBayes" is returned, which is a list with components:
 \item{coefficients}{a list of posterior estimates of coefficients}
 }
 \description{
-fit Bayesian penalized quantile regression for the sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors
+fit Bayesian penalized quantile regression for a sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors
 }
 \details{
 The sparse linear quantile regression model described in "\code{\link{data}}" is:
@@ -82,7 +82,7 @@ The list can have the following named components
 Please check the references for more details about the prior distributions.
 }
 \examples{
-## The sparse quantile (linear and binary) regression model
+## The Bayesian regularized quantile regression under linear and binary model
 data(data)
 data = data$data_linear
 g=data$g
@@ -98,7 +98,7 @@ fit1=pqrBayes(g,y,e,d=NULL,quant=0.5,model="linear")
 fit1_1=pqrBayes(g_1,y_1,e_1,d=NULL,quant=0.5,model="binary")
 \donttest{
 
-## Non-sparse example (LASSO)
+## Non-sparse robust example (Bayesian Quantile LASSO)
 fit2 <- pqrBayes(
   g = g, y = y, e = e, d = NULL,
   quant = 0.5,
@@ -106,16 +106,16 @@ fit2 <- pqrBayes(
   model = "linear"
 )
 
-## Non-robust example (LASSO)
+## Non-robust example (Bayesian LASSO)
 fit3 <- pqrBayes(
   g = g, y = y, e = e, d = NULL,
-  quant = 0.5,
+  quant = NULL,
   robust = FALSE,
   model = "linear"
 )
 }
 
-## The group LASSO model
+## The Bayesian quantile group LASSO model
 data(data)
 data = data$data_group
 g=data$g
@@ -125,7 +125,7 @@ e=data$e
 fit1=pqrBayes(g,y,e,d=3,quant=0.5,model="group")
 \donttest{
 
-## Non-sparse version
+## Non-sparse robust Bayesian version
 fit2 <- pqrBayes(
   g = g, y = y, e = e, d = 3,
   quant = 0.5,
@@ -133,15 +133,15 @@ fit2 <- pqrBayes(
   model = "group"
 )
 
-## Non-robust version
+## Non-robust Bayesian version
 fit3 <- pqrBayes(
   g = g, y = y, e = e, d = 3,
-  quant = 0.5,
+  quant = NULL,
   robust = FALSE,
   model = "group"
 )
 }
-## The quantile varying coefficient model
+## The regularized Bayesian quantile varying coefficient model
 data(data)
 data = data$data_varying
 g=data$g
@@ -151,7 +151,7 @@ fit1=pqrBayes(g,y,e,quant=0.5,model="VC")
 
 \donttest{
 
-## Non-sparse example
+## Non-sparse robust Bayesian example
 fit2 <- pqrBayes(
   g = g, y = y, e = e,
   quant = 0.5,
@@ -159,10 +159,10 @@ fit2 <- pqrBayes(
   model = "VC"
 )
 
-## Non-robust example
+## Non-robust Bayesian example
 fit3 <- pqrBayes(
   g = g, y = y, e = e,
-  quant = 0.5,
+  quant = NULL,
   robust = FALSE,
   model = "VC"
 )
@@ -172,7 +172,7 @@ fit3 <- pqrBayes(
 Fan, K., Subedi, S., Yang, G., Lu, X., Ren, J. and Wu, C. (2024). Is Seeing Believing? A Practitioner's Perspective on High-dimensional Statistical Inference in Cancer Genomics Studies. {\emph{Entropy}, 26(9).794} \doi{10.3390/e26090794}
 
 Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian regularized quantile varying coefficient model.
- {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
+ {\emph{Computational Statistics & Data Analysis}, 187, 107808} \doi{10.1016/j.csda.2023.107808}
  
 Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian variable selection for gene-environment interactions. 
 {\emph{Biometrics}, 79(2), 684-694} \doi{10.1111/biom.13670}
@@ -180,8 +180,8 @@ Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian 
 Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. 
 {\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
 
-Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. 
-{\emph{arXiv preprint}} \doi{10.48550/arXiv.2507.10975}
+Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2026). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. 
+{\emph{Computational Statistics & Data Analysis}, 219, 108358} \doi{10.1016/j.csda.2026.108358}
 
 Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}

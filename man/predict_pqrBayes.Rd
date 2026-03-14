@@ -4,7 +4,7 @@
 \alias{predict_pqrBayes}
 \title{Make predictions from a pqrBayes object}
 \usage{
-predict_pqrBayes(object, g.new, u.new, e.new, y.new, quant, model, ...)
+predict_pqrBayes(object, g.new, u.new, e.new, y.new, robust, quant, model, ...)
 }
 \arguments{
 \item{object}{a pqrBayes object.}
@@ -17,7 +17,9 @@ predict_pqrBayes(object, g.new, u.new, e.new, y.new, quant, model, ...)
 
 \item{y.new}{a vector of the response of new observations. When being applied to the sparse linear model, binary LASSO or group LASSO, y.new = y.}
 
-\item{quant}{the quantile level.  The default is 0.5.}
+\item{robust}{logical flag. If TRUE, robust methods are used. Otherwise, non-robust methods are used. The default value is TRUE.}
+
+\item{quant}{the quantile level specified by users. Required when robust = TRUE. Ignored (set to NULL) when robust = FALSE.The default value is 0.5.}
 
 \item{model}{the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a sparse linear model, "binary" for binary LASSO and "group" for a group LASSO.}
 
@@ -43,7 +45,7 @@ g=data$g
 y=data$y
 e=data$e
 fit1=pqrBayes(g,y,e,d = NULL,quant=0.5,model="linear")
-prediction=predict_pqrBayes(fit1,g,u.new=e,e.new = NULL, y.new = y,model="linear")
+prediction=predict_pqrBayes(fit1,g,u.new=e,e.new = NULL, y.new = y, model="linear")
 }
 \seealso{
 \code{\link{pqrBayes}}

@@ -1,5 +1,9 @@
 ## News
 
+### pqrBayes 1.2.1 \[2026-03-14]
+
+* Fixed minor bugs.
+
 ### pqrBayes 1.2.0 \[2025-12-07]
 
 * Updated pqrBayes function with robust Bayesian regression with the horseshoe family of (horseshoe, horseshoe+ and regularized horseshoe) priors and 3 non-robust alternatives.

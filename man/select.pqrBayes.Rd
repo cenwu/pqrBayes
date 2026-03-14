@@ -11,7 +11,7 @@ pqrBayes.select(object,prior="SS",model="linear")
 
 \item{prior}{the prior used in the pqrBayes function. Users can choose "SS" for the spike-and-slab prior, "HS" for the horseshoe prior, "HS+" for the horseshoe plus prior, "RHS" for the regularized horseshoe prior and "Laplace" for the Laplace prior. The default value is "SS".}
 
-\item{model}{the model to be fitted. Users can also choose "linear" for a sparse linear model, "VC" for a varying coefficient model or "group" for group LASSO.}
+\item{model}{the model to be fitted. Users can also choose "linear" for a sparse linear model (with a continuous response), "VC" for a varying coefficient model or "group" for group LASSO.}
 }
 \value{
 an object of class `select' is returned, which includes the indices of the selected predictors (e.g. genetic factors).

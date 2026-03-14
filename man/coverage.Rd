@@ -9,20 +9,20 @@ coverage(object,coefficient,u.grid=NULL,model="linear")
 \arguments{
 \item{object}{the pqrBayes object.}
 
-\item{coefficient}{the vector of true regression coefficients under a sparse linear model, binary LASSO, group LASSO, or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
+\item{coefficient}{the vector of true regression coefficients under the sparse linear model (with a continuous response), binary LASSO, group LASSO, or the matrix of true varying coefficients evaluated on the grid points under a varying coefficient model.}
 
 \item{u.grid}{the vector of grid points under a varying coefficient model. When assessing empirical coverage probabilities under a sparse linear model, binary LASSO or group LASSO, u.grid = NULL.}
 
-\item{model}{the model to be fitted. Users can also choose "linear" for a sparse linear model, "binary" for binary LASSO, "group" for group LASSO, and "VC" for a sparse varying coefficient model.}
+\item{model}{the model to be fitted. Users can also choose "linear" for a sparse linear model (with a continuous response), "binary" for binary LASSO, "group" for group LASSO, and "VC" for a sparse varying coefficient model.}
 }
 \value{
 c
 }
 \description{
-Calculate 95\% empirical coverage probabilities for regression coefficients under the sparse linear model, binary LASSO, group LASSO and VC models, respectively.
+Calculate 95\% empirical coverage probabilities for regression coefficients under a sparse linear model (with a continuous response), binary LASSO, group LASSO and VC models, respectively.
 }
 \examples{
-## The quantile regression model
+## The Bayesian regularized quantile regression model
 data(data)
 data = data$data_linear
 g=data$g

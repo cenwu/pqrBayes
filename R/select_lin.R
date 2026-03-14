@@ -22,12 +22,13 @@ linselect <- function(obj,prior){
       else {0}
     }
     sg1 = obj$coefficients$GS.beta
-    q_t1=c()
+    q_1=c()
     for(j in 1:ncol(sg1)){
       t1=as.matrix(sg1[,j])
       q_t1 = as.matrix(stats::quantile(t1,c(0.025,0.975)))
+      q_1 = cbind(q_1,q_t1)
     }
-    id = apply(q_t1, 2, fun)
+    id = apply(q_1, 2, fun)
     
     linselect=list(id=id)
   }

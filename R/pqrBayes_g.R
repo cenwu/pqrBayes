@@ -8,6 +8,16 @@ pqrBayes_g <- function(g, y, e, d, quant=0.5, iterations=10000, burn.in,robust=T
   }else{
     stop("burn.in must be a positive integer.")
   }
+  # Check quant
+  if (robust) {
+    if (is.null(quant)) {
+      stop("quant must be specified when robust = TRUE.")
+    }
+  } else {
+    if (!is.null(quant)) {
+      stop("quant must be NULL when robust = FALSE.")
+    }
+  }
   if(robust){
     out = Robust_g(g, y, e, d, quant, iterations,prior, hyper,debugging)
   }else{

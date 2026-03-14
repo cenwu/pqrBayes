@@ -1,8 +1,8 @@
 Package: pqrBayes
 Type: Package
 Title: Bayesian Penalized Quantile Regression
-Version: 1.2.0
-Date: 2025-12-07
+Version: 1.2.1
+Date: 2026-03-14
 Authors@R: c( 
               person("Kun", "Fan", role = "aut"),
               person("Cen", "Wu", role = c("aut", "cre"),email = "wucen@ksu.edu"),
@@ -21,8 +21,8 @@ Description: Bayesian regularized quantile regression utilizing two major classe
     robust Bayesian group LASSO and robust binary Bayesian LASSO (Fan and Wu (2025) 
     <doi:10.1002/sta4.70078>). Besides, robust sparse Bayesian regression with the horseshoe
     family of (horseshoe, horseshoe+ and regularized horseshoe) priors has also been implemented
-    and yielded valid inference results under heavy-tailed model errors(Fan et al.(2025) 
-    <doi:10.48550/arXiv.2507.10975>). The Markov chain Monte Carlo (MCMC) algorithms of 
+    and yielded valid inference results under heavy-tailed model errors (Fan et al.(2026) 
+    <doi:10.1016/j.csda.2026.108358>). The Markov chain Monte Carlo (MCMC) algorithms of 
     the proposed and alternative models are implemented in C++. 
 Depends: R (>= 3.5.0)
 License: GPL-2

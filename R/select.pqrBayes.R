@@ -4,7 +4,7 @@
 #'
 #' @param object a pqrBayes object.
 #' @param prior the prior used in the pqrBayes function. Users can choose "SS" for the spike-and-slab prior, "HS" for the horseshoe prior, "HS+" for the horseshoe plus prior, "RHS" for the regularized horseshoe prior and "Laplace" for the Laplace prior. The default value is "SS".
-#' @param model the model to be fitted. Users can also choose "linear" for a sparse linear model, "VC" for a varying coefficient model or "group" for group LASSO.
+#' @param model the model to be fitted. Users can also choose "linear" for a sparse linear model (with a continuous response), "VC" for a varying coefficient model or "group" for group LASSO.
 #'
 #' @details For class `Sparse', the median probability model (MPM) (Barbieri and Berger, 2004) is used to identify predictors that are significantly associated
 #' with the response variable. For class `NonSparse', variable selection is based on 95\% credible interval.

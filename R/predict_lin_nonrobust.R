@@ -1,4 +1,4 @@
-predict_bin=function(obj, g.new, e.new, y.new,...){
+predict_lin_nonrobust=function(obj, g.new, e.new, y.new,...){
   p = dim(g.new)[2]
   x = cbind(1,g.new)
   n = dim(g.new)[1]; 
@@ -20,12 +20,14 @@ predict_bin=function(obj, g.new, e.new, y.new,...){
     gamma.hat = c(beta.hat[1],coeff.est)
     
     # prediction error
-    y.hat=rep(0,n)
+    y.hat=res=rep(0,n)
     for (i in 1:n) {
       y.hat[i]=t(x[i,])%*%gamma.hat+t(e.new[i,])%*%beta.hat[-1]
+      res[i] = (y.new[i]-y.hat[i])^2
     }
-    y.hat.new = as.numeric(y.hat>0)
-    pred.error <- mean(y.hat.new != y.new)
+    
+    pred.error=mean(res)
+    
     
   }else{
     
@@ -35,19 +37,20 @@ predict_bin=function(obj, g.new, e.new, y.new,...){
     gamma.hat = c(beta.hat,coeff.est)
     
     # prediction error
-    y.hat=rep(0,n)
+    y.hat=res=rep(0,n)
     for (i in 1:n) {
       y.hat[i]=t(x[i,])%*%gamma.hat
+      
+      res[i] = (y.new[i]-y.hat[i])^2
     }
     
-    y.hat.new = as.numeric(y.hat>0)
-    pred.error <- mean(y.hat.new != y.new)
+    pred.error=mean(res)
     
   }
   
   
-  pqrBayes_bin= list(error=pred.error, y.pred=y.hat.new)
+  pqrBayes_lin_nonrobust= list(error=pred.error, y.pred=y.hat)
   #class(pqrBayes.pred) = "pqrBayes.pred"
-  return(pqrBayes_bin)
+  return(pqrBayes_lin_nonrobust)
   #pred
 }

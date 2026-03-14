@@ -7,7 +7,8 @@
 #' @param u.new a vector of new environmental factor at which predictions are to be made. When being applied to the sparse linear model, binary LASSO or group LASSO, u.new = e.
 #' @param e.new a vector or matrix of new clinical covariates at which predictions are to be made.
 #' @param y.new a vector of the response of new observations. When being applied to the sparse linear model, binary LASSO or group LASSO, y.new = y.
-#' @param quant the quantile level.  The default is 0.5.
+#' @param robust logical flag. If TRUE, robust methods are used. Otherwise, non-robust methods are used. The default value is TRUE.
+#' @param quant the quantile level specified by users. Required when robust = TRUE. Ignored (set to NULL) when robust = FALSE.The default value is 0.5.
 #' @param model the model to be fitted. The default is "VC" for a quantile varying coefficient model. Users can also specify "linear" for a sparse linear model, "binary" for binary LASSO and "group" for a group LASSO.
 #' @param ... other predict arguments
 #' 
@@ -15,7 +16,7 @@
 #' provided. The predictions are made based on the posterior estimates of coefficients in the pqrBayes object.
 #'
 #'
-#' @usage predict_pqrBayes(object, g.new, u.new, e.new, y.new, quant, model, ...)
+#' @usage predict_pqrBayes(object, g.new, u.new, e.new, y.new, robust, quant, model, ...)
 #' @return  an object of class `pqrBayes.pred' is returned, which is a list with components:
 #' \item{error}{prediction error.}
 #' \item{y.pred}{predicted values of the new observations.}
@@ -30,17 +31,17 @@
 #' y=data$y
 #' e=data$e
 #' fit1=pqrBayes(g,y,e,d = NULL,quant=0.5,model="linear")
-#' prediction=predict_pqrBayes(fit1,g,u.new=e,e.new = NULL, y.new = y,model="linear")
+#' prediction=predict_pqrBayes(fit1,g,u.new=e,e.new = NULL, y.new = y, model="linear")
 #' @export
-predict_pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new, quant=0.5,model,...){
+predict_pqrBayes=function(object, g.new, u.new, e.new=NULL, y.new, robust=T, quant=0.5,model,...){
   if(model=="VC"){
-    pqrBayes.pred = predict_vc(object, g.new, u.new, e.new, y.new, quant,...)
+    pqrBayes.pred = predict_vc(object, g.new, u.new, e.new, y.new, robust, quant,...)
   }else if(model=="linear"){
-    pqrBayes.pred = predict_lin(object, g.new, e.new, y.new, quant,...)
+    pqrBayes.pred = predict_lin(object, g.new, e.new, y.new, robust, quant,...)
   }else if(model=="binary"){
-    pqrBayes.pred = predict_bin(object, g.new, e.new, y.new, quant,...)
+    pqrBayes.pred = predict_bin(object, g.new, e.new, y.new,...)
   }else if(model=="group"){
-    pqrBayes.pred = predict_lin(object, g.new, e.new, y.new, quant,...)
+    pqrBayes.pred = predict_lin(object, g.new, e.new, y.new, robust, quant,...)
   }
   
   else{

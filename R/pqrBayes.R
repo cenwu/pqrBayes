@@ -1,16 +1,16 @@
-#' fit Bayesian penalized quantile regression for the sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors
+#' fit Bayesian penalized quantile regression for a sparse linear model, binary LASSO, group LASSO, or varying coefficient model based on spike-and-slab priors and/or the horseshoe family of priors
 #' 
 #' @keywords models
 #' @param g the matrix of predictors (subject to selection). Users do not need to specify an intercept which will be automatically included. 
 #' @param y the response variable.
 #' @param e a matrix of clinical covariates not subject to selection.
-#' @param quant the quantile level specified by users. The default value is 0.5.
+#' @param quant the quantile level specified by users. Required when robust = TRUE. Ignored (set to NULL) when robust = FALSE.The default value is 0.5.
 #' @param d a positive integer denotes the group size. When fitting a sparse linear or varying coefficient model, d = NULL.
 #' @param iterations the number of MCMC iterations. The default value is 10,000.
 #' @param burn.in the number of burn-in iterations. If NULL, the first half of MCMC iterations will be discarded as burn-ins.
 #' @param robust logical flag. If TRUE, robust methods are used. Otherwise, non-robust methods are used. The default value is TRUE.
 #' @param prior the type of prior used for variable selection. Users can specify "SS" for the spike-and-slab prior, "HS" for the horseshoe prior, "HS+" for the horseshoe plus prior, "RHS" for the regularized horseshoe prior and "Laplace" for the Laplace prior. The default value is "SS".
-#' @param model the model to be fitted. Users can specify "linear" for a sparse linear model, "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.
+#' @param model the model to be fitted. Users can specify "linear" for a sparse linear model (with a continuous response), "binary" for binary LASSO, "group" for group LASSO and "VC" for a varying coefficient model.
 #' @param hyper a named list of hyper-parameters. The default value is NULL.
 #' @param debugging logical flag. If TRUE, progress will be output to the console and extra information will be returned. The default value is FALSE.
 #'
@@ -48,7 +48,7 @@
 #' \item{coefficients}{a list of posterior estimates of coefficients}
 #' 
 #' @examples
-#' ## The sparse quantile (linear and binary) regression model
+#' ## The Bayesian regularized quantile regression under linear and binary model
 #' data(data)
 #' data = data$data_linear
 #' g=data$g
@@ -65,7 +65,7 @@
 
 #' \donttest{
 #'
-#' ## Non-sparse example (LASSO)
+#' ## Non-sparse robust example (Bayesian Quantile LASSO)
 #' fit2 <- pqrBayes(
 #'   g = g, y = y, e = e, d = NULL,
 #'   quant = 0.5,
@@ -73,17 +73,17 @@
 #'   model = "linear"
 #' )
 #'
-#' ## Non-robust example (LASSO)
+#' ## Non-robust example (Bayesian LASSO)
 #' fit3 <- pqrBayes(
 #'   g = g, y = y, e = e, d = NULL,
-#'   quant = 0.5,
+#'   quant = NULL,
 #'   robust = FALSE,
 #'   model = "linear"
 #' )
 #' }
 
 #' 
-#' ## The group LASSO model
+#' ## The Bayesian quantile group LASSO model
 #' data(data)
 #' data = data$data_group
 #' g=data$g
@@ -93,7 +93,7 @@
 #' fit1=pqrBayes(g,y,e,d=3,quant=0.5,model="group")
 #' \donttest{
 #'
-#' ## Non-sparse version
+#' ## Non-sparse robust Bayesian version
 #' fit2 <- pqrBayes(
 #'   g = g, y = y, e = e, d = 3,
 #'   quant = 0.5,
@@ -101,16 +101,16 @@
 #'   model = "group"
 #' )
 #'
-#' ## Non-robust version
+#' ## Non-robust Bayesian version
 #' fit3 <- pqrBayes(
 #'   g = g, y = y, e = e, d = 3,
-#'   quant = 0.5,
+#'   quant = NULL,
 #'   robust = FALSE,
 #'   model = "group"
 #' )
 #' }
 
-#' ## The quantile varying coefficient model
+#' ## The regularized Bayesian quantile varying coefficient model
 #' data(data)
 #' data = data$data_varying
 #' g=data$g
@@ -120,7 +120,7 @@
 #'
 #' \donttest{
 #'
-#' ## Non-sparse example
+#' ## Non-sparse robust Bayesian example
 #' fit2 <- pqrBayes(
 #'   g = g, y = y, e = e,
 #'   quant = 0.5,
@@ -128,10 +128,10 @@
 #'   model = "VC"
 #' )
 #'
-#' ## Non-robust example
+#' ## Non-robust Bayesian example
 #' fit3 <- pqrBayes(
 #'   g = g, y = y, e = e,
-#'   quant = 0.5,
+#'   quant = NULL,
 #'   robust = FALSE,
 #'   model = "VC"
 #' )
@@ -143,7 +143,7 @@
 #' Fan, K., Subedi, S., Yang, G., Lu, X., Ren, J. and Wu, C. (2024). Is Seeing Believing? A Practitioner's Perspective on High-dimensional Statistical Inference in Cancer Genomics Studies. {\emph{Entropy}, 26(9).794} \doi{10.3390/e26090794}
 #' 
 #' Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian regularized quantile varying coefficient model.
-#'  {\emph{Computational Statistics & Data Analysis}, 107808} \doi{10.1016/j.csda.2023.107808}
+#'  {\emph{Computational Statistics & Data Analysis}, 187, 107808} \doi{10.1016/j.csda.2023.107808}
 #'  
 #' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023). Robust Bayesian variable selection for gene-environment interactions. 
 #' {\emph{Biometrics}, 79(2), 684-694} \doi{10.1111/biom.13670}
@@ -151,8 +151,8 @@
 #' Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. 
 #' {\emph{Stat}, 14 (3), e70078} \doi{10.1002/sta4.70078}
 #' 
-#' Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. 
-#' {\emph{arXiv preprint}} \doi{10.48550/arXiv.2507.10975}
+#' Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2026). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. 
+#' {\emph{Computational Statistics & Data Analysis}, 219, 108358} \doi{10.1016/j.csda.2026.108358}
 #'
 #' Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 #' {\emph{Statistics in Medicine}, 39: 617– 638} \doi{10.1002/sim.8434}

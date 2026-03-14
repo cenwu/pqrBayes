@@ -28,7 +28,7 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     include robust Bayesian group LASSO and robust binary Bayesian LASSO ([Fan and Wu (2025)](https://doi.org/10.1002/sta4.70078)). 
     Besides, robust sparse Bayesian regression with the horseshoe family of (horseshoe, horseshoe+ and 
     regularized horseshoe) priors has also been implemented and yielded valid inference results under heavy-tailed model errors
-    ([Fan et al.(2025)](https://doi.org/10.48550/arXiv.2507.10975)). The Markov Chain Monte Carlo (MCMC) 
+    ([Fan et al.(2026)](https://doi.org/10.1016/j.csda.2026.108358)). The Markov Chain Monte Carlo (MCMC) 
     algorithms of the proposed and alternative models are implemented in C++. 
    
 
@@ -97,11 +97,11 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     coverage1 = coverage(fit1,coefficient,u.grid=NULL, model = "linear")
     
     # BLSS: Bayesian LASSO with spike-and-slab priors (Ren et al., Biometrics, 2023)
-    fit2 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL ,robust = FALSE, prior = "SS", model = "linear", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL ,robust = FALSE, prior = "SS", model = "linear", hyper=NULL,debugging=FALSE)
     coverage2 = coverage(fit2,coefficient,u.grid=NULL, model = "linear")
     
     # Bayesian LASSO  (Park and Casella, JASA, 2008)
-    fit3 = pqrBayes(g, y,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "linear", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "linear", hyper=NULL,debugging=FALSE)
     coverage3 = coverage(fit3,coefficient,u.grid=NULL, model = "linear")
     
     CI_RBLSS[h,] = coverage
@@ -149,7 +149,7 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     
     # BLSS: Bayesian LASSO with spike-and-slab priors (Ren et al., Biometrics, 2023)
     
-    fit2 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL ,robust = FALSE, prior = "SS", model = "linear", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL ,robust = FALSE, prior = "SS", model = "linear", hyper=NULL,debugging=FALSE)
     
     estimation_3 = estimation.pqrBayes(fit2,coefficient,model="linear")
     coeff_est_3 = estimation_3$coeff.est
@@ -157,7 +157,7 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     
     # Bayesian LASSO  (Park and Casella, JASA, 2008)
     
-    fit3 = pqrBayes(g, y,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "linear", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "linear", hyper=NULL,debugging=FALSE)
     
     estimation_4 = estimation.pqrBayes(fit3,coefficient,model="linear")
     coeff_est_4 = estimation_4$coeff.est
@@ -215,15 +215,15 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     coverage3 = coverage(fit3,coefficient,u.grid=NULL, model = "linear")
     
     # BHS: Bayesian Regression with horseshoe priors
-    fit4 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS", model = "linear", hyper=NULL,debugging=FALSE)
+    fit4 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS", model = "linear", hyper=NULL,debugging=FALSE)
     coverage4=coverage(fit4,coefficient,u.grid=NULL, model = "linear")
     
     # BHS+: Bayesian Regression with horseshoe plus priors
-    fit5 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS+", model = "linear", hyper=NULL,debugging=FALSE)
+    fit5 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS+", model = "linear", hyper=NULL,debugging=FALSE)
     coverage5 = coverage(fit5,coefficient,u.grid=NULL, model = "linear")
     
     # BRHS: Bayesian Regression with regularized horseshoe priors
-    fit6 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "RHS", model = "linear", hyper=NULL,debugging=FALSE)
+    fit6 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "RHS", model = "linear", hyper=NULL,debugging=FALSE)
     coverage6 = coverage(fit6,coefficient,u.grid=NULL, model = "linear")
     
     
@@ -285,21 +285,21 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     mse_3 = estimation_3$error$MSE
     
     # BHS: Bayesian Regression with horseshoe priors
-    fit4 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS", model = "linear", hyper=NULL,debugging=FALSE)
+    fit4 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS", model = "linear", hyper=NULL,debugging=FALSE)
  
     estimation_4 = estimation.pqrBayes(fit4,coefficient,model="linear")
     coeff_est_4 = estimation_4$coeff.est
     mse_4 = estimation_4$error$MSE
     
     # BHS+: Bayesian Regression with horseshoe plus priors
-    fit5 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS+", model = "linear", hyper=NULL,debugging=FALSE)
+    fit5 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "HS+", model = "linear", hyper=NULL,debugging=FALSE)
  
     estimation_5 = estimation.pqrBayes(fit5,coefficient,model="linear")
     coeff_est_5 = estimation_5$coeff.est
     mse_5 = estimation_5$error$MSE
     
     # BRHS: Bayesian Regression with regularized horseshoe priors
-    fit6 = pqrBayes(g, y ,e=NULL, d = NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "RHS", model = "linear", hyper=NULL,debugging=FALSE)
+    fit6 = pqrBayes(g, y ,e=NULL, d = NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "RHS", model = "linear", hyper=NULL,debugging=FALSE)
 
     estimation_6 = estimation.pqrBayes(fit6,coefficient,model="linear")
     coeff_est_6 = estimation_6$coeff.est
@@ -366,12 +366,12 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     
     # BVCSS: Bayesian regularized VC model with spike-and-slab priors (Zhou et al., CSDA, 2023)
   
-    fit2 = pqrBayes(g, y,e=NULL, d =NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "SS", model = "VC", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y,e=NULL, d =NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "SS", model = "VC", hyper=NULL,debugging=FALSE)
     coverage2 = coverage(fit2,coefficient,u.grid, model = "VC")
     
     # BVC: Bayesian regularized VC model (Zhou et al., CSDA, 2023)
   
-    fit3 = pqrBayes(g, y,e=NULL, d =NULL, quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "VC", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y,e=NULL, d =NULL, quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "VC", hyper=NULL,debugging=FALSE)
     coverage3 = coverage(fit3,coefficient,u.grid,model = "VC")
     
     CI_BQRVCSS = rbind(CI_BQRVCSS,coverage)
@@ -438,13 +438,13 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
     mse_2 = estimation_2$error$MSE 
     
     # BGLSS: Bayesian group LASSO with spike-and-slab priors (Xu & Ghosh, Bayesian Analysis, 2015) 
-    fit2 = pqrBayes(g, y, d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "SS", model= "group", hyper=NULL,debugging=FALSE)
+    fit2 = pqrBayes(g, y, d=3, e=NULL,quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "SS", model= "group", hyper=NULL,debugging=FALSE)
     estimation_3 = estimation.pqrBayes(fit2,coefficient,model="group")
     coeff_est_3 = estimation_3$coeff.est    
     mse_3 = estimation_3$error$MSE    
     
     # BGL: Bayesian group LASSO (Casella et al., Bayesian Analysis, 2010)
-    fit3 = pqrBayes(g, y,d=3, e=NULL,quant=quant, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "group", hyper=NULL,debugging=FALSE)
+    fit3 = pqrBayes(g, y,d=3, e=NULL,quant=NULL, iterations=10000, burn.in = NULL, robust = FALSE, prior = "Laplace", model = "group", hyper=NULL,debugging=FALSE)
     estimation_4 = estimation.pqrBayes(fit3,coefficient,model="group")
     coeff_est_4 = estimation_4$coeff.est    
     mse_4 = estimation_4$error$MSE    
@@ -454,7 +454,7 @@ Bayesian regularized quantile regression utilizing two major classes of shrinkag
 This package provides implementation for methods from
   
   - Fan, K., Subedi, S., Yang, G., Lu, X., Ren, J. and Wu, C. (2024). Is Seeing Believing? A Practitioner's Perspective on High-dimensional Statistical Inference in Cancer Genomics Studies. [Entropy, 26(9),794](https://doi.org/10.3390/e26090794)
-  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  [Computational Statistics & Data Analysis, 107808](https://doi.org/10.1016/j.csda.2023.107808)
+  - Zhou, F., Ren, J., Ma, S. and Wu, C. (2023). The Bayesian Regularized Quantile Varying Coefficient Model.  [Computational Statistics & Data Analysis, 187, 107808](https://doi.org/10.1016/j.csda.2023.107808)
   - Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y., and Wu, C. (2023). Robust Bayesian variable selection for gene–environment interactions. [Biometrics, 79(2), 684-694](https://doi.org/10.1111/biom.13670)
   - Fan, K. and Wu, C. (2025). A New Robust Binary Bayesian LASSO. [Stat, 14(3), e70078.](https://doi.org/10.1002/sta4.70078)
-  - Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2025). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. [arXiv:2507.10975](https://doi.org/10.48550/arXiv.2507.10975)
+  - Fan, K., Srijana, S., Dissanayake, V. and Wu, C. (2026). Robust Bayesian high-dimensional variable selection and inference with the horseshoe family of priors. [Computational Statistics & Data Analysis, 219, 108358](https://doi.org/10.1016/j.csda.2026.108358)

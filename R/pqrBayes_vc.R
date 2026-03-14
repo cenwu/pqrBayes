@@ -12,6 +12,16 @@ pqrBayes_vc <- function(g, y, e=NULL,quant=0.5, iterations=10000, burn.in, robus
   u = stats::runif(n,0.01,0.99)
   kn=2
   degree=2
+  # Check quant
+  if (robust) {
+    if (is.null(quant)) {
+      stop("quant must be specified when robust = TRUE.")
+    }
+  } else {
+    if (!is.null(quant)) {
+      stop("quant must be NULL when robust = FALSE.")
+    }
+  }
   if(robust){
     out = Robust_vc(g, y, u, e,quant, iterations, kn, degree, prior, hyper,debugging)
   }else{
